@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>线路发布</title>
+  <{include file="header.html"}>
+<style type="text/css">
+  #first_a{
+  width:241px;
+  border:1px solid #CCC;
+}
+#first_a tr:hover{
+  background:#969;
+}
+#first_a table{
+width:100%;
+}
+#first_a{
+  display:none;
+}
+</style>
+<!-- <div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门好玩的地方</h1>
+        <div id="tban_le_txt">推荐厦门好玩的地方，把网友去过的好玩的地方的经历感触，分享给没去过或正想去的人。</div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1">厦门周边一日游 厦门周边农家乐 厦门有什么好玩的地方
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div> -->
+    <div style="margin-top:10px;" id="cont">
+        <div id="d_tit06">
+            线路发布</div>
+        <div id="d_bk_t">
+            <div id="d_bk_t01">
+                <div class="c1">
+                </div>
+            </div>
+            <div id="d_bk_t02">
+                <div class="c1">
+                </div>
+            </div>
+        </div>
+            <div id="userinfo_bk">
+              <div id="userinfo_bk2">
+                <table width="800" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#d1d1d1">
+                    <tr>
+                        <td width="150" height="55" class="tab_left">
+                            线路名称：
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                            <input type="text" name="title" class="tab_txt1" id="title" size="60" value="<{$title}>"><span class="torange1"></span><div style="font-size:24px;color:#F00;display:inline;">*</div>
+                        </td>
+                    </tr>
+                    <input name="tags" type="hidden" class="tab_txt1" id="tags" value="旅游景点,<{$tags}>" size="60" />
+                    <tr>
+                        <td height="55" class="tab_left">
+                            推荐属性：
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                          <div id="first" class="controls">
+                               <{foreach item=chainresultname from=$chainresult key=enname}>
+                               <{if $enname == '0'}>
+                                  <input checked="checked" name="items" type="checkbox" value="<{$chainresultname.keywords}>" /> <{$chainresultname.keywords}> |
+                               <{else}>
+                                  <input name="items" type="checkbox" value="<{$chainresultname.keywords}>" /> <{$chainresultname.keywords}> |
+                               <{/if}>
+                             <{/foreach}>
+                          </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td height="55" class="tab_left">
+                            所在地：
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                             <select onchange="province(this)" name="provinceid" id="provinceid">
+                             <option selected value="0">无选择省份</option>
+                             <{foreach item=resultclassname from=$resultclass key=enname}>
+                               <{if $provinceid == $resultclassname.id}>
+                                  <option selected value="<{$resultclassname.id}>"><{$resultclassname.citystate}></option>
+                               <{else}>
+                                  <option value="<{$resultclassname.id}>"><{$resultclassname.citystate}></option>
+                               <{/if}>
+                             <{/foreach}>
+                          </select>
+                          <select onchange="area(this)" name="cityid" id="cityid">
+                             <option selected value="0">无选择城市</option>
+                             <{foreach item=resultsubname from=$resultsub key=enname}>
+                               <{if $cityid == $resultsubname.id}>
+                                  <option selected value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option>
+                               <{else}>
+                               <{/if}>
+                             <{/foreach}>
+                          </select>
+                           <select name="areaid" id="areaid">
+                             <option selected value="0">无选择区</option>
+                             <{foreach item=resultsubname from=$resultsub key=enname}>
+                               <{if $areaid == $resultsubname.id}>
+                                  <option selected value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option>
+                               <{else}>
+                               <{/if}>
+                             <{/foreach}>
+                          </select>
+                          <span class="torange1"></span><div style="font-size:24px;color:#F00;display:inline;">*</div>
+                        </td>
+                    </tr>
+                    <input name="username" type="hidden" class="tab_txt1" id="username" size="60" value="<{$username}>" />
+
+                    <tr>
+                        <td height="55" class="tab_left">
+                            具体地址：
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                            <input name="address" type="text" class="tab_txt1" id="address" size="60" value="<{$address}>" /><span class="torange1"></span><div style="font-size:24px;color:#F00;display:inline;">*</div>
+                        </td>
+                    </tr>
+                     
+                   <tr>
+                        <td height="55" class="tab_left">
+                            价钱：
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                            <input name="tickets" type="text" class="tab_txt1" id="tickets" size="60" value="<{$tickets}>" /><span class="torange1"></span><div style="font-size:24px;color:#F00;display:inline;">*</div>
+                        </td>
+                  </tr>
+
+                  <tr>
+                        <td height="55" class="tab_left">
+                            电话：
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                            <input name="phone" type="text" class="tab_txt1" id="phone" size="60" value="<{$phone}>" /><span class="torange1"></span><div style="font-size:24px;color:#F00;display:inline;">*</div>
+                        </td>
+                  </tr>               
+
+                    <tr>
+                        <td height="55" class="tab_left">
+                            特色：
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                            <font color="#999999">从你个人的视角，用原创文字描述一下该线路的独特之处</font>
+                            <div style="font-size:24px;color:#F00;display:inline;">*</div>
+                            <textarea name="content" id="content" style="width:600px;height:350px;" class="tab_txt1"><{$content}></textarea><span class="torange1"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="55" class="tab_left"> 
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                            <a id="ex3button" href="javascript:;"><img src="../../tpl/images/nlw_bt3.gif" width="148" height="36" /></a>
+                            <input type="hidden" name="id" id="id" value="<{$id}>">
+                        </td>
+                    </tr>
+                </table>
+                </div>
+      </div>
+  <div id="d_bk_b">
+            <div id="d_bk_b01">
+                <div class="c1">
+                </div>
+            </div>
+            <div id="d_bk_b02">
+                <div class="c1">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+<script type="text/javascript">
+<!--  
+function hotkey()  
+{  
+  var a=window.event.keyCode;  
+  if(a==13)  
+  {  
+    updata();
+  }  
+  }// end hotkey  
+  document.onkeydown = hotkey;
+  </script>
+<script type="text/javascript">
+$(document).ready(function(){
+  // 例子三
+  $("input[name=items]").click(function(){
+  //alert($(this).val());
+         var newstag = $(this).val();
+         var tag = $("#tags").val();
+         if ($(this).attr("checked")){
+          $("#tags").val(tag+newstag+",");
+         }
+         else
+         { 
+            tag = tag.replace(newstag+",","");
+            $("#tags").val(tag);
+         }
+       });
+
+  $("#ex3button").click(function(){ 
+    updata();
+  });
+});
+
+function updata(){
+
+    var formdata = {
+      'id' : $('#id').val(),
+      'title' : $('#title').val(),
+      'username' : $('#username').val(),
+      'picurl' : $('#picurl').val(),
+      'releasedate' : $('#releasedate').val(),
+      'content' : $('#content').val(),
+      'provinceid' : $('#provinceid').val(),
+      'cityid' : $('#cityid').val(),
+      'areaid' : $('#areaid').val(),
+      'address' : $('#address').val(),
+      'tickets' : $('#tickets').val(),
+      'phone' : $('#phone').val(),
+      'map' : $('#map').val(),
+      'tags' : $('#tags').val()
+    };
+    var id  = $('#id').val();
+    var newId;
+    if(id == '')
+    {
+      if(formdata['provinceid']==0||formdata['cityid']==0||formdata['areaid']==0||formdata['ndly']==0||formdata['nearby']==0)
+      {  alert("你没选择好【所在地】！"); }
+      else
+      {
+        $.post('<{spUrl c=linesinfoform a=adddata}>', formdata, function(result){
+                  $('#resulttable').append(result);
+            newId =result.match(/^\d.*$/);
+            feedback(result,id,newId);
+
+        });
+      }
+    }
+    else
+    {
+      $.post('<{spUrl c=linesinfoform a=editdata}>', formdata, function(result){
+        $('#resulttable').append(result); 
+        feedback(result,id);
+      }); 
+    }
+}
+
+function del(id){
+    $.get('<{spUrl c=linesinfoform a=deldata}>', 'id='+id, function(result){
+      $('#ex1result').html(result); 
+      if(result == 1)
+      {alert('删除成功!!');}else{alert('删除失败!!')}
+      window.location.reload(); 
+    });
+}
+
+// 搜索功能调用
+function searchs(){
+  var filter = $('#filter').val();
+  if(filter != ''){
+    window.location.href="index.php?c=linesinfoform&a=index&t=scenery&filter="+filter+"";
+  }
+}
+
+// 分类列出
+function Class(nums){
+  var filter = $('#filter').val();
+  if(nums.value != '')
+  {window.location.href="index.php?c=linesinfoform&a=index&t=scenery&classid="+nums.value+"&filter="+filter+"";}
+}
+
+// 分类列出
+function province(id){
+ if(id.value != 0)
+  {
+    var formdata = {
+      'id' : id.value
+    };
+    $.post('<{spUrl c=linesinfoform a=subclass}>', formdata, function(result){
+      $('#resulttable').append(result);
+      //alert(result);
+      $("#cityid option").remove();
+      var response = eval("("+result+")");
+      $("#cityid").append("<option value='0'>请选择城市</option>");
+      for(var i in response.cityinfo){
+        $("#cityid").append("<option value='"+response.cityinfo[i].id+"'>" + response.cityinfo[i].citystate+ "</option>"); 
+      }  
+    });
+   }
+   else
+   {alert("你没有选择哦！");}
+}
+  
+// 列出区
+function area(id){
+  if(id.value != 0)
+  {
+    var formdata = {
+      'id' : id.value
+    };
+    $.post('<{spUrl c=linesinfoform a=subclass}>', formdata, function(result){
+      $('#resulttable').append(result);
+      //alert(result);
+      $("#areaid option").remove();
+      var response = eval("("+result+")");
+      $("#areaid").append("<option value='0'>请选择区</option>"); 
+      for(var i in response.cityinfo){
+        $("#areaid").append("<option value='"+response.cityinfo[i].id+"'>" + response.cityinfo[i].citystate+ "</option>"); 
+      }  
+    });
+   }
+   else
+   {alert("你没有选择哦！");}
+}
+
+function syslable(str)
+{
+  var sts = $("#tags").val();
+  $("#tags_tag").val(str.value);
+  $('#tags_tag').trigger("focus");
+  $('#tags_tag').trigger("blur");
+  $(".cho").data("placeholder","Select Frameworks...").chosen();
+}
+</script>
+  <script type="text/javascript" src="../upload/jquery.form.js"></script>
+<script type="text/javascript">
+$(function () {
+  var bar = $('.bar');
+  var percent = $('.percent');
+  var showimg = $('#showimg');
+  var progress = $(".progress");
+  var files = $(".files");
+  var btn = $(".btn span");
+  $("#fileupload").wrap("<form id='myupload' action='../upload/action.php' method='post' enctype='multipart/form-data'></form>");
+    $("#fileupload").change(function(){
+    $("#myupload").ajaxSubmit({
+      dataType:  'json',
+      beforeSend: function() {
+            showimg.empty();
+        progress.show();
+            var percentVal = '0%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+        btn.html("上传中...");
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+        },
+      success: function(data) {
+        files.html("<div id='mypicurl' style='display:none'><b>"+data.name+"("+data.size+"k)</b> <span class='delimg' rel='"+data.pic+"'>删除</span></div>");
+        var img = "<{$domain}>/upload/upfiles/"+data.pic;
+        showimg.html("<img src='"+img+"'>");
+        $("#picurl").val(img);
+        art.dialog({
+            id: 'KDf435',
+            content: '<a id="uppic" target="_blank" href=../upload/index.php?srcurl='+img+'>确定上传图片</a>'
+        });
+        
+        btn.html("添加附件");
+      },
+      error:function(xhr){
+        btn.html("上传失败");
+        bar.width('0')
+        files.html(xhr.responseText);
+      }
+    });
+  });
+  
+  $("#uppic").live({click: function() {  //首页
+      
+      var list = art.dialog.list;
+      for (var i in list) {
+          list[i].close();
+      };
+      $('#mypicurl').css("display","block");
+  }});
+
+  $(".delimg").live('click',function(){
+    var pic = $(this).attr("rel");
+    $.post("../upload/action.php?act=delimg",{imagename:pic},function(msg){
+      if(msg==1){
+        files.html("删除成功.");
+        showimg.empty();
+        progress.hide();
+      }else{
+        alert(msg);
+      }
+    });
+  });
+});
+
+function feedback(result,id,newId){
+    if(newId == null)
+    {
+        $('.badge').removeClass('badge badge-info').text('');
+        var response = eval("("+result+")");
+        var msg = "<font color='red'>错误提示！！</font><br />";
+        var n = 1;
+        for(var i in response){
+          msg += n+"、"+response[i].toString()+"<br />";
+          n++;
+        }
+         art.dialog({
+            lock: true,
+            opacity: 0.87,
+            content: msg
+         });
+    }
+    else
+    {
+         art.dialog({
+            lock: true,
+            opacity: 0.87,
+            content: "<font color='#FF0000'>恭喜你！添加景点成功,不过我们需要先审核下！</font><br /><a href='javascript:yd("+newId+")''>立刻去看发布内容</a>"
+         });
+         setTimeout("yd("+newId+")",5000); 
+    }
+}
+function yd(newId)
+{
+   window.location.href="<{spUrl}>lines/"+newId+".html";
+}
+</script>
+
+<{include file="footer.html"}>

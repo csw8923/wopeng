@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>游记攻略_窝棚旅游网</title>
+<meta name='keywords' content='厦门周边自驾游，自驾游路线查询，厦门自驾游攻略，自驾游攻略，厦门自助游，厦门自助游攻略' />
+<meta name='description' content='一起分享和感受厦门周边自驾游的经历和乐趣，寻找你喜欢的周边自驾游景点。' />
+<{include file="header.html"}>
+<div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门周边旅游景点 </h1>
+        <div id="tban_le_txt">
+                    厦门周边旅游景点大全，推荐当季最佳最受欢迎的旅游景点，还有适合周末休闲的好去处。
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1"> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/3.html"><{$city['title']}>周边一日游</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/6.html"><{$city['title']}>周边农家乐</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/rank/bset.html"><{$city['title']}>有什么好玩的地方</a>
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cont">
+  <div class="yjgl_le">
+    <div id="d_tit06"><h2>最新游记攻略</h2></div>
+<{foreach item=youjiout from=$youji key=enname}>
+<div id="yjgl_lta1">
+  <div id="d_bk_t">
+    <div id="d_bk_t01"><div class="c1"></div></div>
+    <div id="d_bk_t02"><div class="c1"></div></div>
+  </div>  
+  <div id="d_bk3_c">
+    <div id="d_bk3_c01"><div class="c1"></div></div>
+    <div id="d_bk3_c03">
+     <div class="yjgl_cen04">
+          <div id="ind_cen04_l"><img src="<{$youjiout.picurl}>" width="185" height="138" /></div>
+          <div class="yjgl_cen04_r">
+            <div id="ind_cen04_r01">
+              <div id="ind_cen04_r01_l" class="t14 tgreen"><a href="<{spUrl}>youji/info/<{$youjiout.id}>.html"><{$youjiout.title|truncate:60:"...":true}></a></div>
+            </div>
+            <div id="ind_cen04_r02" class="tgray1"><{$youjiout.username}> 发表于 <{$youjiout.releasedate|date_format:"%Y-%m-%d"}></div>
+            <div id="ind_cen04_r02"><{$youjiout.content|strip_tags|truncate:100:"...":true}><a href="<{spUrl}>youji/info/<{$youjiout.id}>.html">.[显示全文]</a></div>
+            <div id="ind_cen04_r03">加颗钻石&nbsp;<img src="../../tpl/images/nlw_ic2.gif" width="16" height="16" align="absmiddle" />1</span>&nbsp;<a href="<{spUrl}>youji/info/<{$youjiout.id}>.html#ex3button">添加回应</a></div>
+          </div>
+          </div> 
+    </div>
+    <div id="d_bk3_c02"><div class="c1"></div></div>
+  </div>  
+  <div id="d_bk_b" class="mar_b20">
+    <div id="d_bk_b01"><div class="c1"></div></div>
+    <div id="d_bk_b02"><div class="c1"></div></div>
+  </div>  
+</div>
+<{/foreach}>
+  <div style="min-height:20px" id="d_bk3_c">
+    <{if $pager}>
+          <div style="width:700px;" class="green-black">
+              <{if $pager.current_page != $pager.first_page}>
+              <span class="disabled">当前<{$pager.current_page}>/<{$pager.total_page}> 页</span>
+              <{if $pager.current_page!=1}>
+                 <span class="disabled">
+                  <a href="<{$domain}>/xm/hot/youji.html?page=<{$pager.prev_page}>">上一页
+                  </a>
+                </span>
+              <{/if}>
+              <{/if}>       
+              <{foreach from=$pager.all_pages item=thepage}>
+                <{if $thepage >= $pager.current_page-5 && $thepage <= $pager.current_page+5}>  
+                  <{if $thepage != $pager.current_page}>
+                      <a href="<{$domain}>/xm/hot/youji.html?page=<{$thepage}>"><{$thepage}></a>
+                  <{else}>
+                      <span class="current"><{$thepage}></span>
+                  <{/if}>
+               <{/if}>
+              <{/foreach}>
+              <{if $pager.current_page != $pager.last_page}>
+              <a href="<{$domain}>/xm/hot/youji.html?page=<{$pager.next_page}>">下一页</a>
+              <a href="<{$domain}>/xm/hot/youji.html?page=<{$pager.last_page}>">后页</a>
+              <{/if}>
+          </div>
+        <{/if}>
+   </div>
+  </div>
+  <div class="yjgl_ri">
+
+ <div class="yjgl_tit01">
+      <div class="tit01l">人气排行</div>
+      <div class="tit01r"><img src="../../tpl/images/nlw_more2.gif" /></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="yjgl_ph1l">
+      <{foreach item=trafficout from=$showsceneryAll key=enname}>
+        <{if $enname == '0'}>
+            <div id="yjgl_ri01"><div id="ind_num1"><{$enname+1}></div><div id="yjgl_numt3"><a target="_blank" title="<{$trafficout.title}>" href="<{spUrl}>scenery/<{$trafficout.id}>.html"><{$trafficout.title|truncate:14:"...":true}></a></div><div id="yjgl_numt4" class="torange1">8.9</div></div>
+        <{else}>
+            <div id="yjgl_ri01"><div id="ind_num2"><{$enname+1}></div><div id="yjgl_numt3"><a target="_blank" title="<{$trafficout.title}>" href="<{spUrl}>scenery/<{$trafficout.id}>.html"><{$trafficout.title|truncate:14:"...":true}></a></div><div id="yjgl_numt4" class="tgreen">8.9</div></div>
+        <{/if}>
+      <{/foreach}>
+     </div>
+    </div>
+    <div class="yjgl_tit01">
+      <div class="tit01l">哪玩达人</div>
+      <div class="tit01r"><img src="../../tpl/images/nlw_more2.gif" /></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="yjgl_ph1l">
+      <{foreach item=userout from=$top_resultuser key=enname}>
+        <{if $enname == '0'}>
+            <div id="yjgl_ri01"><div id="ind_num1"><{$enname+1}></div><div id="yjgl_numt3"><{$userout.uname|truncate:14:"...":true}></div><div id="yjgl_numt4" class="torange1"><{$userout.integral}></div></div>
+        <{else}>
+            <div id="yjgl_ri01"><div id="ind_num2"><{$enname+1}></div><div id="yjgl_numt3"><{$userout.uname|truncate:14:"...":true}></div><div id="yjgl_numt4" class="tgreen"><{$userout.integral}></div></div>
+        <{/if}>
+      <{/foreach}>
+     </div>
+  </div>
+
+     </div>
+  </div>  </div>
+</div>
+<{include file="footer.html"}>

@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<{if $seo['phtitle'] == ""}>
+  <title><{$showscenery['title']}>图片_<{$showscenery['title']}>旅游景点景区风景图片_<{$city['title']}><{$showscenery['title']}>(<{$city['title']}>)</title>
+  <{else}>
+  <title><{$seo['phtitle']}></title>
+<{/if}>
+<{if $seo['phkeyword'] == ""}>
+  <meta name="keywords" content="<{$showscenery['tags']}>" />
+  <{else}>
+  <meta name="keywords" content="<{$seo['phkeyword']}>" />
+<{/if}>
+<{if $seo['phdirections'] == ""}>
+  <meta name="description" content="<{$showscenery['content']|strip_tags|truncate:200}>">
+  <{else}>
+  <meta name="description" content="<{$seo['phdirections']}>">
+<{/if}>
+<{include file="header.html"}>
+<!--     <div id="cont">
+        <div id="tban">
+            <div id="tban_le">
+                <div id="tban_le_01">
+                    <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />
+                </div>
+                <div id="tban_le_02">
+                    <h1>
+                        厦门周边旅游景点
+                    </h1>
+                    <div id="tban_le_txt">
+                        厦门周边旅游景点大全，推荐当季最佳最受欢迎的旅游景点，还有适合周末休闲的好去处。
+                    </div>
+                </div>
+                <div id="tban_le_03">
+                    <img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />
+                </div>
+            </div>
+            <div id="tban_ri">
+                <div id="tban_le_01">
+                    <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />
+                </div>
+                <div id="tban_le_02">
+                    <h1>
+                        推荐分类
+                    </h1>
+                    <div id="tban_le_txt" class="tgray1"> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/3.html"><{$city['title']}>周边一日游</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/6.html"><{$city['title']}>周边农家乐</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/rank/bset.html"><{$city['title']}>有什么好玩的地方</a>
+        </div>
+                </div>
+                <div id="tban_le_03">
+                    <img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />
+                </div>
+            </div>
+        </div>
+    </div>
+     -->
+    <div style="margin-top:10px;" id="cont">
+  <div style="height:25px;">
+        <div id="tban_le_txt" class="tgray1"> 
+          <a style="color:#999" href="<{$domain}>/"><{$city['title']}>周边游</a> > <a style="color:#999" href="<{spUrl}>city/scenery/<{$city.id}>"><{$city['title']}>景点</a> > <a style="color:#999" href="<{spUrl}>scenery/<{$show['id']}>.html"><{$show['title']}></a>
+        </div>
+  </div>
+</div>
+
+    <div id="cont">
+        <div id="xlzy_tit01">
+            <{$s_scenery['title']}>      
+    <{if $s_scenery['tophot'] < 2.9 }>
+     <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $s_scenery['tophot'] < 4.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $s_scenery['tophot'] < 6.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $s_scenery['tophot'] < 8.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $s_scenery['tophot'] < 9.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{/if}><span class=" torange1 t14"><{$s_scenery['tophot']}>分</span></div>
+        <div id="xlzy_tit02">
+            <div id="xlzy_tit03">
+                <img src="../../tpl/images/nlw_ic7.gif" width="16" height="16" /></div>
+            <div id="xlzy_tit04">
+                <a target="_blank" href="<{spUrl c=youjiinfoform a=add id=$id}>?type=<{$info}>">写游记</a></div>
+            <div id="xlzy_tit03">
+                <img src="../../tpl/images/nlw_ic8.gif" width="16" height="16" /></div>
+            <div id="xlzy_tit04">
+                <a target="_blank" href="<{spUrl c=commentinfoform a=add id=$id}>?type=<{$info}>">写点评</a></div>
+            <div id="xlzy_tit03">
+                <img src="../../tpl/images/nlw_ic9.gif" width="16" height="16" /></div>
+            <{if $smarty.session.quser.acl == "GBADMIN"}>
+            <div id="xlzy_tit04">
+                <a target="_blank" href="<{spUrl c=albuminfoform a=uppic}>?type=<{$info}>&pid=<{$id}>">发照片</a></div>
+            <{/if}>
+        </div>
+    </div>
+    <div id="cont">
+        <div class="xlzy_menu mar_b10">
+            <ul class="menu">
+                <li><a href="<{spUrl}><{$info}>/<{$id}>.html">主页</a></li>
+                <{if !empty($youji)}>
+                <li><a href="<{spUrl}>youji/<{$info}>/<{$id}>.html">游记</a></li>
+                <{/if}>
+                <{if !empty($comment)}>
+                <li><a href="<{spUrl}>comment/<{$info}>/<{$id}>.html">点评</a></li>
+                <{/if}>
+                <{if !empty($pictures)}>
+                <li><a href="<{spUrl}>photoalbum.html?info=<{$info}>&pid=<{$id}>">图片</a></li>
+                <{/if}>
+                <li><a style="width:80px;" href="<{spUrl}>visits/<{$info}>/<{$id}>.html">自由行线路</a></li>
+                <li><a href="<{spUrl}>ask/<{$info}>/<{$id}>.html">论坛</a></li>
+                <{if $smarty.session.quser.acl == "GBADMIN"}>
+                <li><a target="_blank" href="<{spUrl c=albuminfoform a=add id=$id}>?type=<{$info}>">上传相册</a></li>
+                <li><a target="_blank" href="javascript:seo()">seo设置</a></li>
+                <{/if}>
+            </ul>
+        </div>
+    </div>
+    <div class="image_list">
+
+        <{foreach item=picturesout from=$pictures key=enname}>
+            <ul>
+                <li><a href="<{$domain}>/photo/<{$picturesout.id}>">
+                    <img src="<{$domain}>/uploadify3.2/uploads/<{$picturesout.picurl|replace:'.jpg':''}>_270x180.jpg" width="243" height="164" /></a></li>
+                <li>
+                  <{if $smarty.session.quser.uid != $picturesout.userid || $smarty.session.quser.acl != 'GBADMIN'}>
+                  <a style="padding-left: 15px; color: #fff;" href="#"><{$picturesout.title}><span class="tyellow1">(0)</span></a>
+                  <{else}>
+                   <input style="margin-left:10px;" id="title<{$picturesout.id}>" name="title" onchange="uphotos('<{$picturesout.id}>')" value="<{$picturesout.title}>" type="text" />
+                   <{/if}>
+                  <{if <{$picturesout.top}> == '1'}>
+                  <a style="color: #F00;" href="javascript:tops(<{$picturesout.id}>);">【首图】</a>
+                  <{else}>
+                  <a style="color: #fff;" href="javascript:tops(<{$picturesout.id}>);">【推荐】</a>
+                  <{/if}>
+                </li>
+                <li><a style="padding-left: 15px; color: #fff;" href="#"><{$picturesout.username}> <{$picturesout.releasedate|date_format:"%Y-%m-%d"}></a></li>
+            </ul>
+        <{/foreach}> 
+
+        <div class="clearNoHeight"></div>
+
+    </div>
+    <br />
+    <div id="cont">
+          <{if $pager}>
+                <div style="width:700px;" class="green-black">
+                    <{if $pager.current_page != $pager.first_page}>
+                    <span class="disabled">当前<{$pager.current_page}>/<{$pager.total_page}> 页</span>
+                    <{if $pager.current_page!=1}>
+                       <span class="disabled">
+                        <a href="<{$domain}>/photoalbum.html?info=<{$info}>&pid=<{$id}>&page=<{$pager.prev_page}>">上一页</a>
+                      </span>
+                    <{/if}>
+                    <{/if}>       
+                    <{foreach from=$pager.all_pages item=thepage}>
+                      <{if $thepage >= $pager.current_page-5 && $thepage <= $pager.current_page+5}>  
+                        <{if $thepage != $pager.current_page}>
+                            <a href="<{$domain}>/photoalbum.html?info=<{$info}>&pid=<{$id}>&page=<{$thepage}>"><{$thepage}></a>
+                        <{else}>
+                            <span class="current"><{$thepage}></span>
+                        <{/if}>
+                     <{/if}>
+                    <{/foreach}>
+                    <{if $pager.current_page != $pager.last_page}>
+                    <a href="<{$domain}>/photoalbum.html?info=<{$info}>&pid=<{$id}>&page=<{$pager.next_page}>">下一页</a>
+                    <a href="<{$domain}>/photoalbum.html?info=<{$info}>&pid=<{$id}>&page=<{$pager.last_page}>">后页</a>
+                    <{/if}>
+                </div>
+              <{/if}>
+
+    </div>
+    <div id="cont">
+        <div class="bot">
+            关于我们 | 联系方式 | 友情链接 | 问题反馈 | 添加景点<br />
+            Copyright©2012 哪里玩(www.narwan.com) 闽ICP备10016424号</div>
+    </div>
+</body>
+<script src="<{$domain}>/artDialog/artDialog.js?skin=idialog"></script>
+<script src="<{$domain}>/artDialog/plugins/iframeTools.js"></script>
+<script>
+
+ function tops(id){      
+    var formdata = {
+     'id' : id,
+     'pid' : <{$id}>
+    };
+    $.getJSON('<{spUrl c=albuminfoform a=setphoto}>', formdata, function(result){
+       if( result != 0)
+        { alert("推荐该图成功");}
+       else
+        { alert("推荐设置失败");}
+        location.reload();
+    });
+}
+
+function seo(){
+   var content = '<div style="margin-bottom:10px;">标题：<input id="phtitle" type="text" value="<{$seo["phtitle"]}>" /></div>';
+       content += '<div style="margin-bottom:10px;">关键字：<input id="phkeyword" type="text" value="<{$seo["phkeyword"]}>" /></div>';
+       content += '<div style="margin-bottom:10px;">说明：<input id="phdirections" type="text" value="<{$seo["phdirections"]}>" /></div>';
+       content += '<div style="float:right"><input onclick="upseo()" value="提交" type="button" /></div>';
+   art.dialog({
+      lock: true,
+      opacity: 0.87,
+      content: content
+  });
+}
+function upseo(){
+  var formdata = {
+      'phtitle' : $("#phtitle").val(),
+      'phkeyword' : $('#phkeyword').val(),
+      'phdirections' : $('#phdirections').val(),
+      'id' : <{$showscenery['id']}>
+    };
+    $.post('<{spUrl c=siteseo a=photolistdata}>', formdata, function(result){
+      $('#resulttable').append(result);
+       if(result == "1")
+       { location.reload(); }
+    }); 
+}
+</script>
+</html>

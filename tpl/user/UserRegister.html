@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>用户注册</title>
+  <{include file="header.html"}>
+<div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门周边旅游景点 </h1>
+        <div id="tban_le_txt">
+                    厦门周边旅游景点大全，推荐当季最佳最受欢迎的旅游景点，还有适合周末休闲的好去处。
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1">厦门周边一日游 厦门周边农家乐 厦门有什么好玩的地方
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div>
+<div id="cont">
+  <div id="d_tit06">用户注册</div>
+  <div id="tit02_r"> <a href="<{spUrl c=login a=register}>" class="btn_reg"><img src="../../../tpl/images/nlw_bt5.gif" width="148" height="36" /></a></div>
+  <div id="d_bk_t">
+    <div id="d_bk_t01"><div class="c1"></div></div>
+    <div id="d_bk_t02"><div class="c1"></div></div>
+  </div>  
+  <div id="d_bk_c">
+    <div id="d_bk_c01"><div class="c1"></div></div>
+    <div id="d_bk_c03">
+<form name="MyForm1" class="form-horizontal" action="<{spUrl c=login a=regdata}>"  autocomplete="off" method="post">
+      <div id="d_tab01">
+        <div id="d_tab01_le">电子邮箱</div>
+        <div id="d_tab01_ce"><input class="tab_txt1" type="text" name="Email" id="Email" value="<{$Email}>" style="width:350px;"> <span class="torange1"></span><span class="tgreen">请输入您的真实电子邮箱</span>
+         <input type="hidden" name="already" id="already" value="<{$Email}>">
+          <span class="torange1"></span>
+      </div>
+      </div>
+      
+      <div id="d_tab01">
+        <div id="d_tab01_le">昵称</div>
+        <div id="d_tab01_ce"><input class="tab_txt1" type="text" name="uname" id="uname" value="<{$nick}>" style="width:350px;"> <span class="torange1"></span><span class="tgreen">请输入您昵称</span>
+         <input type="hidden" name="already" id="already" value="<{$Email}>">
+          <span class="torange1"></span>
+      </div>
+      </div>
+                        
+      <div id="d_tab01">
+        <div id="d_tab01_le">密码</div>
+        <div id="d_tab01_ce"><input class="tab_txt1" type="password" name="upass" id="upass" value="<{$upass}>" style="width:350px;"> <span class="torange1"></span><span class="tgreen">请输入您的密码，不少于6位</span>
+      </div>
+      </div>
+
+     <div id="d_tab01">
+        <div id="d_tab01_le">验证码</div>
+        <div id="d_tab01_ce">
+            <input class="tab_txt1" type="text" name="code" id="code" style="width:350px;">
+            <img src="<{spUrl c=login a=_vcode}>" alt="看不清楚,点击图片刷新" onClick="this.src='../index.php?c=login&a=_vcode&' + Math.random(1)"/>
+            <span class="tgreen"> 看不清？换一张</span></div>
+      </div>
+      <input class="tab_txt1" type="hidden" name="qqlink" id="qqlink" value="<{$openid}>">
+      <div id="d_tab01">
+        <div id="d_tab01_le"></div>
+        <div id="d_tab01_ce">
+          <input type="hidden" name="id" id="id" value="<{$id}>">
+           <{if $id == 0}>
+           <a id="ex3button" href="javascript:;"><img src="../../../tpl/images/nlw_bt7.gif" width="148" height="36" /></a></div>
+           <{else}>
+           <a id="ex3button" href="javascript:;"><img src="../../../tpl/images/nlw_bt15.gif" width="148" height="36" /></a></div>
+           <{/if}>
+      </div>
+</form>
+    </div>
+    <div id="d_bk_c02"><div class="c1"></div></div>
+  </div>  
+  <div id="d_bk_b">
+    <div id="d_bk_b01"><div class="c1"></div></div>
+    <div id="d_bk_b02"><div class="c1"></div></div>
+  </div>  
+</div>
+<script type="text/javascript">
+<!--  
+function hotkey()  
+{  
+  var a=window.event.keyCode;  
+  if(a==13)  
+  {  
+    document.all.MyForm1.submit();
+    return false;
+  }  
+  }// end hotkey  
+  document.onkeydown = hotkey; //当onkeydown 事件发生时调用hotkey函数  
+</script>
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+  // 例子三
+  $("#ex3button").click(function(){ // “提交”按钮被点击
+    // 构造发送的数据，请注意如果获取表单各项的值
+      document.all.MyForm1.submit();
+      return false;
+  });
+});
+</script>
+<{include file="footer.html"}>

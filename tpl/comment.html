@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新点评_窝棚旅游网</title>
+<meta name='keywords' content='厦门周边景点点评，好玩的不好玩的，值得去的不值得去，都在这里' />
+<meta name='description' content='厦门周边景点点评，好玩的不好玩的，值得去的不值得去，都在这里' />
+<{include file="header.html"}>
+<div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门周边景点点评 </h1>
+        <div id="tban_le_txt">
+                    厦门周边旅游景点大全，推荐当季最佳最受欢迎的旅游景点，还有适合周末休闲的好去处。
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1"> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/3.html"><{$city['title']}>周边一日游</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/6.html"><{$city['title']}>周边农家乐</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/rank/bset.html"><{$city['title']}>有什么好玩的地方</a>
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div>
+<div id="cont">
+  <div class="yjgl_le">
+   <div id="d_tit06"><h2>点评厦门好玩的地方</h2></div>
+    <div id="yjgl_lta1">
+<{foreach item=commentout from=$comment key=enname}>
+      <div class="jddp_cen04" style="width:730px;">
+        <div id="ind_cen04_l" class="h24"><img src="<{$userarray[$enname]|replace:'.jpg':''}>thumb_02.jpeg" width="50" height="50" />
+        </div>
+    <div class="jddp_cen04_r" style="width:630px;">
+            <div id="ind_cen04_r01">
+              <div id="ind_cen04_r01_l"><span class="tgreen"><{$commentout.username}></span> 点评 <span class="tgreen"><a target="_blank" title="<{$answersout.title}>" href="<{spUrl}>scenery/<{$sceneryuser[$enname]['id']}>.html"><{$sceneryuser[$enname]['title']}></a></span></div>
+              <div id="ind_cen04_r01_r">6小时以前</div>
+            </div>
+            <div id="ind_cen04_r02"><{$commentout.content|strip_tags|truncate:100:"...":true}><br />
+            	<a target="_blank" href="<{spUrl}>comment/info/<{$commentout.id}>.html">.[显示全文]</a>
+            </div>
+            <div id="ind_cen04_r03"><img src="../../tpl/images/nlw_ic2.gif" width="16" height="16" align="absmiddle" />1</span>&nbsp;<a href="<{spUrl}>comment/info/<{$commentout.id}>.html#ex3button">添加回应</a></div>
+          </div>
+      </div>
+ <{/foreach}>
+
+<div style="min-height:20px" id="d_bk3_c">
+    <{if $pager}>
+          <div style="width:700px;" class="green-black">
+              <{if $pager.current_page != $pager.first_page}>
+              <span class="disabled">当前<{$pager.current_page}>/<{$pager.total_page}> 页</span>
+              <{if $pager.current_page!=1}>
+                 <span class="disabled">
+                  <a href="<{$domain}>/xm/hot/comment.html?page=<{$pager.prev_page}>">上一页
+                  </a>
+                </span>
+              <{/if}>
+              <{/if}>       
+              <{foreach from=$pager.all_pages item=thepage}>
+                <{if $thepage >= $pager.current_page-5 && $thepage <= $pager.current_page+5}>  
+                  <{if $thepage != $pager.current_page}>
+                      <a href="<{$domain}>/xm/hot/comment.html?page=<{$thepage}>"><{$thepage}></a>
+                  <{else}>
+                      <span class="current"><{$thepage}></span>
+                  <{/if}>
+               <{/if}>
+              <{/foreach}>
+              <{if $pager.current_page != $pager.last_page}>
+              <a href="<{$domain}>/xm/hot/comment.html?page=<{$pager.next_page}>">下一页</a>
+              <a href="<{$domain}>/xm/hot/comment.html?page=<{$pager.last_page}>">后页</a>
+              <{/if}>
+          </div>
+        <{/if}>
+   </div>
+
+    </div>
+  </div>
+  <div class="yjgl_ri">
+
+    
+ <div class="yjgl_tit01">
+      <div class="tit01l">人气排行</div>
+      <div class="tit01r"><img src="../../tpl/images/nlw_more2.gif" /></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="yjgl_ph1l">
+      <{foreach item=trafficout from=$showsceneryAll key=enname}>
+        <{if $enname == '0'}>
+            <div id="yjgl_ri01"><div id="ind_num1"><{$enname+1}></div><div id="yjgl_numt3"><a target="_blank" title="<{$trafficout.title}>" href="<{spUrl}>scenery/<{$trafficout.id}>.html"><{$trafficout.title|truncate:14:"...":true}></a></div><div id="yjgl_numt4" class="torange1">8.9</div></div>
+        <{else}>
+            <div id="yjgl_ri01"><div id="ind_num2"><{$enname+1}></div><div id="yjgl_numt3"><a target="_blank" title="<{$trafficout.title}>" href="<{spUrl}>scenery/<{$trafficout.id}>.html"><{$trafficout.title|truncate:14:"...":true}></a></div><div id="yjgl_numt4" class="tgreen">8.9</div></div>
+        <{/if}>
+      <{/foreach}>
+     </div>
+    </div>
+    <div class="yjgl_tit01">
+      <div class="tit01l">哪玩达人</div>
+      <div class="tit01r"><img src="../../tpl/images/nlw_more2.gif" /></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="yjgl_ph1l">
+      <{foreach item=userout from=$top_resultuser key=enname}>
+        <{if $enname == '0'}>
+            <div id="yjgl_ri01"><div id="ind_num1"><{$enname+1}></div><div id="yjgl_numt3"><{$userout.uname|truncate:14:"...":true}></div><div id="yjgl_numt4" class="torange1"><{$userout.integral}></div></div>
+        <{else}>
+            <div id="yjgl_ri01"><div id="ind_num2"><{$enname+1}></div><div id="yjgl_numt3"><{$userout.uname|truncate:14:"...":true}></div><div id="yjgl_numt4" class="tgreen"><{$userout.integral}></div></div>
+        <{/if}>
+      <{/foreach}>
+     </div>
+  </div>
+     
+  </div>
+</div>
+<{include file="footer.html"}>

@@ -1,0 +1,115 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+<script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/publish_editor_config.js"></script>
+<script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/editor_all.js"></script>
+<style type="text/css">
+.clear {
+  clear: both;
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){
+	// 例子三
+	$("#ex3button").click(function(){
+		var formdata = {
+			'id' : $('#id').val(),
+			'title' : $('#title').val(),
+			'username' : $('#username').val(),
+			'content' : UE.getEditor('content').getContent(),
+			'provinceid' : $('#provinceid').val(),
+			'cityid' : $('#cityid').val(),
+			'types' : $('#types').val(),
+			'linkid' : $('#linkid').val(),
+			'userid' : $('#userid').val()
+		};
+		var id  = $('#id').val();
+		if(id == '')
+		{
+			$.post('<{spUrl c=albuminfoform a=adddata}>', formdata, function(result){
+                $('#resulttable').append(result);
+				window.location.href="<{spUrl}>albuminfoform/uppic.html?type=album&pid="+result;
+			});
+		}
+		else
+		{
+			$.post('<{spUrl c=albuminfoform a=editdata}>', formdata, function(result){
+				$('#resulttable').append(result);
+				alert(result);
+				feedback(result,id);
+			});	
+		}
+	});
+});
+</script>
+<div class="control-group">
+   <label for="req" class="control-label">相册名称：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="title" id="title">
+   <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+<label for="req" class="control-label">城市选择：</label>
+<div class="controls">
+        <input type="text" class="input-xlarge" name="provinceid" id="provinceid" value="<{$provinceid}>">
+        <input type="text" class="input-xlarge" name="cityid" id="cityid" value="<{$cityid}>">
+        <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+   <label for="req" class="control-label">发布人：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="username" id="username" value="<{$username}>">
+   <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+   <label for="req" class="control-label">类型：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="types" id="types" value="<{$types}>">
+   <span></span>
+  </div>
+</div>
+
+
+<div class="control-group">
+   <label for="req" class="control-label">关联id：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="linkid" id="linkid" value="<{$linkid}>">
+   <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+   <label for="req" class="control-label">用户id：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="userid" id="userid" value="<{$userid}>">
+   <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+   <label for="req" class="control-label">相册介绍：</label>
+   <div class="controls">
+   <div>
+      <script id="content" type="text/plain"><{$content}></script>
+      <span class="torange1"></span>
+   </div>
+   <script type="text/javascript">
+        //实例化编辑器
+        var ue = UE.getEditor('content');
+        ue.addListener('ready',function(){
+            this.focus()
+        });
+   </script>
+   <span></span>
+  </div>
+</div>
+
+<div class="form-actions">
+	<input type="button" id="ex3button" value="提交" class='btn btn-primary'>
+    <input type="hidden" name="id" id="id" value="<{$id}>">
+</div>

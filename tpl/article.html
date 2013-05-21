@@ -1,0 +1,95 @@
+<{include file="header.html"}>
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="<{$domain}>/tpl/css/journey.css">
+<link href="<{$domain}>/tpl/css/bdsstyle.css" rel="stylesheet" type="text/css">
+</head>
+    <body id="journey"><div id="bdshare_s">
+    <div id="bdshare_m" style="display: none; "><div id="bdshare_m_c"><h6>分享到</h6><ul><li><a href="http://www.roadqu.com/journey/12839#" class="bds_mshare mshare">一键分享</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_baidu bdsc">百度搜藏</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_renren rrw">人人网</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_more">更多...</a></li></ul><p><a href="http://www.roadqu.com/journey/12839#" class="goWebsite">百度分享</a></p></div></div></div>
+        <div id="container" class="fn-clear">
+            <div class="mainWrap corner-box fn-clear ">
+
+                <div class="main fn-clear">
+
+                    <!-- 游记详情 -->
+
+                    <div class="journey-details ">
+
+                        <div class="journet-title fn-clear">
+                            <h2> <{$wztitle}> </h2>
+
+                            <div class="journet-title-subcnt">
+                                <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                                    <a class="bds_tsina" title="分享到新浪微博" href="http://www.roadqu.com/journey/12839#"></a>
+                                    <a class="bds_tqq" title="分享到腾讯微博" href="http://www.roadqu.com/journey/12839#"></a>
+                                    <a class="bds_qzone" title="分享到QQ空间" href="http://www.roadqu.com/journey/12839#"></a>
+                                    <a class="bds_renren" title="分享到人人网" href="http://www.roadqu.com/journey/12839#"></a>
+                                    <span class="bds_more"></span>
+                                </div>
+
+                                <div class="fr">
+                                    <a href="http://www.roadqu.com/journey/12839#youjiShare" class="btn-journey-share" id="share-btn">站内分享</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-info fn-clear">
+                            <div>
+                                <p>
+                                    <span class="fl">
+                                        <{$traffic}> 
+                                        浏览 /
+                                        <{$releasedate|date_format:"%Y-%m-%d %H:%M:%S"}>
+                                    作者:
+                                        <{$username}>
+                                    &nbsp;
+                                    </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="journey-content">
+                            <p><{$content}></p>
+                        </div>
+                        <!-- 版权声明 -->
+                        <div class="copyright-notes">
+                            声明：
+                            <p>
+                                1.本站文章转载至  <{$username}>。
+                            </p>
+                            <p>
+                                2.引用网址 : <a target="_blank" href="<{$cjurls}>"><{$cjurls}></a>
+                            </p>
+                        </div>
+
+
+                        <div class="journey_act">
+                            <ul class="journeyNav">
+                           <li>上一篇：<a href="<{spUrl c=main a=article sid=$lid}>"><{$ltitle}></a></li>
+                           <li>下一篇：<a href="<{spUrl c=main a=article sid=$nid}>"><{$ntitle}></a></li>
+                         </ul>
+                            </a>
+                            
+
+                        </div>
+                        <!--推荐游记 end-->
+                        <!-- 游记详情  end--> </div>
+                </div>
+                
+                <div class="side" id="side">
+                    <!-- 精彩游记-->
+                    <div class="SC  cf">
+                        <h2>精彩推荐</h2>
+                     <ul class="side-txt-topic cf">
+                           <{foreach item=top from=$topdata key=enname}>
+                               <li><a title="<{$top.title}>" href="<{spUrl c=main a=article sid=$top.id}>"><{$top.title|truncate:14:"...":true}></a></li>
+                               <span></span>
+                            <{/foreach}>   
+                      </ul>
+                    </div>
+                </div>
+                <div style="display:none">
+                   <{foreach item=rules from=$rulescollect key=enname}>
+                   <Iframe frameborder=0 src="<{$domain}>/index.php?c=autogather&a=index&id=<{$rules.id}>&classid=<{$rules.part}>" height="0" width="0"></Iframe>
+                   <{/foreach}>
+               </div>
+             </div>
+  <{include file="footer.html"}>

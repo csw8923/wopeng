@@ -1,0 +1,149 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<script src="artDialog4.1.6/artDialog.js?skin=default"></script>
+<script src="artDialog4.1.6/plugins/iframeTools.js"></script>
+<script>
+$(document).ready(function(){  
+  $('#getcode').click(function (){  
+       var geturl = $('#geturl').val();
+       showDialog(geturl,null,null,null,null,null,null,null,null,1);
+  });  
+  $('#getlistcode').click(function (){  
+       var geturl = $('#geturl').val();
+       var getlist = $('#getlist').val();
+       showDialog(geturl,getlist,null,null,null,null,null,null,null,2);
+  });  
+  $('#getlinkcode').click(function (){  
+       var geturl = $('#geturl').val();
+       var getlist = $('#getlist').val();
+	   var getlink = $('#getlink').val();
+	   var gethost = $('#gethost').val();
+	   var auto = $('#auto').is(':checked')? "1":"0";
+	   showDialog(geturl,getlist,getlink,auto,gethost,null,null,null,null,3);
+  });  
+  $('#gettitlecode').click(function (){  
+       var geturl = $('#geturl').val();
+       var getlist = $('#getlist').val();
+	   var getlink = $('#getlink').val();
+	   var gethost = $('#gethost').val();
+	   var gettitle = $('#gettitle').val();
+	   var patterns = $('#patterns').val();
+	   var replacements = $('#replacements').val();
+       showDialog(geturl,getlist,getlink,null,gethost,gettitle,patterns,replacements,null,4);
+  }); 
+  $('#getuniversalcode').click(function (){  
+       var geturl = $('#geturl').val();
+       var getlist = $('#getlist').val();
+	   var gethost = $('#gethost').val();
+	   var patterns = $('#patterns').val();
+	   var replacements = $('#replacements').val();
+	   var universal = $('#universal').is(':checked')? "1":"0";
+       showDialog(geturl,getlist,getlink,null,gethost,gettitle,patterns,replacements,universal,5);
+  }); 
+  
+  $('#getdetailcode').click(function (){  
+       var getdetailurl = $('#getdetailurl').val();
+	   var getrange = $('#getrange').val();
+	   var dpatterns = $('#dpatterns').val();
+	   var dreplacements = $('#dreplacements').val();
+       DetailDialog(getdetailurl,getrange,dpatterns,dreplacements);
+  }); 
+});  
+
+function showDialog(geturl,getlist,getlink,auto,gethost,gettitle,patterns,replacements,universal,mode){
+	if(mode == 1)
+	{
+		art.dialog.open('getcode.php?geturl='+geturl,
+		{title: '获取源码', width: 980, height: 500});
+	}
+	
+	if(mode == 2)
+	{
+		art.dialog.open('getlist.php?geturl='+geturl+'&getlist='+getlist,
+		{title: '获取列表', width: 980, height: 500});
+	}
+	
+	if(mode == 3)
+	{
+		if(auto == 0)
+		{
+		   art.dialog.open('getlink.php?geturl='+geturl+'&getlist='+getlist+'&getlink='+getlink+'&auto='+auto+'&getlink='+getlink+'&gethost='+gethost,
+		   {title: '获取链接', width: 980, height: 500});
+		}
+		else
+		{
+		   art.dialog.open('getlink.php?geturl='+geturl+'&getlist='+getlist+'&getlink='+getlink+'&auto='+auto+'&getlink='+getlink+'&gethost='+gethost,
+		   {title: '获取链接(自动)', width: 980, height: 500});
+		}
+	}
+	
+	if(mode == 4)
+	{
+		art.dialog.open('gettitle.php?geturl='+geturl+'&getlist='+getlist+'&getlink='+getlink+'&gettitle='+gettitle+'&patterns='+patterns+'&replacements='+replacements,
+		{title: '获取标题', width: 980, height: 500});
+	}
+	
+	if(mode == 5)
+	{
+		art.dialog.open('getuniversal.php?geturl='+geturl+'&getlist='+getlist+'&getlink='+getlink+'&gethost='+gethost+'&patterns='+patterns+'&replacements='+replacements+'&universal='+universal,
+		{title: '通用方法获取标题和链接', width: 980, height: 500});
+	}
+}
+
+function DetailDialog(getdetailurl,getrange,dpatterns,dreplacements){
+        art.dialog.open('getdetail.php?getdetailurl='+getdetailurl+'&getrange='+getrange+'&dpatterns='+dpatterns+'&dreplacements='+dreplacements,
+		{title: '获取内容', width: 980, height: 500});
+}
+</script>
+</head>
+<body>
+<label>【获取源码】</label>
+<br />
+<input id="geturl" name="geturl" size="60" type="text" value="http://www.admin5.com/browse/177/index.shtml">
+<br />
+<input id="getcode" name="66" type="button" value="获取源码">
+<hr />
+<label>【获取列表】</label>
+<br />
+<input id="getlist" name="getlist" size="60" type="text" value='<ul class="list">[list]</ul>'>
+<br />
+<input id="getlistcode" name="66" type="button" value="获取列表">
+<hr />
+<label>【获取链接】</label>
+<br />
+<input id="getlink" name="getlink" size="60" type="text" value='href="[link]"'>
+<br />
+<input id="gethost" name="gethost" size="60" type="text" value='http://www.admin5.com'>
+<br />
+自动获取:<input id="auto" name="auto" type="checkbox" checked>
+<input id="getlinkcode" name="66" type="button" value="获取链接">
+<hr />
+<label>【获取标题】</label>
+<br />
+<input id="gettitle" name="gettitle" size="60" type="text" value='target="_blank">[title]</a>'>
+<br />
+<input id="patterns" name="patterns" size="60" type="text" value='<b>,</b>'>
+<br />
+<input id="replacements" name="replacements" size="60" type="text" value=','>
+<br />
+<input id="gettitlecode" name="66" type="button" value="获取标题">
+<hr />
+<label>【通用方法获取标题和链接】</label>
+<br />
+通用获取:<input id="universal" name="universal" type="checkbox" checked>
+<input id="getuniversalcode" name="66" type="button" value="通用方法获取标题和链接">
+<hr />
+<label>【获取内容】</label>
+<br />
+<input id="getdetailurl" name="getdetailurl" size="60" type="text" value="http://www.admin5.com/article/20121128/474600.shtml">
+<br />
+<input id="getrange" name="getrange" size="60" type="text" value='<div class="content">[detail]</div>'>
+<br />
+<input id="dpatterns" name="dpatterns" size="60" type="text" value='11月27日,禁止'>
+<br />
+<input id="dreplacements" name="dreplacements" size="60" type="text" value='11月28日,允许'>
+<br />
+<input id="getdetailcode" name="66" type="button" value="获取内容">
+<hr />
+</body>

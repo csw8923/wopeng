@@ -1,0 +1,73 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta property="qc:admins" content="226072377767705676654" />
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+<script type="text/javascript" src="<{$domain}>/tpl/js/custom.js"></script> 
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-ui-1.10.1.custom.js"></script> 
+<script src="<{$domain}>/artDialog/artDialog.js?skin=idialog"></script>
+<script src="<{$domain}>/artDialog/plugins/iframeTools.js"></script>
+<script type="text/javascript" src="<{$domain}>/tpl/js/AutoComplete.js"></script> 
+<link rel="stylesheet" type="text/css" href="textlayer/images/index.css" media="all">
+<link rel="stylesheet" type="text/css" href="<{$domain}>/tpl/images/nlw.css" />
+</head>
+<body>
+<div id="main_top">
+  <div class="logo"></div>
+  <div class="mtop_city">厦门[切换城市]</div>
+  <div class="mtop_sear">
+    <div class="cen">
+      <div class="top">
+      <div class="txt"><input type="text" onKeyUp="AutoSuggest('null',this,event);" name="keyword" id="keyword" style=" border:0; width:340px; height:25px!important; height:23px;" />
+      <div id="auto"></div>
+      </div>
+        <div class="but twhite1"><a href="javascript:search()">搜索</a></div>
+      </div>
+      <div id="hotsearch" class="bottom tgray1"><img src="../../tpl/images/nlw_bt1.gif" width="14" height="14" /><span class="tgreen">热门搜索：</span>
+        <{foreach item=scenery_searchout from=$scenery_search key=enname}>
+        <a title="<{$scenery_searchout.title}>" href="<{$domain}>/search/<{$scenery_searchout.title|truncate}>"><{$scenery_searchout.title|truncate:8}></a>
+        <{/foreach}>
+        </div>
+    </div>
+  </div>
+  <style>
+
+</style>
+<div class="mtop_date">
+      <{if !empty($privateletterinfo_msg)}>
+         <a href="<{spUrl c=ucenter a=Userprivateletter}>"><img src="<{$domain}>/tpl/img/newmsg.gif">你有<{$privateletterinfo_msg}>条新的消息请注意查收</a>
+      <{elseif !empty($remindinfo_msg)}>
+         <a href="<{spUrl c=ucenter a=UserRemind}>"><img src="<{$domain}>/tpl/img/newmsg.gif">你有<{$remindinfo_msg}>条新的提醒请你关注</a>
+      <{else}>
+          旅游预订,咨询电话:4006-592-005
+      <{/if}>
+      <br />
+      <{if $smarty.session.quser.acl == "GBADMIN"}>
+             <a style="color:#F00;" class="ac" target="_blank" href="<{spUrl c=admin a=index}>">管理后台</a> 
+             &middot;
+      <{/if}>
+       <{if $quser == 0}>
+           <a href="<{spUrl}>qqlink/oauth/login.php" style="margin-left:110px;float:left;width:20px;height:40px;background-image:url('qqlink/images/siteIcon.gif');background-repeat:no-repeat;"></a>
+           <a href="<{spUrl c=login a=index}>" id="top-nav-login" class="btn_login">[登录]</a> &middot; 
+           <a href="<{spUrl c=login a=register}>" class="btn_reg">[免费注册]</a>
+        <{else}>
+           <a class="ac" href="<{spUrl c=ucenter a=index}>">[用户中心]</a> &middot; 
+           <a class="ac" href="<{spUrl c=ucenter a=logout}>">[退出]</a>
+       <{/if}>
+      </div>
+</div>
+<div id="main_menu">
+  <div class="cen">
+    <div class="leftd">
+    <ul>
+     <li><a href="<{spUrl}>">首页</a></li>
+     <li><a href="<{spUrl}>xm/tag">周边景点</a></li>
+     <li><a href="<{spUrl}>xm/lines">旅游线路</a></li>
+     <li><a href="<{spUrl}>xm/hot/activity">活动专题</a></li>
+     <li><a href="<{spUrl}>xm/hot/youji">游记攻略</a></li>
+     <li><a href="<{spUrl}>xm/hot/bdlist">榜单</a></li>
+     <li><a href="<{spUrl}>xm/hot/comment">最新点评</a></li>
+     <li><a href="<{spUrl}>xm/hot/forum">论坛</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,406 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<{if $pictures['ctitle'] == ""}>
+  <title><{$showscenery['title']}><{$pictures_detailed.title}>_<{$pictures['title']}><{$area['citystate']}><{$showscenery['title']}>图片(<{$city['title']}>)</title>
+  <{else}>
+  <title><{$pictures_detailed.title}><{$pictures['ctitle']}></title>
+<{/if}>
+<{if $pictures['ckeyword'] == ""}>
+  <meta name="keywords" content="<{$pictures['tags']}>" />
+  <{else}>
+  <meta name="keywords" content="<{$pictures['ckeyword']}>" />
+<{/if}>
+<{if $pictures['cdirections'] == ""}>
+  <meta name="description" content="<{$pictures['content']|strip_tags|truncate:200}>">
+  <{else}>
+  <meta name="description" content="<{$pictures['cdirections']}>">
+<{/if}>
+<{include file="header.html"}>
+<script type="text/javascript" src="<{$domain}>/tpl/js/jcarousellite_1.0.1.js"></script>
+<script type="text/javascript">
+$(function() {
+  jQuery("#thumblist").jCarouselLite({
+    btnPrev: "#streamL",
+    btnNext: "#streamR",
+    scroll: 1,
+    visible: 14,
+    mouseWheel: true,
+    circular: false,
+    start: 0  });
+});
+</script>
+<style>
+</style>
+<!-- <div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门好玩的地方</h1>
+        <div id="tban_le_txt">推荐厦门好玩的地方，把网友去过的好玩的地方的经历感触，分享给没去过或正想去的人。</div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1"> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/3.html"><{$city['title']}>周边一日游</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/6.html"><{$city['title']}>周边农家乐</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/rank/bset.html"><{$city['title']}>有什么好玩的地方</a>
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div>
+ -->
+<div style="margin-top:10px;" id="cont">
+  <div style="height:25px;">
+        <div id="tban_le_txt" class="tgray1"> 
+          <a style="color:#999" href="<{$domain}>/"><{$city['title']}>周边游</a> > <a style="color:#999" href="<{spUrl}>city/scenery/<{$city.id}>"><{$city['title']}>景点</a> > <a style="color:#999" href="<{spUrl}>scenery/<{$showscenery['id']}>.html"><{$showscenery['title']}></a>
+        </div>
+  </div>
+</div>
+
+<div id="cont">
+    <div id="xlzy_tit01"><{$showscenery['title']}> 
+      <{if $showscenery['tophot'] < 2.9 }>
+     <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $showscenery['tophot'] < 4.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $showscenery['tophot'] < 6.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $showscenery['tophot'] < 8.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $showscenery['tophot'] < 9.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{/if}>
+    <span class=" torange1 t14"><{$showscenery['tophot']}>分</span></div>
+    <div id="xlzy_tit02"><div id="xlzy_tit03"><img src="../../tpl/images/nlw_ic7.gif" width="16" height="16" /></div><div id="xlzy_tit04"><a target="_blank" href="<{spUrl c=youjiinfoform a=add id=$sid}>?type=<{$info}>">写游记</a></div><div id="xlzy_tit03"><img src="../../tpl/images/nlw_ic8.gif" width="16" height="16" /></div><div id="xlzy_tit04"><a target="_blank" href="<{spUrl c=commentinfoform a=add id=$sid}>?type=<{$info}>">写点评</a></div><div id="xlzy_tit03"><img src="../../tpl/images/nlw_ic9.gif" width="16" height="16" /></div><div id="xlzy_tit04"><a target="_blank" href="<{spUrl c=albuminfoform a=uppic}>?type=<{$info}>&pid=<{$sid}>">发照片</a></div></div>
+</div>
+<div id="cont">
+    <div class="xlzy_menu mar_b10">
+        <ul class="menu">
+            <li><a href="<{spUrl}><{$info}>/<{$linkid}>.html">主页</a></li>
+            <{if !empty($youji)}>
+            <li><a href="<{spUrl}>youji/<{$info}>/<{$linkid}>.html">游记</a></li>
+            <{/if}>
+            <{if !empty($comment)}>
+            <li><a href="<{spUrl}>comment/<{$info}>/<{$linkid}>.html">点评</a></li>
+            <{/if}>
+            <{if !empty($pictures)}>
+            <li><a href="<{spUrl}>photoalbum.html?info=<{$info}>&pid=<{$linkid}>">图片</a></li>
+            <{/if}>
+            <li><a style="width:80px;" href="<{spUrl}>visits/<{$info}>/<{$linkid}>.html">自由行线路</a></li>
+            <li><a href="<{spUrl}>ask/<{$info}>/<{$linkid}>.html">论坛</a></li>
+            <{if $smarty.session.quser.acl == "GBADMIN"}>
+            <li><a target="_blank" href="<{spUrl c=albuminfoform a=add id=$id}>?type=<{$info}>">上传相册</a></li>
+            <{/if}>
+        </ul>
+    </div>
+</div>
+<div id="cont">
+	<!--缩列图开始 -->
+	<div id="thumb">
+	   <div id="streamL" class="thumbNav " ></div>
+	   <div class="streamM">
+		     <div id="thumblist">
+		        <ul id="thumblistUl">
+              <{foreach item=previoudataout from=$previoudata key=enname}>
+                    <li><a href="<{$domain}>/photo/<{$previoudataout.id}>">
+                     <img width="50" height="50" title='<{$previoudataout.title}>'  alt='<{$previoudataout.title}>' src="<{$domain}>/uploadify3.2/uploads/<{$previoudataout.picurl|replace:'.jpg':''}>_270x180.jpg" /></a></li> 
+              <{/foreach}> 
+              <{foreach item=dataingout from=$dataing key=enname}>
+                     <li class="select" id="thumblistSelect" value="938"><a href="javascript://"><img width="50" height="50" src="<{$domain}>/uploadify3.2/uploads/<{$dataingout.picurl|replace:'.jpg':''}>_270x180.jpg" /></a></li>   
+              <{/foreach}> 
+              <{foreach item=nextdataout from=$nextdata key=enname}>
+                    <li><a href="<{$domain}>/photo/<{$nextdataout.id}>">
+                     <img width="50" height="50" title='<{$nextdataout.title}>'  alt='<{$nextdataout.title}>' src="<{$domain}>/uploadify3.2/uploads/<{$nextdataout.picurl|replace:'.jpg':''}>_270x180.jpg" /></a></li> 
+              <{/foreach}>
+            </ul>
+		    </div>
+         </div>	<!-- streamM--> 
+	     <div id="streamR" class="thumbNav " ></div>	  
+   </div>
+	<!--缩列图结束 -->
+</div>
+<div id="cont">
+  <div class="yjgl_le">
+    <div id="d_tit06"><h2><{$out_youji['title']}></h2></div>
+<div id="yjgl_lta1">
+  <div id="d_bk_t">
+    <div id="d_bk_t01"><div class="c1"></div></div>
+    <div id="d_bk_t02"><div class="c1"></div></div>
+  </div>  
+  <div id="jddp_bk2">
+    <div id="d_bk3_c03">
+     <div class="jddp_cen04">
+          <div id="ind_cen04_l" class="h24"></div>
+          <div class="jddp_cen04_r">
+            <div id="ind_cen04_r02" style="width:645px">
+             <div class="imagebig_list">
+                        <div style="float:right">
+               <{if !empty($previou['id'])}>
+                 <a style="color:#666;margin-left:5px;margin-right:5px;" href="<{$domain}>/photo/<{$previou['id']}>">上一页</a> |
+               <{/if}>
+               <{if !empty($next['id'])}>
+                 <a style="color:#666;margin-left:5px;margin-right:5px;" href="<{$domain}>/photo/<{$next['id']}>">下一页</a>
+               <{/if}>
+           </div>
+            <ul>
+               <{if !empty($next['id'])}>
+                  <li>
+                <div align="center">
+                <a href="<{$domain}>/photo/<{$next['id']}>">
+                    <img width="640" height="480" src="<{$domain}>/uploadify3.2/uploads/<{$pictures_detailed.picurl}>" /></a></div></li>
+                <{else}>
+                  <li>
+                  <div align="center">
+                      <img width="640" height="480" src="<{$domain}>/uploadify3.2/uploads/<{$pictures_detailed.picurl}>" /></div></li>
+               <{/if}>
+              <li>
+               <{if $smarty.session.quser.uid == $pictures_detailed.userid || $smarty.session.quser.acl == 'GBADMIN'}>
+                    <div style="padding-left: 15px; color: #fff;">
+                       <input id="title" size="40" name="title" onchange="uphotos()" value="<{$pictures_detailed.title}>" type="text" />
+                    <span class="tyellow1">(<{$pictures_detailed.clicknumber}>)</span>
+                    <span class="tyellow1">&nbsp;<a href="javascript:dphotos()">删除</a></span></div>
+                <{else}>
+                    <a style="padding-left: 15px; color: #fff;" href="#">
+                       <{$pictures_detailed.title}><span class="tyellow1">(<{$pictures_detailed.clicknumber}>)</span>
+                    </a>
+                <{/if}>
+              </li>
+            <li><a style="padding-left: 15px; color: #fff;" href="#"><{$pictures_detailed.username}> <{$pictures_detailed.releasedate|date_format:"%Y-%m-%d"}></a></li>
+        </ul>
+        <div class="clearNoHeight"></div>
+    </div>
+            </div>
+          </div>
+          </div>
+          
+    </div>
+    
+  </div>  
+
+  <div id="d_bk_b" class="mar_b20">
+    <div id="d_bk_b01"><div class="c1"></div></div>
+    <div id="d_bk_b02"><div class="c1"></div></div>
+  </div>
+    <div id="d_bkgreen_let" class="mar_b10"> <div id="d_bkgreen_let1">回复 </div>
+    </div>
+    <{foreach item=replyout from=$reply key=enname}>
+    <div class="jddp_cen04" style="width:730px;">
+        <div id="ind_cen04_l" class="h24"><img src="<{$userarray[$enname]['img']|replace:'.jpg':''}>thumb_02.jpeg" width="50" height="50">
+        </div>
+        <div class="jddp_cen04_r" style="width:630px;">
+            <div id="ind_cen04_r01">
+                <div id="ind_cen04_r01_l"><span class="tgreen"><a target="_blank" title="<{$replyout.username}>" href="<{spUrl}>reply/info/<{$replyout.id}>.html"><{$replyout.username|truncate:14:"...":true}></a></div>
+                <div id="ind_cen04_r01_r"><{$replyout.releasedate|date_format:"%Y-%m-%d %H:%M:%S"}></div>
+            </div>
+            <div id="ind_cen04_r02"><{$replyout.content}><br>
+            </div>
+            <div id="ind_cen04_r03">
+              <{if $smarty.session.quser.uid == $replyout.userid}>
+              <a target="_blank" href="<{spUrl c=replyinfoform a=edit id=$replyout.id}>?type=scenery">编辑</a> |
+              <{/if}>
+              <a href="#ex3button" onclick="javascript:aGo('回复'+'<{$replyout.username|truncate:14:"...":true}>'+': ','<{$replyout.userid}>')">回复</a>
+            </div>
+        </div>
+    </div>
+
+
+    <{/foreach}>
+
+   <script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/ui_editor_config.js"></script>
+   <script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/editor_all.js"></script>
+   <style type="text/css">
+    .clear {
+        clear: both;
+    }
+  </style>
+
+    <div class="control-group">
+   <div class="controls">
+      <textarea name="temp" id="temp" style="width:700px;height:0px;visibility:hidden;"></textarea>
+      <div>
+          <script id="content" type="text/plain"></script><span class="torange1"></span>
+      </div>
+      <script type="text/javascript">
+          //实例化编辑器
+          var ue = UE.getEditor('content');
+          ue.addListener('selectionChange',function(){
+              var content =  UE.getEditor('content').getContent();
+              var rrs =  /(<a([^>]*)>)(.*)(<\/a([^>]*)>)/gi;
+              var returns = content.match(rrs);
+              if(returns != null)
+              {
+                setContent();
+                return false
+              }
+          });
+      </script>
+      <script type="text/javascript">
+          function setContent() {
+            var content =  UE.getEditor('content').getContent();
+            content = content.replace(/(<\/?a[^>]*>)(?!.*\1)/ig,"");
+            UE.getEditor('content').setContent(content);
+          }
+      </script>
+  </div>
+</div>
+
+<div style="margin-top:10px;" class="form-actions">
+<a id="ex3button" href="javascript:;"><img src="../../../tpl/images/nlw_bt3.gif" width="148" height="36" /></a>
+  <input type="hidden" class="input-xlarge" name="replyid" id="replyid" value="0">
+</div>
+
+
+</div>
+  </div>
+  <div class="yjgl_ri">
+    <div class="yjgl_tit01">
+      <div class="tit01l">人气排行</div>
+      <div class="tit01r"><img src="../../tpl/images/nlw_more2.gif" /></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="yjgl_ph1l">
+      <{foreach item=trafficout from=$showsceneryAll key=enname}>
+        <{if $enname == '0'}>
+            <div id="yjgl_ri01"><div id="ind_num1"><{$enname+1}></div><div id="yjgl_numt3"><a target="_blank" title="<{$trafficout.title}>" href="<{spUrl}>scenery/<{$trafficout.id}>.html"><{$trafficout.title|truncate:14:"...":true}></a></div><div id="yjgl_numt4" class="torange1">8.9</div></div>
+        <{else}>
+            <div id="yjgl_ri01"><div id="ind_num2"><{$enname+1}></div><div id="yjgl_numt3"><a target="_blank" title="<{$trafficout.title}>" href="<{spUrl}>scenery/<{$trafficout.id}>.html"><{$trafficout.title|truncate:14:"...":true}></a></div><div id="yjgl_numt4" class="tgreen">8.9</div></div>
+        <{/if}>
+      <{/foreach}>
+     </div>
+    </div>
+    <div class="yjgl_tit01">
+      <div class="tit01l">哪玩达人</div>
+      <div class="tit01r"><img src="../../tpl/images/nlw_more2.gif" /></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="yjgl_ph1l">
+      <{foreach item=userout from=$top_resultuser key=enname}>
+        <{if $enname == '0'}>
+            <div id="yjgl_ri01"><div id="ind_num1"><{$enname+1}></div><div id="yjgl_numt3"><{$userout.uname|truncate:14:"...":true}></div><div id="yjgl_numt4" class="torange1"><{$userout.integral}></div></div>
+        <{else}>
+            <div id="yjgl_ri01"><div id="ind_num2"><{$enname+1}></div><div id="yjgl_numt3"><{$userout.uname|truncate:14:"...":true}></div><div id="yjgl_numt4" class="tgreen"><{$userout.integral}></div></div>
+        <{/if}>
+      <{/foreach}>
+     </div>
+  </div>  </div>
+</div>
+<!--点击回复自动跳转-->
+<script>
+    function aGo(name,id){
+    ue.setContent("");
+    ue.execCommand('insertHtml',name)
+    $('#replyid').val(id)
+    }
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#ex3button").click(function(){ 
+        var formdata = {
+            'id' : "<{$pid}>",
+            'replyid' : $('#replyid').val(),
+            'username' : "<{$username}>",
+            'pagetitle' : document.title,
+            'pageurl' : location.href,
+            'content' : UE.getEditor('content').getContent(),
+            'provinceid' : "<{$provinceid}>",
+            'cityid' : "<{$cityid}>",
+            'types' : "<{$types}>",
+            'linkid' : "<{$id}>",
+            'userid' : "<{$userid}>"
+        };
+        var id  = $('#id').val(); 
+        if(id == '')
+        {
+            $.post('<{spUrl c=replyinfoform a=adddata}>', formdata, function(result){
+                $('#resulttable').append(result);
+                feedback(result,id);
+            });
+        }
+        else
+        {
+            $.post('<{spUrl c=replyinfoform a=editdata}>', formdata, function(result){
+                $('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+                alert(result);
+                feedback(result,id);
+            }); 
+        }
+    });
+});
+</script>
+<script>
+function uphotos(){
+    var formdata = {
+      'title' : $('#title').val(),
+      'id' : "<{$pid}>"
+  };
+  $.post('<{spUrl c=albuminfoform a=phototitle}>', formdata, function(result){
+      $('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+        
+        art.dialog({
+            time: 2,
+            lock: true,
+            opacity: 0.87,
+            content: "你对图片修改成功了！<br /><a href="+window.location.href+">查看发布内容</a>"
+         });
+        setTimeout("yd()",2000); 
+  }); 
+
+}
+
+function yd()
+{
+   location.reload();
+}
+
+function dphotos(){
+      art.dialog({
+            opacity: 0.87,
+            ok: function () {    
+                var formdata = {
+                    'id' : $('#linkid').val(),
+                    'types' : '<{$pictures_detailed.types}>',
+                    'linkid' : '<{$pictures_detailed.linkid}>'
+                };
+                $.getJSON('<{spUrl c=albuminfoform a=dphotos}>', formdata, function(result){
+                    $('#resulttable').append(result); // 
+                    window.location.href="<{spUrl}>photoalbum.html?info="+result['types']+"&pid="+result['linkid']+"";
+                });
+
+            },
+            cancel: true,
+            content: "请确认要删除这张图片！！"
+      });
+}
+
+function feedback(result,id){
+  if(result != 'false')
+  {
+    $('.badge').removeClass('badge badge-info').text('');
+    var response = eval("("+result+")");
+    for(var i in response){
+      $('#' + i).next().addClass('badge badge-info');
+      $('#' + i).next().text(response[i].toString());
+    }
+  }else{
+      alert("添加成功");
+      location.reload();
+  }
+}
+</script>
+<{include file="footer.html"}>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  .pll-widget-meta a { font-size:12px; color:#F36;}
+  .pll-widget-comment a { font-size:12px;}
+ul.nav {
+	list-style: none;
+	display: block;
+	width: 100px;
+	padding: 60px 0 60px 0;
+	-webkit-background-size: 50% 100%;
+}
+li {
+	margin: 5px 0 0 0;
+}
+ul.nav li a {
+  -webkit-transition: all 0.3s ease-out;
+  background: #42acea url(<{$HOSTURL}>/images/border.png) no-repeat;
+  color:#FFF;
+  margin-top:5px;
+  padding: 7px 15px 7px 15px;
+  -webkit-border-top-right-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  width: 60px;
+  display: block;
+  text-decoration: none;
+  -webkit-box-shadow: 2px 2px 4px #888;
+}
+ul.nav li a:hover {
+  background: #42acea url(<{$HOSTURL}>/images/border.png) no-repeat;
+  color:#FFF;
+  padding: 7px 15px 7px 30px;
+}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title><{$HOSTNAME}>_<{$HOSTTITLE}></title>
+<meta name="keywords" content="<{$keywords}>">
+<meta name="description" content="<{$description}>">
+<{include file="head.html"}> 
+<div id="body_wrap" style="margin-top:-40px;">
+<div id="body" class="fm960 clearfix">
+<div id="content_body">
+<div class="piece piece_w960 index_album index_model mt15"><!-- 首页小组&&专辑 -->
+<div class="piece_hd">
+    <b class="hl"></b>
+    <b class="hr"></b>
+</div>
+<div class="piece_bd">
+    <div class="index_model_nav clear_in">
+        <{if $eid == 0}>
+          <h2>信息发布</h2>
+        <{else}>
+          <h2>信息编辑</h2>
+        <{/if}>
+    </div>
+    <div class="index_group_con claer_in fl" style="width:900px;">
+            <div class="well container-fluid">
+              <div class="row-fluid">
+                <div class="span2">
+                      <div class="navbox">
+                            <ul class="nav">
+                                <{include file="user/ucenter_left.html"}>
+                            </ul>
+                       </div>
+                </div>
+                <div class="span10">
+                  <div class="alert alert-info"><h4 class="alert-heading">图片裁剪</h4></div>
+                    <table align="center" border="1" id='resulttable'>
+                          <tr>
+                             <td colspan="2">
+                                <div style="width:300px;height:250px;margin:10px;overflow:hidden; float:left;"><img  style="float:left;" id="preview2" src="<{$url}>" ></div>
+                                <div style="float:left;"><img id="target" src="<{$url}>"  ></div>
+                                <form id="submitcut" action="<{$HOSTURL}>/uploadify/cut.php?act=cut" method="post" onsubmit="return checkCoords();">
+                                  <input type="hidden" id="x" name="x" />
+                                  <input type="hidden" id="y" name="y" />
+                                  <input type="hidden" id="w" name="w" />
+                                  <input type="hidden" id="h" name="h" />
+                                  <input type="hidden" id="src" name="src" value="<{$url}>" />
+                                </form>
+                             </td>
+                          </tr> 
+                          <tr>
+                             <td align="right" colspan="2">
+                                <br />
+                                <{if $eid == 0}>
+                                  <input class="btn btn-primary" type="button" name="Submit7" value="提交" id="submit">
+                                <{else}>
+                                  <input class="btn btn-primary" type="button" name="Submit6" value="提交编辑" id="submit">
+                                <{/if}>
+                                <input type="hidden" name="id" id="id" value="<{$id}>">
+                                <input type="hidden" name="nid" id="uid" value="<{$uid}>">
+                                <input type="hidden" name="useradd" id="useradd" value="<{$useradd}>">
+                             </td>
+                          </tr>  
+                    </table>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+</div>
+<{include file="foot.html"}>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script> 
+<script>
+  $('#submit').click(function(){ // 处理文章点击
+     //alert("ddd");
+     document.getElementById("submitcut").submit();
+     return false;
+  })
+</script>
+  <!-- 裁图 -->
+ <script src="<{$domain}>/jcrop/js/jquery.min.js" type="text/javascript"></script>
+  <script src="<{$domain}>/jcrop/js/jquery.Jcrop.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="<{$domain}>/jcrop/css/jquery.Jcrop.css" type="text/css" />
+<script type="text/javascript">
+    jQuery(function($){
+      // Create variables (in this scope) to hold the API and image size
+      var jcrop_api, boundx, boundy;
+      $('#target').Jcrop({
+      minSize: [300,250],
+      setSelect: [0,0,300,250],
+          onChange: updatePreview,
+          onSelect: updatePreview,
+      onSelect: updateCoords,
+          aspectRatio: 300/250
+        },
+  function(){
+        // Use the API to get the real image size
+        var bounds = this.getBounds();
+        boundx = bounds[0];
+        boundy = bounds[1];
+        // Store the API in the jcrop_api variable
+        jcrop_api = this;
+    });
+  function updateCoords(c)
+  {
+    $('#x').val(c.x);
+    $('#y').val(c.y);
+    $('#w').val(c.w);
+    $('#h').val(c.h);
+  };
+  function checkCoords()
+  {
+    if (parseInt($('#w').val())) return true;
+    alert('Please select a crop region then press submit.');
+    return false;
+  };
+      function updatePreview(c){
+        if (parseInt(c.w) > 0)
+        {
+          var rx = 300 / c.w;    //小头像预览Div的大小
+          var ry = 250 / c.h;
+
+          $('#preview').css({
+            width: Math.round(rx * boundx) + 'px',
+            height: Math.round(ry * boundy) + 'px',
+            marginLeft: '-' + Math.round(rx * c.x) + 'px',
+            marginTop: '-' + Math.round(ry * c.y) + 'px'
+          });
+        }
+      {
+          var rx = 300 / c.w;   //大头像预览Div的大小
+          var ry = 250 / c.h;
+          $('#preview2').css({
+            width: Math.round(rx * boundx) + 'px',
+            height: Math.round(ry * boundy) + 'px',
+            marginLeft: '-' + Math.round(rx * c.x) + 'px',
+            marginTop: '-' + Math.round(ry * c.y) + 'px'
+          });
+        }
+      };
+    });
+
+  </script>
+  <!-- 裁图 -->
+<script src="<{$HOSTURL}>/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+<script charset="utf-8" src="<{$HOSTURL}>/kindeditor-4.1.1/kindeditor-min.js"></script>
+<script charset="utf-8" src="<{$HOSTURL}>/kindeditor-4.1.1/lang/zh_CN.js"></script>
+<link rel="stylesheet" type="text/css" href="<{$HOSTURL}>/uploadify/uploadify.css">
+<script>
+	var editor;
+	KindEditor.ready(function(K) {
+		editor = K.create('textarea[name="content"]', {
+			allowFileManager : true
+		});
+	});
+	
+		// 例子4
+	$("#article_add").click(function(){ // "提交"按钮被点击
+			// 构造发送的数据，请注意如果获取表单各项的值
+			var content = editor.html();
+			var formdata = {
+				'id' : $('#id').val(),
+				'title' : $('#title').val(),
+				'cid': $('#cid').val(),
+				'lable': $('#lable').val(),
+				'picurl': $('#picurl').val(),
+				'uid': $('#uid').val(),
+				'useradd': $('#useradd').val(),
+				'content': content
+			 };
+			// 用$.post发送数据
+			$.post('<{spUrl c=articleform a=mysubmit}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				if(result > 0)
+				{ alert('添加成功');}
+				else
+				{ alert('添加失败');}
+				window.location.href="<{$HOSTURL}>/index.php?c=user&a=ucenter_manage"; 
+			});
+	});
+		
+		// 例子4
+	$("#article_edit").click(function(){ // "提交"按钮被点击
+		// 构造发送的数据，请注意如果获取表单各项的值
+        var content = editor.html();
+		var formdata = {
+			'id' : $('#id').val(),
+			'title' : $('#title').val(),
+			'cid': $('#cid').val(),
+			'lable': $('#lable').val(),
+			'picurl': $('#picurl').val(),
+			'uid': $('#uid').val(),
+			'useradd': $('#useradd').val(),
+			'content': content,
+		 };
+		// 用$.post发送数据
+		$.post('<{spUrl c=articleform a=editsubmit}>', formdata, function(result){
+			$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+			if(result > 0)
+			{ alert('编辑成功');}
+			else
+			{ alert('编辑失败');}
+			window.location.href="<{$HOSTURL}>/index.php?c=user&a=ucenter_manage"; 
+		});
+    });
+
+$(document).ready(function(){ // 当页面加载完毕的时候
+
+	$("input[name=items]").click(function() {  
+         //alert($(this).val());
+		 var newstag = $(this).val();
+		 var tag = $("#cid").val();
+		 if ($(this).attr("checked")) {  
+            $("#cid").val(tag+newstag+",");
+         }
+		 else
+		 { 
+			tag = tag.replace(newstag+",","");
+			$("#cid").val(tag);
+		 }
+	});  
+
+  // 例子2
+	$("#classbtn").click(function(){ // "提交"按钮被点击
+	     var isnewclass = $("#newclass").is(":visible");
+		 if(isnewclass == false)
+		 { $("#newclass").show(); }
+		 else
+		 { $("#newclass").hide(); }
+    });
+	
+	$("input[name=itemslable]").click(function() {  
+         //alert($(this).val());
+		 var newstag = $(this).val();
+		 var tag = $("#lable").val();
+		 if ($(this).attr("checked")) {  
+            $("#lable").val(tag+newstag+",");
+         }
+		 else
+		 { 
+			tag = tag.replace(newstag+",","");
+			$("#lable").val(tag);
+		 }
+	});  
+
+  // 例子2
+	$("#lablebtn").click(function(){ // "提交"按钮被点击
+	     var isnewlable = $("#newlable").is(":visible");
+		 if(isnewlable == false)
+		 { $("#newlable").show(); }
+		 else
+		 { $("#newlable").hide(); }
+    });
+});
+
+</script>

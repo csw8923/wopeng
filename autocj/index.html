@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>信息编辑系统 bate</title>
+<script type="text/javascript" src="js/jquery-1.7.0.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-collapse.js"></script>
+<script src="artDialog/artDialog.js?skin=default"></script>
+<script src="artDialog/plugins/iframeTools.js"></script>
+<script type="text/javascript" src="js/jquery.scrolltotop.js"></script>
+<script src="kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="kindeditor/lang/zh_CN.js"></script>
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<style type="text/css">
+#first{ width:700px; }
+#a{ width:240px; }
+#first_a{ width:241px;border:1px solid #CCC; }
+#first_a tr:hover{ background:#969; }
+#first_a table{ width:100%; }
+#first_a{ display:none; }
+#scroll_div{ width:100px; height:150px; background:#990; }
+</style>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row-fluid">
+  	<hr />
+  	<a href="add.php" target="_blank" class="btn btn-primary">录入信息</a>
+    <a class="btn btn-primary" id="retrieval">检索信息</a>
+    <hr />
+  	<div align="center"><textarea name="content" id="content" style="width:900px;height:500px;visibility:hidden;"></textarea></div>
+  </div>
+</div>
+<div id="scroll_div">
+    <div style="margin-top:8px;" align="center">
+    <input id="add" class="btn btn-danger" type="button" value="添加编辑"></div>
+    <div style="margin-top:8px;" align="center">
+    <input id="status" class="btn" type="button" value="隐藏检索"></div>
+    <div style="margin-top:8px;" align="center">
+    <input id="btn_close" class="btn" type="button" value="关闭功能"></div>
+    <div style="margin-top:8px;" align="center">
+    <input id="btn_gotop" class="btn" type="button" value="返回顶部"></div>
+</div>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+	editor = K.create('textarea[name="content"]', {
+		allowFileManager : true
+	});
+});
+</script>
+<script type="text/javascript">
+ jQuery(function($){
+      $.scrolltotop({
+      className: 'totop',
+      controlHTML : '<a href="javascript:;">回到顶部↑</a>',
+      //controlHTML : <img style="width: 24px; height: 24px;" src="http://www.rainleaves.com/go-top.png"/>', //此处可以换成下面的图片格式
+      offsety:0
+   });
+});
+
+$(document).ready(function(){
+$('#retrieval').click(function (){  
+   art.dialog({
+   	  id: 'retrieval',
+   	  title: '信息检索系统',
+   	  top: '1%',
+   	  left:'45%',
+   	  width:'20em',
+   	  height: 55,
+   	  content: '<div class="well"><span class="label label-success">输入你想查找关键字</span><hr /><div id="first"><input id="a" name="regist" value="" /><div id="first_a"></div></div><div style="width:700px;" class="accordion" id="accordion2"></div></div>'
+   	  }); 
+});  
+
+$('#add').click(function (){ 
+   var sText = window.getSelection ? window.getSelection():document.selection.createRange().htmlText; 
+   editor.insertHtml("<p>"+sText+"</p>");
+});  
+
+$('#status').click(function (){ 
+   var status = $("#status").val();
+   if(status == "隐藏检索"){
+   	  art.dialog.list['retrieval'].hide();
+   	  $("#status").val("恢复检索");
+   }
+   else
+   {
+   	 art.dialog.list['retrieval'].show();
+   	 $("#status").val("隐藏检索");
+   }
+});  
+
+$("#first").find(":input").focus().live('keyup',function(){
+	//获取keyup传输进来的值
+	var nkey=$.trim($(this).val());
+	//alert(nkey);
+	//若值为空则不显示;
+	if(nkey==''||nkey==null){
+		$("#first_a").hide();
+	}else{
+		//传输关键字
+		$.post('keyword.php',{name:nkey},function(v){
+			$("#first_a").html(v);
+			$("#first_a").show("slow");
+			//对生成出来的表格里面的值进行操作
+			$("#first_a table tr td").click(function(){
+				$("#a").val($(this).html()) ;
+				$("#first_a").hide() ;
+			})
+		});
+		//传输内容
+		$.post('show.php',{name:nkey,currentPage:1},function(v){
+			$("#accordion2").html(v);
+		});
+		
+	}
+		
+})
+})
+
+function previous(pages)  // 上一页
+{ 
+   var nkey=$.trim($("#a").val());
+   $.post('show.php',{name:nkey,currentPage:pages},function(v){
+		$("#accordion2").html(v);
+   });
+}
+
+function nexts(pages)  // 下一页
+{ 
+   var nkey=$.trim($("#a").val());
+   $.post('show.php',{name:nkey,currentPage:pages},function(v){
+		$("#accordion2").html(v);
+   });
+}
+
+$("#first").find(":input").focus().live('mouseout',function(){
+	$("#first_a").hide();
+	var nkey=$.trim($(this).val());
+	$.post('addword.php',{name:nkey},function(v){
+		//$("#accordion2").html(v);
+	});
+})
+
+var Bianyuan = {
+//添加事件2(DOM-保证this指向对象是obj)
+addEvent : function(obj, type, fn){
+	if (obj.attachEvent){
+	obj['e'+type+fn] = fn;
+	obj[type+fn] = function(){obj['e'+type+fn](window.event);}
+	obj.attachEvent('on'+type, obj[type+fn]);
+	}else{
+	obj.addEventListener(type, fn, false);
+	}
+},
+//获取id元素
+$ : function(id){
+	return document.getElementById(id);
+},
+//取得浏览器可视区size
+getBrowserSize : function(){
+	var pageWidth = window.innerWidth,
+	pageHeight = window.innerHeight;
+	if (typeof pageWidth != "number"){
+	if (document.compatMode == "CSS1Compat"){
+	pageWidth =  document.documentElement.clientWidth;
+	pageHeight =  document.documentElement.clientHeight;
+	} else{
+	pageWidth =  document.body.clientWidth;
+	pageWidth =  document.body.clientHeight;
+	}
+}
+//ie减去17滚动条宽度
+if(!window.ActiveXObject){
+	pageWidth -= 17;
+	}
+	return {
+	width : pageWidth,
+	height : pageHeight
+	}
+},
+//获取滚动条高度
+getPageScroll : function(){
+	var yScroll;
+	if (self.pageYOffset) {
+	yScroll = self.pageYOffset;
+	} else if (document.documentElement && document.documentElement.scrollTop){
+	yScroll = document.documentElement.scrollTop;
+	} else if (document.body) {
+	yScroll = document.body.scrollTop;
+	}
+	return yScroll;
+}
+}
+function scrollBar(scrollId, dir, headHeight, footHeight, areaWidth, o){
+//滚动框宽高
+	var scrollBar = Bianyuan.$(scrollId),
+	barWidth = scrollBar.offsetWidth,
+	barHeight = scrollBar.offsetHeight;
+	//可视区宽高
+	var pageWidth = Bianyuan.getBrowserSize().width,
+	pageHeight = Bianyuan.getBrowserSize().height;
+	//内容宽高
+	var widthMore = document.documentElement.scrollWidth,
+	heightMore = document.body.scrollHeight||(document.documentElement.scrollHeight);
+	//最大宽高
+	var maxWidth = Math.max(pageWidth, widthMore),
+	maxHeight = Math.max(pageHeight, heightMore);
+	scrollBar.style.position = 'absolute';
+	//设置top--假设滚动框高度小于整个页面高度，如果大于直接将其隐藏
+	if (maxHeight < (barHeight + footHeight + footHeight + 4)){
+	scrollBar.style.display = 'none';
+	}else{
+	//不挡顶部---如果想改距顶高度，改下边的第一个2值
+	scrollBar.style.top = Bianyuan.getPageScroll() + headHeight + 2 + 'px';
+	//不挡底部
+	if ((heightMore - Bianyuan.getPageScroll() - barHeight) <= footHeight){
+	scrollBar.style.top = heightMore - footHeight - barHeight - 2 + 'px';
+	}
+	}
+	//无视主体内容-左右
+	if (dir == 'left' && areaWidth == 1){
+	scrollBar.style.left = 2 + 'px';
+	}else if (dir == 'right' && areaWidth == 1){
+	scrollBar.style.left = maxWidth - barWidth - 2 + 'px';
+	//根据主体内容宽-左右
+	}else if (dir == 'left' && areaWidth != 1){
+	if (pageWidth >= (barWidth*2 + areaWidth + 4)){
+	scrollBar.style.left = (pageWidth - areaWidth)/2 - barWidth - 2 + 'px';
+	}else{
+	scrollBar.style.left = 2 + 'px';
+	}
+	}else if (dir == 'right' && areaWidth != 1){
+	if (pageWidth >= (barWidth*2 + areaWidth + 4)){
+	scrollBar.style.left = (pageWidth - areaWidth)/2 + areaWidth + 2 + 'px';
+	}else{
+	scrollBar.style.left = maxWidth - barWidth - 2 + 'px';
+	}
+	}
+	//关闭和返回顶部
+	if (o){
+	if (o.btnClose){
+	var closeBtn = Bianyuan.$(o.btnClose);
+	Bianyuan.addEvent(closeBtn, 'click', function(){
+	scrollBar.style.display = 'none';
+	})
+	}
+	if (o.goTop){
+	var gotopBtn = Bianyuan.$(o.goTop);
+	Bianyuan.addEvent(gotopBtn, 'click', function(){
+	document.documentElement.scrollTop = 0;
+	document.body.scrollTop = 0;
+})
+}
+}
+//改变窗口大小或滚动条滚动
+resizeWindow(scrollId, dir, headHeight, footHeight, areaWidth, o);
+}
+function resizeWindow(scrollId, dir, headHeight, footHeight, areaWidth, o){
+	window.onresize = function(){scrollBar(scrollId, dir, headHeight, footHeight, areaWidth, o);}
+	window.onscroll = function(){scrollBar(scrollId, dir, headHeight, footHeight, areaWidth, o);}
+}
+scrollBar("scroll_div", "right", 42, 95, 1002, {btnClose:"btn_close",goTop:"btn_gotop"});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>昕竹轩-后台管理系统</title>
+<meta name="description" content="">
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<meta name="viewport" content="width=device-width">
+<script type="text/javascript" src="tpl/admin/js/jquery-1.7.1.js"></script>
+<link rel="stylesheet" href="tpl/admin/css/bootstrap.css">
+<link rel="stylesheet" href="tpl/admin/css/uniform.default.css">
+<link rel="stylesheet" href="tpl/admin/css/jquery.tagsinput.css">
+<link rel="stylesheet" href="tpl/admin/css/chosen.css">
+<link rel="stylesheet" href="tpl/admin/css/style.css">
+</head>
+<body>
+<div class="style-switcher">
+	<h3>Style-switcher</h3>
+	<ul>
+		<li>
+			<a href="#" class='style'>Default</a>
+		</li>
+		<li>
+			<a href="#" class='blue'>Blue</a>
+		</li>
+		<li>
+			<a href="#" class='green'>Green</a>
+		</li>
+		<li>
+			<a href="#" class='red'>Red</a>
+		</li>
+	</ul>
+</div>
+<div class="topbar clearfix">
+	<div class="container-fluid">
+		<a href="index.php?c=manage&a=index" class='company'>昕竹轩-后台管理系统</a>
+		<form action="#">
+			<input type="text" value="Search here...">
+		</form>
+		<ul class='mini'>
+             <li>
+				<a target="_blank" href="<{spUrl c=main a=index}>">
+					 返回首页
+				</a>
+			</li>
+        	<li>
+				<a>
+					用户名 : <{$smarty.session.userinfo.uname}> | 
+                    等级 ： 
+                          <{if $smarty.session.userinfo.acl == 'GBUSER'}>
+                             普通用户
+                          <{else}>
+                             管理员
+                          <{/if}>
+				</a>
+			</li>
+			<li>
+				<a href="index.php?c=modifyform&a=index&t=user">
+					<img src="tpl/admin/img/icons/fugue/gear.png" alt="">
+					密码修改
+				</a>
+			</li>
+			<li>
+				<a href="index.php?c=manage&a=logout">
+					<img src="tpl/admin/img/icons/fugue/control-power.png" alt="">
+					退出
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>

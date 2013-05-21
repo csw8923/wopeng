@@ -1,0 +1,461 @@
+<{include file="tpl/admin/header.html"}>
+<script src="tpl/admin/src/js/jscal2.js"></script>
+<script src="tpl/admin/src/js/unicode-letter.js"></script>
+<script src="tpl/admin/src/js/lang/cn.js"></script>
+<script type="text/javascript" src="tpl/js/jquery.boxy.js?ver=20091101"></script>
+<link rel="stylesheet" type="text/css" href="tpl/admin/css/boxy.css?ver=20091102" />
+<link rel="stylesheet" type="text/css" href="tpl/admin/src/css/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="tpl/admin/src/css/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="tpl/admin/src/css/steel/steel.css" />
+    
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+	// 例子三
+	$("#ex3button").click(function(){ // "提交"按钮被点击
+		// 构造发送的数据，请注意如果获取表单各项的值
+		var formdata = {
+			'keywords' : $('#keywords').val(),
+			'links' : $('#links').val(),
+			'types' : $('#types').val(),
+			'seq' : $('#seq').val(),
+			'sort' : $('#sort').val(),
+			'used' : $('#used').is(':checked')? "1":"0",
+			'choose' : $('#choose').is(':checked')? "1":"0",
+			'useful' : $('#useful').is(':checked')? "1":"0",
+			'id' : $('#id').val(),
+			'ctitle' : $('#ctitle').val(),
+			'ckeywords' : $('#ckeywords').val(),
+			'cdirections' : $('#cdirections').val()
+		};
+	
+		var id  = $('#id').val();  // 根据有没有id 判断是编辑还是增加
+		if(id == '')
+		{
+			// 用$.post发送数据
+			$.post('<{spUrl c=chainform a=adddata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				feedback(result,id);
+			});
+		}
+		else
+		{
+		   	// 用$.post发送数据
+			$.post('<{spUrl c=chainform a=editdata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				feedback(result,id);
+			});	
+		}
+		
+	});
+});
+
+function del(id){
+		$.get('<{spUrl c=chainform a=deldata}>', 'id='+id, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			if(result == 1)
+			{alert('删除成功!!');}else{alert('删除失败!!')}
+			window.location.reload(); 
+		});
+}
+
+
+function initialize(id){
+		$.get('<{spUrl c=chainform a=initialize}>', 'id='+id, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			if(result == 1)
+			{alert('失效状态!!');}else{alert('设置失败!!')}
+			window.location.reload(); 
+		});
+}
+
+function approval(id){
+		$.get('<{spUrl c=chainform a=approval}>', 'id='+id, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			if(result == 1)
+			{alert('使用状态!!');}else{alert('设置失败!!')}
+			window.location.reload(); 
+		});
+}
+
+function tjinitialize(id){
+		$.get('<{spUrl c=chainform a=tjinitialize}>', 'id='+id, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			if(result == 1)
+			{alert('不推荐!!');}else{alert('设置失败!!')}
+			window.location.reload(); 
+		});
+}
+
+function tjapproval(id){
+		$.get('<{spUrl c=chainform a=tjapproval}>', 'id='+id, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			if(result == 1)
+			{alert('推荐!!');}else{alert('设置失败!!')}
+			window.location.reload(); 
+		});
+}
+function yestop(id){
+    $.get('<{spUrl c=chainform a=yestop}>', 'id='+id, function(result){
+        $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+        if(result == 1)
+        {alert('推荐!!');}else{alert('设置失败!!')}
+        window.location.reload();
+    });
+}
+function notop(id){
+    $.get('<{spUrl c=chainform a=notop}>', 'id='+id, function(result){
+        $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+        if(result == 1)
+        {alert('推荐!!');}else{alert('设置失败!!')}
+        window.location.reload();
+    });
+}
+function yeschoose(id){
+    $.get('<{spUrl c=chainform a=yeschoose}>', 'id='+id, function(result){
+        $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+        if(result == 1)
+        {alert('推荐!!');}else{alert('设置失败!!')}
+        window.location.reload();
+    });
+}
+function nochoose(id){
+    $.get('<{spUrl c=chainform a=nochoose}>', 'id='+id, function(result){
+        $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+        if(result == 1)
+        {alert('推荐!!');}else{alert('设置失败!!')}
+        window.location.reload();
+    });
+}
+</script> 
+
+<script type="text/javascript">
+
+// 搜索功能调用
+function searchs(){
+	var filter = $('#filter').val();
+	if(filter != ''){
+	  window.location.href="index.php?c=chainform&a=index&t=core&limit=<{$limit}>&filter="+filter+"";
+	}
+}
+
+// 分页设置
+function Limit(nums){
+	var filter = $('#filter').val();
+	if(nums.value == '')
+	{window.location.href="index.php?c=chainform&a=index&t=core&limit=<{$limit}>&filter="+filter+"";}
+	else
+	{window.location.href="index.php?c=chainform&a=index&t=core&limit="+nums.value+"&filter="+filter+"";}
+}
+
+// 搜索快捷键
+<!--  
+function hotkey()  
+{  
+	var a=window.event.keyCode;  
+	if((a==13))  
+	{  
+	   	var filter = $('#filter').val();
+		if(filter != ''){
+		window.location.href="index.php?c=chainform&a=index&t=core&limit=<{$limit}>&filter="+filter+"";
+		}
+	}  
+	}// end hotkey  
+	document.onkeydown = hotkey; //当onkeydown 事件发生时调用hotkey函数  
+//-->  
+ </script>
+ 
+<script type="text/javascript" charset="utf-8">
+	/*ajax 调数据 留用代码 误删 ******/
+/*   $(document).ready(function() {
+		$('#example').dataTable( {
+			"bProcessing": true,
+			"bServerSide": true,
+			"sAjaxSource": "scripts/server_processing.php"
+		} );
+	} );*/
+</script>
+        
+<div class="breadcrumbs">
+	<div class="container-fluid">
+		<ul class="bread pull-left">
+			<li>
+				<a href="index.php?c=manage&a=index"><i class="icon-home icon-white"></i></a>
+			</li>
+			<li>
+				<a href="index.php?c=chainform&a=index&t=core&limit=<{$limit}>">
+					关键词分类
+				</a>
+			</li>
+		</ul>
+
+	</div>
+</div>
+<div class="main">
+    <{include file="tpl/admin/left.html"}>
+	<div class="container-fluid">
+		<div class="content">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-head tabs">
+							<h3>关键词分类 | <a href="index.php?c=chainform&a=index&t=core&limit=<{$limit}>#mao">添加</a></h3>
+							<ul class='nav nav-tabs'>
+								<li class='active'>
+									<a href="#basic" data-toggle="tab">Basic</a>
+								</li>
+								<li>
+									<a href="#nohead" data-toggle="tab">No header</a>
+								</li>
+							</ul>
+						</div>
+						<div class="box-content box-nomargin">
+							<div class="tab-content">
+									<div class="tab-pane active" id="basic">
+                                    <!--分页设置-->
+                                    <div id="DataTables_Table_0_length" class="dataTables_length">
+                                    <label>Limit: 
+                                    <select id="Limit" size="1" onchange="Limit(this)" class="uniform">
+                                    <option  <{if $limit eq '10'}>selected<{/if}> value="10">10</option>
+                                    <option  <{if $limit eq '25'}>selected<{/if}> value="25">25</option>
+                                    <option  <{if $limit eq '50'}>selected<{/if}> value="50">50</option>
+                                    <option  <{if $limit eq '100'}>selected<{/if}> value="100">100</option>
+                                    </select></label>
+                                    </div>
+                                    <!--搜索设置-->
+                                    <div class="dataTables_filter" id="DataTables_Table_0_filter">
+                                    <label><input id="filter" type="text" onblur="searchs()" placeholder="<{$filter}>"></label>
+                                    </div>
+										<table class='table table-striped dataTable table-condensed'>
+												<tr>
+													<th>排序</th>
+													<th>二级排序</th>
+                                                    <th>关键字名称</th>
+                                                    <th>类别</th>
+                                                    <th>推荐</th>
+                                                    <th>二级推荐</th>
+                                                    <th>选填属性</th>
+                                                    <th>操作</th>
+												</tr>
+                                              <{foreach item=colorname from=$result key=enname}>
+                                              <tr>
+                                              	 <td><{$colorname.seq}></td>
+                                              	 <td><{$colorname.sort}></td>
+                                                 <td><{$colorname.keywords}></td>
+                                                 <td><{$colorname.types}></td>
+                                                 <td>
+                                                 <{if $colorname.used eq '0'}>
+                                                 <a href="javascript:tjapproval(<{$colorname.id}>)">不推荐</a>
+                                                 <{else}>
+                                                 <a href="javascript:tjinitialize(<{$colorname.id}>);">推荐</a>
+                                                  <{/if}></td>
+                                                  <td>
+                                                      <{if $colorname.istop eq '0'}>
+                                                      <a href="javascript:yestop(<{$colorname.id}>)">不推荐</a>
+                                                      <{else}>
+                                                      <a href="javascript:notop(<{$colorname.id}>);">推荐</a>
+                                                      <{/if}>
+                                                  </td>
+                                                 <td>
+                                                      <{if $colorname.choose eq '0'}>
+                                                      <a href="javascript:yeschoose(<{$colorname.id}>)">不推荐</a>
+                                                      <{else}>
+                                                      <a href="javascript:nochoose(<{$colorname.id}>);">推荐</a>
+                                                      <{/if}>
+                                                  </td>
+                                                 <td>
+                                                 <{if $colorname.useful eq '0'}>
+                                                 <a href="javascript:approval(<{$colorname.id}>)">失效状态</a> | 
+                                                 <a href="index.php?c=chainform&a=index&t=core&id=<{$colorname.id}>&limit=<{$limit}>#mao">编辑</a> | 
+                                                 <a href="javascript:del(<{$colorname.id}>);">删除</a>
+                                             <{else}>
+                                              <a href="javascript:initialize(<{$colorname.id}>);">正常使用</a> |
+                                              <a href="index.php?c=chainform&a=index&t=core&id=<{$colorname.id}>&limit=<{$limit}>#mao">编辑</a> | 
+                                                 <a href="javascript:del(<{$colorname.id}>);">删除</a>
+                                              <{/if}></td>
+                                              </tr>
+                                              <{/foreach}>
+										</table>
+									</div>
+									<div class="tab-pane" id="nohead">
+										<table class='table table-striped dataTable dataTable-noheader table-bordered'>
+											<thead>
+												<tr>
+                                                    <th>关键字名称</th>
+                                                    <th>操作</th>
+												</tr>
+											</thead>
+											<tbody>
+                                              <{foreach item=colorname from=$result key=enname}>
+                                              <tr>
+                                                 <td><{$colorname.keywords}></td>
+                                                 <td>
+                                                  <{if $colorname.useful eq '0'}>
+                                                     <a href="javascript:approval(<{$colorname.id}>)">通过</a> | <a href="javascript:refuse(<{$colorname.id}>);">拒绝</a> | <a href="index.php?c=rulesform&a=index&t=core&id=<{$colorname.id}>&limit=<{$limit}>#mao">编辑</a> | <a href="javascript:del(<{$colorname.id}>);">删除</a>
+                                             <{else}>
+                                             已经表态
+                                              <a href="javascript:initialize(<{$colorname.id}>);">初始化</a>
+                                              <{/if}>
+                                                 </td>
+                                              </tr>
+                                              <{/foreach}>
+											</tbody>
+										</table>
+									</div>
+                                    <!--分页栏目-->
+                                    <div class="dataTables_info" id="DataTables_Table_0_info">
+                                    <{if $pager}>
+                                    共有信息<{$pager.total_count}>条，共有<{$pager.total_page}>页（每页<{$pager.page_size}>条信息）：
+                                    <{/if}>
+                                    </div>
+                                    <div class="dataTables_paginate paging_bootstrap pagination">
+                                           <ul>
+                                             <{if $pager}>
+                                            <!--在当前页不是第一页的时候，显示前页和上一页-->
+                                            <{if $pager.current_page != $pager.first_page}>
+                                            <li><a href="index.php?c=chainform&a=index&t=core&page=<{$pager.first_page}>&limit=<{$limit}>&filter=<{$filter}>">前页</a> </li>
+                                            <!--<li><a href="index.php?c=rulesform&a=index&t=core&page=<{$pager.prev_page}>">上一页</a></li> -->
+                                            <{/if}>
+                                            <li><a href="index.php?c=chainform&a=index&t=core&page=<{$pager.prev_page}>&limit=<{$limit}>&filter=<{$filter}>">上一页</a></li> 
+                                            <!--开始循环页码，同时如果循环到当前页则不显示链接-->
+                                            <{foreach from=$pager.all_pages item=thepage}>
+                                                    <{if $thepage != $pager.current_page}>
+                                                            <!--<a href="<{spUrl c=chainform a=index a=index page=$thepage}>"><{$thepage}></a>-->
+                                                           <li><a href="index.php?c=chainform&a=index&t=core&page=<{$thepage}>&limit=<{$limit}>&filter=<{$filter}>"><{$thepage}></a></li>
+                                                    <{else}>
+                                                           <li class="active"><a><{$thepage}></a></li>
+                                                    <{/if}>
+                                            <{/foreach}>
+                                            <!--在当前页不是最后一页的时候，显示下一页和后页-->
+                                            <li><a href="index.php?c=chainform&a=index&t=core&page=<{$pager.next_page}>&limit=<{$limit}>&filter=<{$filter}>">下一页</a></li>
+                                            <{if $pager.current_page != $pager.last_page}>
+                                            <li><a href="index.php?c=chainform&a=index&t=core&page=<{$pager.last_page}>&limit=<{$limit}>&filter=<{$filter}>">后页</a></li>
+                                            <{/if}>
+                                            <{/if}>
+                                           </ul>
+                                   </div>
+                                   <!--分页栏目-->
+						</div>
+					</div>
+				</div>
+			</div>
+            <div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-head">
+						<a href="" name="mao"></a>
+                           <{if $id != 0}>
+                              <h3>编辑数据</h3>
+                           <{else}>
+                              <h3>增加数据</h3>
+                           <{/if}>
+						</div>
+						<div class="box-content" >                            
+							<form action="#" class='validate form-horizontal'>
+								<div class="control-group">
+									<label for="req" class="control-label">关键字名称</label>
+									<div class="controls">
+                                     <input type="text" name="keywords" id="keywords" class='required' value="<{$keywords}>">
+									<span></span>
+                                    </div>
+								</div>
+                                <div class="control-group">
+                                    <label for="req" class="control-label">自定义标题</label>
+                                    <div class="controls">
+                                        <input type="text" name="ctitle" id="ctitle" class='required' value="<{$ctitle}>">
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="req" class="control-label">自定义关键字</label>
+                                    <div class="controls">
+                                        <input type="text" name="ckeywords" id="ckeywords" class='required' value="<{$ckeywords}>">
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="req" class="control-label">自定义说明</label>
+                                    <div class="controls">
+                                        <input type="text" name="cdirections" id="cdirections" class='required' value="<{$cdirections}>">
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                   <label for="req" class="control-label">排序：</label>
+                                   <div class="controls">
+                                   <input type="text" name="seq" id="seq" value="<{$seq}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                   <label for="req" class="control-label">二级排序：</label>
+                                   <div class="controls">
+                                   <input type="text" name="sort" id="sort" value="<{$sort}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                   <label for="req" class="control-label">来源：</label>
+                                   <div class="controls">
+                                   <input type="text" name="links" id="links" value="<{$links}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+
+                           <div class="control-group">
+                                   <label for="req" class="control-label">类别：</label>
+                                   <div class="controls">
+                                   <input type="text" name="types" id="types" value="<{$types}>">
+                                   <span></span>
+                                  </div>
+                           </div>
+                                
+                           <div class="control-group">
+                                  <label for="req" class="control-label">【是否启用】：</label>
+                                   <div class="controls">
+                                   <{if $useful == '1'}>
+                                       <input id="useful" name="useful" type="checkbox" checked />
+                                    <{else}>
+                                       <input id="useful" name="useful" type="checkbox" />
+                                    <{/if}>
+                                   <span></span>
+                                  </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                  <label for="req" class="control-label">【是否推荐】：</label>
+                                   <div class="controls">
+                                   <{if $used == '1'}>
+                                       <input id="used" name="used" type="checkbox" checked />
+                                    <{else}>
+                                       <input id="used" name="used" type="checkbox" />
+                                    <{/if}>
+                                   <span></span>
+                                  </div>
+                            </div>
+
+                           <div class="control-group">
+                                  <label for="req" class="control-label">【是否启用选择】：</label>
+                                   <div class="controls">
+                                   <{if $choose == '1'}>
+                                       <input id="choose" name="choose" type="checkbox" checked />
+                                    <{else}>
+                                       <input id="choose" name="choose" type="checkbox" />
+                                    <{/if}>
+                                   <span></span>
+                                  </div>
+                            </div>
+                            
+                                								<div class="form-actions">
+									<input type="button" id="ex3button" value="提交" class='btn btn-primary'>
+                                    <input type="hidden" name="id" id="id" value="<{$id}>">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+		</div>	
+	</div>
+</div>	
+<{include file="tpl/admin/footer.html"}>

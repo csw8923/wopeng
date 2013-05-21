@@ -1,0 +1,10 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+图片集标题:<{$title}> 
+<{foreach item=picturesout from=$pictures key=enname}>
+    <li><a target="_blank" title="<{$picturesout.title}>" href="<{spUrl}>pic/<{$picturesout.id}>"><img width="300" height="200" src="<{spUrl}>uploadify/uploads/<{$picturesout.picurl}>" /></a>
+    <{if $type == "album" }>
+    <a href="javascript:tops(<{$picturesout.id}>);">[设置封面]</a>
+    <{/if}>
+    <input type="text" class="input-xlarge" name="<{$picturesout.id}>" id="<{$picturesout.id}>" value="<{spUrl}>uploadify/uploads/<{$picturesout.picurl}>">
+    </li>
+<{/foreach}> 

@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<{if $seo['stitle'] == ""}>
+  <title><{$city['title']}><{$show['title']}>景点攻略、图片照片、门票线路地图_<{$area['title']}><{$show['title']}>(<{$province['title']}><{$city['title']}>)</title>
+  <{else}>
+  <title><{$seo['stitle']}></title>
+<{/if}>
+<{if $seo['skeyword'] == ""}>
+  <meta name="keywords" content="<{$show['tags']}>" />
+  <{else}>
+  <meta name="keywords" content="<{$seo['skeyword']}>" />
+<{/if}>
+<{if $seo['sdirections'] == ""}>
+  <meta name="description" content="<{$show['content']|strip_tags|truncate:200}>">
+  <{else}>
+  <meta name="description" content="<{$seo['sdirections']}>">
+<{/if}>
+<{include file="header.html"}>
+<!-- <div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门好玩的地方</h1>
+        <div id="tban_le_txt">推荐厦门好玩的地方，把网友去过的好玩的地方的经历感触，分享给没去过或正想去的人。</div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1"> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/3.html"><{$city['title']}>周边一日游</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/6.html"><{$city['title']}>周边农家乐</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/rank/bset.html"><{$city['title']}>有什么好玩的地方</a>
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div> -->
+<div style="margin-top:10px;" id="cont">
+  <div style="height:25px;">
+        <div id="tban_le_txt" class="tgray1"> 
+          <a style="color:#999" href="<{$domain}>/"><{$city['title']}>周边游</a> > <a style="color:#999" href="<{spUrl}>city/scenery/<{$city.id}>"><{$city['title']}>景点</a> > <a style="color:#999" href="<{spUrl}>scenery/<{$show['id']}>.html"><{$show['title']}></a>
+        </div>
+  </div>
+</div>
+<div id="cont">
+  <div id="xlzy_tit01"><{$show['title']}>
+    <{if $show['tophot'] < 2.9 }>
+     <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $show['tophot'] < 4.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $show['tophot'] < 6.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $show['tophot'] < 8.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $show['tophot'] < 9.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{/if}>
+    <span class=" torange1 t14"><{$show['tophot']}>分</span>
+    <a href="javascript:;" class="wantGo">想去
+    <em><{$wantgosum}></em></a>
+    <a href="javascript:;" class="aleadyGo">去过
+    <em><{$aleadygosum}></em></a>
+    </div>
+  <div id="xlzy_tit02"><div id="xlzy_tit03"><img src="../../tpl/images/nlw_ic7.gif" width="16" height="16" /></div><div id="xlzy_tit04"><a target="_blank" href="<{spUrl c=youjiinfoform a=add id=$id}>?type=scenery">写游记</a></div><div id="xlzy_tit03"><img src="../../tpl/images/nlw_ic8.gif" width="16" height="16" /></div><div id="xlzy_tit04"><a target="_blank" href="<{spUrl c=commentinfoform a=add id=$id}>?type=scenery">写点评</a></div><div id="xlzy_tit03"><img src="../../tpl/images/nlw_ic9.gif" width="16" height="16" /></div><div id="xlzy_tit04"><a target="_blank" href="<{spUrl c=albuminfoform a=uppic}>?type=scenery&pid=<{$show['id']}>">发照片</a></div></div>
+</div>
+<div id="cont">
+<div class="xlzy_menu mar_b10">
+        <ul class="menu">
+          <li ><a href="<{spUrl}>scenery/<{$show['id']}>.html">主页</a></li>
+          <{if !empty($youji)}>
+          <li><a href="<{spUrl}>youji/scenery/<{$show['id']}>.html">游记</a></li>
+          <{/if}>
+          <{if !empty($comment)}>
+          <li><a href="<{spUrl}>comment/scenery/<{$show['id']}>.html">点评</a></li>
+          <{/if}>
+          <{if !empty($pictures)}>
+          <li><a href="<{spUrl}>photoalbum.html?info=scenery&pid=<{$show['id']}>">图片</a></li>
+          <{/if}>
+          <li><a style="width:80px;" href="<{spUrl}>visits/scenery/<{$show['id']}>.html">自由行线路</a></li>
+          <li><a href="<{spUrl}>ask/scenery/<{$show['id']}>.html">论坛</a></li>
+          <{if $smarty.session.quser.acl == "GBADMIN"}>
+          <li><a target="_blank" href="<{spUrl c=albuminfoform a=add id=$id}>?type=scenery">上传相册</a></li>
+          <li><a target="_blank" href="javascript:seo()">seo设置</a></li>
+          <li><a target="_blank" href="<{spUrl}>index.php?c=sceneryinfoform&a=index&t=core&id=<{$id}>#mao">后台编辑</a></li>
+          <{/if}>
+        </ul>
+  </div>
+</div>
+<div id="cont">
+  <div class="yjgl_le">
+    <div id="yjgl_lta1">
+      <div id="d_bk_t">
+        <div id="d_bk_t01"><div class="c1"></div></div>
+        <div id="d_bk_t02"><div class="c1"></div></div>
+      </div>  
+    <div id="jddp_bk2">
+    <div id="d_bk3_c03">
+     <div class="xlzy_cen04">
+          <{if $show['ispic'] == "1"}>
+             <div id="ind_cen04_l" class="h24"><img src="<{$show['picurl']}>" width="240" height="180" /></div>
+          <{else}>
+             <div id="ind_cen04_l" class="h24"><a target="_blank" href="<{spUrl}>coveralbum.html?info=scenery&pid=<{$show['id']}>"><img src="<{$show['picurl']|replace:'.jpg':''}>thumb_01.jpeg" width="240" height="180" /></a></div>
+          <{/if}>
+          <div class="xlzy_cen04_r">
+            <div id="ind_cen04_r02">位置：<span class="tgreen">
+              <{$province['citystate']}> 
+              <a target="_blank" href="<{spUrl}>city/scenery/<{$city['id']}>"><{$city['citystate']}></a> 
+              <a target="_blank" href="<{spUrl}>city/scenery/<{$area['id']}>"><{$area['citystate']}></a> 
+              </span><br />
+地址：<{$show['address']}><br />
+      <span class="tgreen"><a style="width:80px;" href="<{spUrl}>visits/scenery/<{$show['id']}>.html">详细地图线路（自驾/公交）</a></span><br />
+门票：<{$show['tickets']}> |
+      <span class="tgreen">其他门票或者消费价格</span><br />
+预定服务电话：<{$city['servicephone']}> (旅游服务预定、咨询)<br />
+景区办公电话：<{$show['phone']}> (非突发事件请勿拨打)<br />
+封面提供：<span class="tgreen"><{$show['fromcover']}></span> <a target="_blank" href="<{spUrl}>coveralbum.html?info=scenery&pid=<{$show['id']}>">我有更好封面要上传</a> <span class="tgray1"></span></div>
+          </div>
+          </div>
+    </div>
+    
+  </div>  
+  <div id="d_bk_b" class="mar_b20">
+    <div id="d_bk_b01"><div class="c1"></div></div>
+    <div id="d_bk_b02"><div class="c1"></div></div>
+  </div>
+
+    <div id="d_bkgreen_let" class="mar_b10"> <div id="d_bkgreen_let1"><{$show['title']}>N大理由</div> </div>
+    <div class="xlzy_tit07" id="noAllShow1" style="display: block;"><{$show['ndly']}></div>
+
+  <div id="d_bkgreen_let" class="mar_b10"> <div id="d_bkgreen_let1"><{$show['title']}>介绍</div> </div>
+    <div class="xlzy_tit07" id="noAllShow" style="display: block;"><{$show['content']|strip_tags|truncate:350}>...</div>
+        <div class="xlzy_tit07" id="allShow" style="display: none;"><{$show['content']}></div>
+    <div id="tit02_r" class="tgreen" style="width:70%"><a href="javascript:showMessage()" id="messageTitle" >显示全部</a> <img src="../../tpl/images/nlw_ic10.gif" width="7" height="4" /></div>
+
+  <div id="d_bkgreen_let" class="mar_b10"> <div id="d_bkgreen_let1"><{$show['title']}>周边景点</div> </div>
+    <div class="xlzy_tit07" id="noAllShow1" style="display: block;"><{$show['nearby']}></div>
+    <div id="tit02_r" class="tgreen" style="width:70%"></div>
+
+<{if !!$pictures }>
+    <div id="d_bkgreen_let" class="mar_b10"> <div id="d_bkgreen_let1"><{$show['title']}>的图片<span class="tgray1 t12">(<a target="_blank" href="<{spUrl}>photoalbum.html?info=scenery&pid=<{$show['id']}>">全部</a>
+<{$picturesnum}> | <a target="_blank" href="<{spUrl c=albuminfoform a=uppic}>?type=scenery&pid=<{$show['id']}>">我来发图片</a> )</span></div> 
+</div>
+<div class="xlzy_tit07">
+  <{foreach item=picturesout from=$pictures key=enname}>
+    <div class="xlzy_pic2"><a target="_blank" href="<{$domain}>/photo/<{$picturesout.id}>"><img src="<{$domain}>/uploadify3.2/uploads/<{$picturesout.picurl|replace:'.jpg':''}>_270x180.jpg" width="170" height="126" /></a><br />
+    <{$picturesout.title|truncate:14:"...":true}><br />
+    <span class="tgray1"><{$picturesout.username}> 发表于 <{$picturesout.releasedate|date_format:"%Y-%m-%d"}></span>
+  </div>
+  <{/foreach}> 
+</div>
+<div id="tit02_r" class="tgreen" style="width:70%"><a target="_blank" href="<{$domain}>/photoalbum.html?info=scenery&pid=<{$id}>">显示全部</a> <img src="../../tpl/images/nlw_ic10.gif" width="7" height="4" /></div>
+<{/if}>
+
+<{if !!$youji }>
+<div id="d_bkgreen_let" class="mar_b10"> <div id="d_bkgreen_let1"> 游记攻略 </div> 
+<div id="tit02_r"><div id="xlzy_tit03" style="height:20px; padding-top:0px;"><img src="../../tpl/images/nlw_ic7.gif" width="16" height="16" /></div><div id="xlzy_tit04" style="line-height:20px; height:20px;"><a target="_blank" href="<{spUrl c=youjiinfoform a=add id=$id}>?type=scenery">写游记</a></div></div>
+</div>
+<{foreach item=youjiout from=$youji key=enname}>
+<div class="yjgl_cen04">
+          <div id="jdzy_cen04_l"><em><img src="<{$youjiout.picurl}>" width="185" height="138" /></em></div>
+          <div class="jdzy_cen04_r">
+            <div id="ind_cen04_r01">
+              <div id="ind_cen04_r01_l" class="t14 tgreen"><a target="_blank" title="<{$youjiout.title}>" href="<{spUrl}>youji/info/<{$youjiout.id}>.html"><{$youjiout.title|truncate:14:"...":true}></a></div>
+            </div>
+            <div id="ind_cen04_r02" class="tgray1"><{$youjiout.username}> 发表于 <{$youjiout.releasedate|date_format:"%Y-%m-%d %H:%M:%S"}></div>
+            <div id="ind_cen04_r02"><{$youjiout.content|strip_tags|truncate:100:"...":true}><a href="<{spUrl}>youji/info/<{$youjiout.id}>.html">.[显示全文]</a></div>
+            <div id="ind_cen04_r03">加颗钻石&nbsp;<img src="../../tpl/images/nlw_ic2.gif" width="16" height="16" align="absmiddle" />1</span>&nbsp;<a href="<{spUrl}>youji/info/<{$youjiout.id}>.html#ex3button">添加回应</a></div>
+          </div>
+</div>
+<{/foreach}> 
+<{/if}>
+
+<{if !!$comment }>
+<div id="tit02_r" class="tgreen" style="width:70%"><a href="<{spUrl}>youji/scenery/<{$show['id']}>.html">显示全部</a> <img src="../../tpl/images/nlw_ic10.gif" width="7" height="4" /></div>
+<div id="d_bkgreen_let" class="mar_b10"> <div id="d_bkgreen_let1"> 点评 </div> 
+<div id="tit02_r"><div id="xlzy_tit03" style="height:20px; padding-top:0px;"><img src="../../tpl/images/nlw_ic7.gif" width="16" height="16" /></div><div id="xlzy_tit04" style="line-height:20px; height:20px;"><a target="_blank" href="<{spUrl c=commentinfoform a=add id=$id}>?type=scenery">写点评</a></div></div>
+</div>
+<{foreach item=commentout from=$comment key=enname}>
+<div class="jddp_cen04" style="width:730px;">
+        <div id="ind_cen04_l" class="h24"><img src="<{$userarray[$enname]|replace:'.jpg':''}>thumb_02.jpeg" width="50" height="50" />
+        </div>
+          <div class="jddp_cen04_r" style="width:630px;">
+            <div id="ind_cen04_r01">
+              <div id="ind_cen04_r01_l"><span class="tgreen"><{$commentout.username}></span> 点评 <span class="tgreen"><{$show['title']}></span></div>
+              <div id="ind_cen04_r01_r"><{$commentout.releasedate|date_format:"%Y-%m-%d %H:%M:%S"}></div>
+            </div>
+            <div id="ind_cen04_r02"><{$commentout.content|strip_tags|truncate:100:"...":true}><br />
+            </div>
+            <div id="ind_cen04_r03"><img src="../../tpl/images/nlw_ic2.gif" width="16" height="16" align="absmiddle" />1</span>&nbsp;<a href="<{spUrl}>comment/info/<{$commentout.id}>.html#ex3button">添加回应</a></div>
+          </div>
+      </div>
+<{/foreach}>
+<div id="tit02_r" class="tgreen" style="width:70%"><a href="<{spUrl}>comment/scenery/<{$show['id']}>.html">显示全部</a> <img src="../../tpl/images/nlw_ic10.gif" width="7" height="4" /></div>
+<{/if}>
+
+    </div>
+  </div>
+  <div class="yjgl_ri">
+    <div class="yjgl_tit01">
+      <div class="tit01l">地图位置</div>
+      <div class="tit01r"><img src="../../tpl/images/nlw_more2.gif" /></div>
+    </div>
+    <div class="yjgl_rbk pad_t10" style="height:250px;"><img src="../../tpl/images/pic12.jpg" width="218" height="220" /><br />
+    <span class="tgreen">查看完整地图</span></div>
+    <div class="yjgl_tit01">
+      <div class="tit01l"><{$show['title']}>论坛</div>
+      <div class="tit01r"><a href="<{spUrl}>ask/scenery/<{$show['id']}>.html"><img src="../../tpl/images/nlw_more2.gif" /></a></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="xlzy_ph1l">
+      <{foreach item=answersout from=$answers key=enname}>
+          <div id="xlzy_ri01">·<a target="_blank" title="<{$answersout.title}>" href="<{spUrl}>ask/info/<{$answersout.id}>.html"><{$answersout.title|truncate:14:"...":true}></a></div>
+      <{/foreach}> 
+     </div>
+    </div>  
+    <div class="yjgl_tit01">
+      <div class="tit01l"><{$city['title']}>好玩的地方</div>
+      <div class="tit01r"><a href="<{spUrl}>city/scenery/<{$city['id']}>"><img src="../../tpl/images/nlw_more2.gif" /></a></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="xlzy_ph1l">
+      <{foreach item=trafficout from=$showsceneryAll key=enname}>
+       <div id="xlzy_ri01"><a target="_blank" title="<{$trafficout.title}>" href="<{spUrl}>scenery/<{$trafficout.id}>.html"><{$trafficout.title|truncate:16:"...":true}></a></div>
+      <{/foreach}>
+     </div>
+    </div>     
+  </div>
+</div>
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script>
+<script src="<{$domain}>/artDialog/artDialog.js?skin=idialog"></script>
+<script src="<{$domain}>/artDialog/plugins/iframeTools.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    // 例子三
+    $(".wantGo").click(function(){
+         var formdata = {
+              'uid' : "<{$smarty.session.quser.uid}>",
+              'types' : 'scenery',
+              'linkid' : '<{$show["id"]}>'
+          };
+          $.getJSON('<{spUrl c=cwantgo a=adddata}>', formdata, function(result){
+              $('#resulttable').append(result); // 
+                art.dialog({
+                  time: 3,
+                  content: result['msg']
+               });
+               $('.wantGo em').html(result['sum']);
+          });
+    });
+    $(".aleadyGo").click(function(){
+          var formdata = {
+              'uid' : "<{$smarty.session.quser.uid}>",
+              'types' : 'scenery',
+              'linkid' : '<{$show["id"]}>'
+          };
+          $.getJSON('<{spUrl c=caleadygo a=adddata}>', formdata, function(result){
+              $('#resulttable').append(result); // 
+                art.dialog({
+                  time: 3,
+                  content: result['msg']
+               });
+               $('.aleadyGo em').html(result['sum']);
+          });
+    });
+});
+</script>
+
+<script>
+function seo(){
+   var content = '<div style="margin-bottom:10px;">标题：<input id="stitle" type="text" value="<{$seo["stitle"]}>" /></div>';
+       content += '<div style="margin-bottom:10px;">关键字：<input id="skeyword" type="text" value="<{$seo["skeyword"]}>" /></div>';
+       content += '<div style="margin-bottom:10px;">说明：<input id="sdirections" type="text" value="<{$seo["sdirections"]}>" /></div>';
+       content += '<div style="float:right"><input onclick="upseo()" value="提交" type="button" /></div>';
+   art.dialog({
+      lock: true,
+      opacity: 0.87,
+      content: content
+  });
+}
+function upseo(){
+  var formdata = {
+      'stitle' : $("#stitle").val(),
+      'skeyword' : $('#skeyword').val(),
+      'sdirections' : $('#sdirections').val(),
+      'id' : <{$show['id']}>
+    };
+    $.post('<{spUrl c=siteseo a=editdata}>', formdata, function(result){
+      $('#resulttable').append(result);
+       if(result == "1")
+       { location.reload(); }
+    }); 
+}
+</script>
+<script>
+    var showMessageFlag =true;
+    function showMessage(obj){
+        if(showMessageFlag){
+            $('#allShow').css('display','block');
+            $('#noAllShow').css('display','none');
+            $('#messageTitle').html("收起");
+        }else{
+            $('#noAllShow').css('display','block');
+            $('#allShow').css('display','none');
+            $('#messageTitle').html("显示全部");
+        }
+        showMessageFlag =!showMessageFlag;
+    }
+</script>
+<{include file="footer.html"}>

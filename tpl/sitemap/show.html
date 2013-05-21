@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$title}>_网站地图_窝棚旅游网</title>
+<meta name='keywords' content='厦门周边自驾游，自驾游路线查询，厦门自驾游攻略，自驾游攻略，厦门自助游，厦门自助游攻略' />
+<meta name='description' content='一起分享和感受厦门周边自驾游的经历和乐趣，寻找你喜欢的周边自驾游景点。' />
+<{include file="header.html"}>
+<div id="cont">
+        <h1><{$title}></h1>
+		<ul>
+			    <{foreach item=content from=$showcontent key=enname}>
+			      <li><{$content}></li>
+			    <{/foreach}>
+		</ul>
+        <a href="<{$domain}>/sitemap.html".html>返回</a>
+</div>
+<{include file="footer.html"}>
+

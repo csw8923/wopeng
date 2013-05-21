@@ -1,0 +1,5 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<{foreach item=replyout from=$reply key=enname}>
+    <li><a target="_blank" title="<{$replyout.username}>" href="<{spUrl}>reply/info/<{$replyout.id}>.html"><{$replyout.username|truncate:14:"...":true}></a></li>
+    <span><{$replyout.content|strip_tags|truncate:100:"...":true}></span>
+<{/foreach}> 

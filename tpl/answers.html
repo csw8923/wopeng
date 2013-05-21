@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>厦门周边游论坛</title>
+<{include file="header.html"}>
+<div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门周边旅游景点 </h1>
+        <div id="tban_le_txt">
+                    厦门周边旅游景点大全，推荐当季最佳最受欢迎的旅游景点，还有适合周末休闲的好去处。
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1"> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/3.html"><{$city['title']}>周边一日游</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/6.html"><{$city['title']}>周边农家乐</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/rank/bset.html"><{$city['title']}>有什么好玩的地方</a>
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div>
+<div id="cont">
+  <div class="yjgl_le">
+  <div id="d_tit06"><h2>最新论坛帖子</h2></div>
+  <div id="yjgl_lta1">
+  <div id="d_bk_t">
+    <div id="d_bk_t01"><div class="c1"></div></div>
+    <div id="d_bk_t02"><div class="c1"></div></div>
+  </div>  
+  <div id="jddp_bk2" style="padding-bottom:20px;">
+      <div class="bbs_ta01_2">
+      <div class="bbs_ta02_2">主题</div>
+      <div class="bbs_ta04_2">作者</div>
+      <div class="bbs_ta04_2">回复/浏览</div>
+      <div class="bbs_ta04_2">时间</div>
+  </div>
+
+  <{foreach item=answersout from=$answers key=enname}>
+
+        <{if $enname %2 == 0}>
+            <div class="bbs_ta03_2">
+		      <div class="bbs_ta02_2"><span class="tgreen">[<a target="_blank" title="<{$answersout.title}>" href="<{spUrl}>scenery/<{$sceneryuser[$enname]['id']}>.html"><{$sceneryuser[$enname]['title']}></a>]</span><a target="_blank" title="<{$answersout.title}>" href="<{spUrl}>ask/info/<{$answersout.id}>.html"><{$answersout.title|truncate:14:"...":true}></a> </div>
+		      <div class="bbs_ta04_2 tgreen"><{$answersout.username}></div>
+		      <div class="bbs_ta04_2 tgray1"><{$replies[$enname]}>/<{$answersout.clicknumber}></div>
+		      <div class="bbs_ta04_2 tgray1"><{$answersout.releasedate|date_format:"%Y-%m-%d"}></div>
+		   </div>
+        <{else}>
+          <div class="bbs_ta05_2">
+		      <div class="bbs_ta02_2"><span class="tgreen">[<a target="_blank" title="<{$answersout.title}>" href="<{spUrl}>scenery/<{$sceneryuser[$enname]['id']}>.html"><{$sceneryuser[$enname]['title']}></a>]</span><a target="_blank" title="<{$answersout.title}>" href="<{spUrl}>ask/info/<{$answersout.id}>.html"><{$answersout.title|truncate:14:"...":true}></a> </div>
+		      <div class="bbs_ta04_2 tgreen"><{$answersout.username}></div>
+		      <div class="bbs_ta04_2 tgray1"><{$replies[$enname]}>/<{$answersout.clicknumber}></div>
+		      <div class="bbs_ta04_2 tgray1"><{$answersout.releasedate|date_format:"%Y-%m-%d"}></div>
+		  </div>
+        <{/if}>
+ <{/foreach}> 
+  
+  </div>  
+  <div id="d_bk_b">
+    <div id="d_bk_b01"><div class="c1"></div></div>
+    <div id="d_bk_b02"><div class="c1"></div></div>
+  </div>
+  <div class="spa20_h"></div>
+     <div id="d_bk3_c">
+    <{if $pager}>
+          <div style="width:700px;" class="green-black">
+              <{if $pager.current_page != $pager.first_page}>
+              <span class="disabled">当前<{$pager.current_page}>/<{$pager.total_page}> 页</span>
+              <{if $pager.current_page!=1}>
+                 <span class="disabled">
+                  <a href="<{$domain}>/<{$info}>/hot/forum.html?page=<{$pager.prev_page}>">上一页
+                  </a>
+                </span>
+              <{/if}>
+              <{/if}>       
+              <{foreach from=$pager.all_pages item=thepage}>
+                <{if $thepage >= $pager.current_page-5 && $thepage <= $pager.current_page+5}>  
+                  <{if $thepage != $pager.current_page}>
+                      <a href="<{$domain}>/<{$info}>/hot/forum.html?page=<{$thepage}>"><{$thepage}></a>
+                  <{else}>
+                      <span class="current"><{$thepage}></span>
+                  <{/if}>
+               <{/if}>
+              <{/foreach}>
+              <{if $pager.current_page != $pager.last_page}>
+              <a href="<{$domain}>/<{$info}>/hot/forum.html?page=<{$pager.next_page}>">下一页</a>
+              <a href="<{$domain}>/<{$info}>/hot/forum.html?page=<{$pager.last_page}>">后页</a>
+              <{/if}>
+          </div>
+        <{/if}>
+  </div>
+</div>
+  </div>
+  <div class="yjgl_ri">
+    <div class="yjgl_tit01">
+      <div class="tit01l">厦门好玩的地方</div>
+      <div class="tit01r"><img src="../../tpl/images/nlw_more2.gif" /></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="xlzy_ph1l">
+      <{foreach item=answersout from=$out_answers key=enname}>
+          <div id="xlzy_ri01">·<a target="_blank" title="<{$answersout.title}>" href="<{spUrl}>ask/info/<{$answersout.id}>.html"><{$answersout.title|truncate:16:"...":true}></a></div>
+      <{/foreach}> 
+     </div>
+    </div>    
+  </div>
+</div>
+<{include file="footer.html"}>

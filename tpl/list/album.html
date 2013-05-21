@@ -1,0 +1,5 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<{foreach item=albumout from=$album key=enname}>
+    <li><a target="_blank" title="<{$albumout.title}>" href="<{spUrl}>album/info/<{$albumout.id}>.html"><{$albumout.title|truncate:14:"...":true}></a></li>
+    <span><{$albumout.content|strip_tags|truncate:100:"...":true}></span>
+<{/foreach}> 

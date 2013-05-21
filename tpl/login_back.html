@@ -1,0 +1,148 @@
+<link href="tpl/css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="tpl/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+<{include file="header.html"}>
+<script type="text/javascript" src="../tpl/js/jquery-1.4.2.min.js"></script>
+<style>
+ .input-xlarge{ height:32px;}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+	// 例子三
+	$("#ex3button").click(function(){ // “提交”按钮被点击
+		// 构造发送的数据，请注意如果获取表单各项的值
+		var formdata = {
+			'Account' : $('#Account').val(),
+			'oldPass' : $('#oldPass').val(),
+			'checkPass' : $('#checkPass').val(),
+		    'Password' : $('#Password').val(),
+			'RealName' : $('#RealName').val(),
+			'Phone' : $('#Phone').val(),
+			'QQ' : $('#QQ').val(),
+			'Email' : $('#Email').val(),
+			'Address' : $('#Address').val(),
+			'id' : $('#id').val()
+		};
+		
+		var id  = $('#id').val();  // 根据有没有id 判断是编辑还是增加
+		if(id == '')
+		{
+			// 用$.post发送数据
+			$.post('<{spUrl c=ucenter a=adddata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				 feedback(result,"3");
+			});
+		}
+		else
+		{
+		   	// 用$.post发送数据
+			$.post('<{spUrl c=ucenter a=editdata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				 feedback(result,id);
+			});	
+		}
+		
+	});
+});
+
+function del(id){
+		$.get('<{spUrl c=ucenter a=deldata}>', 'id='+id, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			window.location.reload();
+		});
+}
+</script>
+<link rel="stylesheet" type="text/css" href="<{$domain}>/tpl/css/journey.css">
+<link href="<{$domain}>/tpl/css/bdsstyle.css" rel="stylesheet" type="text/css">
+</head>
+    <body id="journey"><div id="bdshare_s">
+    <div id="bdshare_m" style="display: none; "><div id="bdshare_m_c"><h6>分享到</h6><ul><li><a href="http://www.roadqu.com/journey/12839#" class="bds_mshare mshare">一键分享</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_qzone qqkj">QQ空间</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_tsina xlwb">新浪微博</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_baidu bdsc">百度搜藏</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_renren rrw">人人网</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_tqq txwb">腾讯微博</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_bdxc bdxc">百度相册</a></li><li><a href="http://www.roadqu.com/journey/12839#" class="bds_more">更多...</a></li></ul><p><a href="http://www.roadqu.com/journey/12839#" class="goWebsite">百度分享</a></p></div></div></div>
+        <div id="container" class="fn-clear">
+            <div class="mainWrap corner-box fn-clear ">
+
+                <div class="main fn-clear">
+
+                    <!-- 游记详情 -->
+
+                    <div class="journey-details ">
+                        <div class="journey-content">
+                           <form class="form-horizontal" action="<{spUrl c=login a=checkdata}>"  autocomplete="off" method="post">
+                                <fieldset>
+                                <legend class="fontcolor" >用户登录</legend>
+                                <div class="control-group">
+                                <label class="control-label" for="input01"><span class="fontcolor">用户名</span></label>
+                                <div class="controls">
+                                <input type="text" class="input-xlarge" name="uname" id="uname" value="<{$uname}>">
+                                <p class="fontgreen">字母，数字，汉字皆可</p>
+                                </div>
+                                </div>
+                                <div class="control-group">
+                                <label class="control-label" for="input01"><span class="fontcolor">密码</span></label>
+                                <div class="controls">
+                                <input type="password" class="input-xlarge" name="upass" id="upass" value="<{$Password}>">
+                                <p class="fontgreen">请输入您的密码</p>
+                                 </div>
+                                 <input type="hidden" class="input-xlarge" name="url" id="url" value="<{$url}>">
+                                </div>
+                                  <div class="control-group">
+                                <label class="control-label" for="input01"><span class="fontcolor">验证码</span></label>
+                                <div class="controls">
+                                 <input type="text" class="input-xlarge" id="code" name="code">
+                                 <img src="<{spUrl c=login a=_vcode}>" alt="看不清楚,点击图片刷新" onClick="this.src='index.php?c=login&a=_vcode&' + Math.random(1)"/>
+                            
+                                <p class="fontgreen">请输入验证码</p>
+                                 </div>
+                                </div>
+                             <div class="control-group">
+                                <label class="control-label" for="input01"></label>
+                                <div class="controls">
+                                 <span><input type="submit" class="btn"  value="登录"/></span>
+                                 <span style="margin-left:50px;"><a class="btn" href="<{spUrl c=login a=forgotpass}>">忘记密码</a></span>
+                                <p class="help-block"></p>
+                                 </div>
+                                  </fieldset>
+                                  </form>
+                        </div>
+                        <!-- 版权声明 -->
+
+
+                        <div class="journey_act">
+                            </a>
+                            
+
+                        </div>
+                        <!--推荐游记 end-->
+                        <!-- 游记详情  end--> </div>
+                </div>
+
+                <div style="display:none">
+                   <{foreach item=rules from=$rulescollect key=enname}>
+     <Iframe frameborder=0 src="<{$domain}>/index.php?c=autogather&a=index&id=<{$rules.id}>&classid=<{$rules.part}>" height="0" width="0"></Iframe>
+               </div>
+   <{/foreach}>
+             </div>
+             </div>
+  <{include file="footer.html"}>
+  <script>
+function feedback(result,id){
+	if(result != 'false')
+	{
+		$('.badge').removeClass('badge badge-info').text('');
+		var response = eval("("+result+")");
+		for(var i in response){
+			$('#' + i).next().addClass('badge badge-info');
+			$('#' + i).next().text(response[i].toString());
+			//console.log(response[i].toString());
+		}
+		//$('.badge').text('sdfsd');
+	}
+	else
+	{
+		if(id == '')
+		{alert('添加成功!!');window.location.reload();}
+		else if(id == '3')
+		{alert('注册成功!!');window.location.href="login.html"}
+		else
+		{alert('修改成功!!');window.location.reload(); }
+	}
+}
+</script>

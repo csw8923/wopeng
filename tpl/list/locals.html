@@ -1,0 +1,5 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<{foreach item=localsout from=$locals key=enname}>
+    <li><a target="_blank" title="<{$localsout.title}>" href="<{spUrl}>locals/info/<{$localsout.id}>.html"><{$localsout.title|truncate:14:"...":true}></a></li>
+    <span><{$localsout.content|strip_tags|truncate:100:"...":true}></span>
+<{/foreach}> 

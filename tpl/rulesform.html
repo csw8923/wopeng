@@ -1,0 +1,283 @@
+<{include file="header.html"}>
+<script src="../tpl/admin/src/js/jscal2.js"></script>
+<script src="../tpl/admin/src/js/unicode-letter.js"></script>
+<script src="../tpl/admin/src/js/lang/cn.js"></script>
+<link rel="stylesheet" type="text/css" href="../tpl/admin/src/css/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="../tpl/admin/src/css/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="../tpl/admin/src/css/steel/steel.css" />
+
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+	// 例子三
+	$("#ex3button").click(function(){ // "提交"按钮被点击
+		// 构造发送的数据，请注意如果获取表单各项的值
+		
+		var formdata = {
+			'dockcompany' : $('#dockcompany').val(),
+			'anchorname' : $('#anchorname').val(),
+			'anchorgrade' : $('#anchorgrade').val(),
+			'sweepdate' : $('#sweepdate').val(),
+            'berth_width' : $('#berth_width').val(),
+			'berth_designheight' : $('#berth_designheight').val(),
+			'berth_keepheight' : $('#berth_keepheight').val(),
+			'sweep_scope' : $('#sweep_scope').val(),
+			'sweep_designheight' : $('#sweep_designheight').val(),
+			'sweep_keepheight' : $('#sweep_keepheight').val(),
+			'berths' : $('#berths').val(),
+			'blevel' : $('#blevel').val(),
+			'otherremark' : $('#otherremark').val(),
+			'userid' : $('#userid').val(),
+			'id' : $('#id').val()
+		};
+		var id  = $('#id').val();  // 根据有没有id 判断是编辑还是增加
+		if(id == '')
+		{
+			// 用$.post发送数据
+			$.post('<{spUrl c=dockform a=adddata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				feedback(result,id);
+			});
+		}
+		else
+		{
+		   	// 用$.post发送数据
+			$.post('<{spUrl c=dockform a=editdata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				feedback(result,id);
+			});	
+		}
+		
+	});
+});
+
+function del(id){
+		$.get('<{spUrl c=dockform a=deldata}>', 'id='+id, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			window.location.reload();
+		});
+}
+
+function strDateTime(nameid)
+{
+	var str = $('#'+nameid).val();
+	var reg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/; 
+	var r = str.match(reg); 
+	if(r==null) {
+	  // alert("时间格式不正确,格式如：2012-12-12 00:00:00"); 
+	   $('#' + nameid).next().addClass('badge badge-info');
+	   $('#' + nameid).next().text('时间格式不正确,格式如：2012-12-12 00:00:00');
+	}
+	else
+	{
+		var d= new Date(r[1], r[3]-1,r[4],r[5],r[6],r[7]); 
+		return (d.getFullYear()==r[1]&&(d.getMonth()+1)==r[3]&&d.getDate()==r[4]&&d.getHours()==r[5]&&d.getMinutes()==r[6]&&d.getSeconds()==r[7]);
+	}
+}
+</script>
+<!--  head end-->
+
+<div id="main">
+    <div class="breadcrumb a-color-blue">
+        <li>
+            <a href="">首页</a><span class="divider">/</span>
+        </li>
+        <li>
+            <a href="">码头信息表</a><span class="divider"></span>
+        </li>
+    </div>
+    
+     <div class="row-fluid">
+        <div class="span3">
+            <div class="well">
+              <ul class="nav nav-list">
+                <li><a href="<{spUrl c=main a=index}>">首页</a></li>
+                <li class="active"><a href="<{spUrl c=dockform a=referpage}>">码头信息表</a></li>
+                <li><a href="<{spUrl c=ucenter a=index}>">用户资料修改</a></li>
+              </ul>
+            </div>
+        </div>
+        <div class="span9">
+          <form class="well">
+              <table class='table table-bordered table-condensed'>
+                <caption>码头信息表</caption>
+                <tbody>
+                <tr>
+                    <td colSpan=2>码头公司名称</td>
+                    <td width=204><input type="text" name="dockcompany" id="dockcompany" class="span2" ><span></span></td>
+                    <td colSpan=2>码头泊位名称</td>
+                    <td width=70><input type="text" name="danchorname" id="anchorname" class="span2" ><span></span></td>
+                </tr>
+                <tr>
+                    <td colSpan=2>设计靠泊等级</td>
+                    <td width=204><input type="text" name="anchorgrade" id="anchorgrade" class="span1" ><span></span><span style="margin-left:5px;" class="label label-info">吨级</span></td>
+                    <td colSpan=2>停泊、回旋水域扫测时间</td>
+                    <td width=207><input type="text" onchange="strDateTime('sweepdate')" name="sweepdate" id="sweepdate" class="span2" placeholder="请双击弹出时间..."><span></span></td>
+					<script type="text/javascript">//<![CDATA[
+                      Calendar.setup({
+                        inputField : "sweepdate",
+                        trigger    : "sweepdate",
+                        onSelect   : function() { this.hide() },
+                        showTime   : 24,
+                        dateFormat : "%Y-%m-%d %H:%M:%S"
+                      });
+                    //]]>
+                    </script>
+                </tr>
+                <tr>
+                    <td colSpan=2>码头泊位长度</td>
+                    <td width=204><input type="text" name="berths" id="berths" class="span1" ><span></span></td>
+                    <td colSpan=2>码头论证靠泊等级</td>
+                    <td width=207><input type="text" name="blevel" id="blevel" class="span2"><span></span></td>
+                </tr>
+                <tr>
+                    <td rowSpan=3 width=105>停泊水域</td>
+                    <td width=70>宽度</td>
+                    <td width=204><input type="text" name="berth_width" id="berth_width" class="span2" ><span></span></td>
+                    <td rowSpan=3 width=105>回旋水域</td>
+                    <td width=69>范围</td>
+                    <td width=70><input type="text" name="sweep_scope" id="sweep_scope"  class="span2" ><span></span></td>
+                </tr>
+                <tr>
+                    <td width=105>设计水深</td>
+                    <td width=204><input type="text" name="berth_designheight" id="berth_designheight" class="span2" ><span></span></td>
+                    <td width=105>设计水深</td>
+                    <td width=70><input type="text" name="sweep_designheight" id="sweep_designheight" class="span2" ><span></span></td>
+                </tr>
+                <tr>
+                    <td width=70>维护水深</td>
+                    <td width=204><input type="text" name="berth_keepheight" id="berth_keepheight" class="span2" ><span></span></td>
+                    <td width=105>维护水深</td>
+                    <td width=70><input type="text" name="sweep_keepheight" id="sweep_keepheight" class="span2" ><span></span></td>
+                </tr>
+                
+                <tr>
+                  <td colSpan=2>其他（请说明）</td>
+				     <td colspan="4">
+                        <textarea name="" cols="10" rows="10" id="otherremark"  name="otherremark" class="w95per"></textarea><span></span>
+                    </td>
+        
+                </tr>
+<!--                <tr>
+                  <td colSpan=2>绑定用户</td>
+                  <td colSpan=4><input type="text" name="userid" id="userid" class="span2" value="<{$userid}>" ><span></span></td>
+                </tr>-->
+                <input type="hidden" name="userid" id="userid" class="span2" value="<{$userid}>" >
+                </tbody>
+                </table>
+                <button type="button" id="ex3button" class="btn">提交</button>
+                <input type="hidden" name="id" id="id" value="<{$id}>">
+            </form>
+            <{foreach item=colorname from=$result key=enname}>
+            <div class="well">
+              <table class='table table-bordered table-condensed'>
+                <tbody>
+                <tr>
+                    <td colSpan=2>码头公司名称</td>
+                    <td width=204><{$colorname.dockcompany}></td>
+                    <td colSpan=2>码头泊位名称</td>
+                    <td width=70><{$colorname.anchorname}></td>
+                </tr>
+                <tr>
+                    <td colSpan=2>设计靠泊等级</td>
+                    <td width=204><{$colorname.anchorgrade}><span style="margin-left:5px;" class="label label-info">吨级</span></td>
+                    <td colSpan=2>停泊、回旋水域扫测时间</td>
+                    <td width=207><{$colorname.sweepdate|date_format:"%Y-%m-%d:%H:%M:%S"}></td>
+                </tr>
+                <tr>
+                    <td colSpan=2>码头泊位长度</td>
+                    <td width=204><{$colorname.berths}></td>
+                    <td colSpan=2>码头论证靠泊等级</td>
+                    <td width=70><{$colorname.blevel}></td>
+                </tr>
+                <tr>
+                    <td rowSpan=3 width=105>停泊水域</td>
+                    <td width=70>宽度</td>
+                    <td width=204><{$colorname.berth_width}></td>
+                    <td rowSpan=3 width=105>回旋水域</td>
+                    <td width=69>范围</td>
+                    <td width=70><{$colorname.sweep_scope}></td>
+                </tr>
+                <tr>
+                    <td width=105>设计水深</td>
+                    <td width=204><{$colorname.berth_designheight}></td>
+                    <td width=105>设计水深</td>
+                    <td width=70><{$colorname.sweep_designheight}></td>
+                </tr>
+                <tr>
+                    <td width=70>维护水深</td>
+                    <td width=204><{$colorname.berth_keepheight}></td>
+                    <td width=105>维护水深</td>
+                    <td width=70><{$colorname.sweep_keepheight}></td>
+                </tr>
+                <tr>
+                  <td colSpan=2>其他（请说明）</td>
+                  <td colSpan=4><{$colorname.otherremark}></td>
+                </tr>
+                <tr>
+                  <td colSpan=2>审核情况</td>
+                  <td colSpan=4>
+                   <{if $colorname.approval eq '1'}>
+                     <font color="#0033CC">已经审批</font><{$colorname.reason}>
+                   <{elseif $colorname.approval eq '2'}>
+                     <font color="#FF0000">拒绝审批</font><{$colorname.reason}>
+                   <{else}>
+                     未审批
+                   <{/if}>
+                  </td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+            <{/foreach}>
+            <div class="bdpage">
+                <{if $pager}>
+                    共有信息<{$pager.total_count}>条，共有<{$pager.total_page}>页（每页<{$pager.page_size}>条信息）：
+                    <!--在当前页不是第一页的时候，显示前页和上一页-->
+                    <{if $pager.current_page != $pager.first_page}>
+                    <a href="<{spUrl c=dockform a=referpage page=$pager.first_page}>">前页</a> | 
+                    <a href="<{spUrl c=dockform a=referpage page=$pager.prev_page}>">上一页</a> | 
+                    <{/if}>
+                    <!--开始循环页码，同时如果循环到当前页则不显示链接-->
+                    <{foreach from=$pager.all_pages item=thepage}>
+                            <{if $thepage != $pager.current_page}>
+                                    <a href="<{spUrl c=dockform a=referpage page=$thepage}>"><{$thepage}></a>
+                            <{else}>
+                                    <b><{$thepage}></b>
+                            <{/if}>
+                    <{/foreach}>
+                    <!--在当前页不是最后一页的时候，显示下一页和后页-->
+                    <{if $pager.current_page != $pager.last_page}>
+                    | 
+                    <a href="<{spUrl c=dockform a=referpage page=$pager.next_page}>">下一页</a> | 
+                    <a href="<{spUrl c=dockform a=referpage page=$pager.last_page}>">后页</a>
+                    <{/if}>
+                  <{/if}>
+              </div>
+        </div>
+     </div>
+</div><!--  main end-->
+<script>
+function feedback(result,id){
+	if(result != 'false')
+	{
+		$('.badge').removeClass('badge badge-info').text('');
+		var response = eval("("+result+")");
+		for(var i in response){
+			$('#' + i).next().addClass('badge badge-info');
+			$('#' + i).next().text(response[i].toString());
+			//console.log(response[i].toString());
+		}
+		//$('.badge').text('sdfsd');
+	}
+	else
+	{
+		if(id == '')
+		{alert('添加成功!!');window.location.reload();}
+		else if(id == '3')
+		{alert('注册成功!!');window.location.href="login.html"}
+		else
+		{alert('修改成功!!');window.location.reload(); }
+	}
+}
+</script>
+<{include file="footer.html"}>

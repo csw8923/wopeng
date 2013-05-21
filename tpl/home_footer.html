@@ -1,0 +1,65 @@
+<div id="cont">
+  <div class="bot">
+  	<b>友情链接：</b>
+    <{foreach from=$result_links item=result key=num}>
+      <a href="<{$result.url}>"><{$result.name}></a> |
+    <{/foreach}>
+  <br />
+  关于我们 | 联系方式 | <a target="_blank" href="<{spUrl c=sitemap a=index}>">网站地图</a> | 问题反馈 | <a target="_blank" href="<{spUrl c=sceneryinfoform a=add}>">添加景点</a><br />
+  窝棚网(www.wopeng.net) 闽ICP备10016424号</div>
+</div>
+</body>
+ <script>
+   function search()
+   {
+ var keyword = $("#keyword").val();
+ window.location.href="<{$domain}>/search/"+keyword;
+   }
+document.onkeydown=function(event){
+    var e = event || window.event || arguments.callee.caller.arguments[0];
+    var keyword = $("#keyword").val();
+    if(keyword.length != 0)
+    {          
+        if(e && e.keyCode==13){
+             var keyword = $("#keyword").val();
+             window.location.href="<{$domain}>/search/"+keyword;
+        }
+    }
+    else
+    {
+        if(e && e.keyCode==13){
+            var checkdl = $('#checkdl').is(':checked')? "1":"0";
+             if(checkdl == "1"){
+               logojl();
+             }
+            document.all.MyForm1.submit();
+            return false;
+        }
+    }
+};
+function AutoSuggest(params, input, e){
+  var nkey = input.value;
+  if(nkey == '')
+  {
+	$("#hotsearch").show();
+  }
+  else
+  {
+	$("#hotsearch").hide();
+  }
+  $.post('<{spUrl c=main a=userajax}>',{name:nkey},function(v){
+      var keycode = AutoComplete.prototype.isIE() ? window.event.keyCode : e.which;
+      if ((keycode >= 37 && keycode <= 40) || keycode == 13) {
+          if (autoComplete != null && (keycode == 38 || keycode == 40 || keycode == 13)) {
+              autoComplete.setStyle(keycode);
+          }
+      }
+      else {
+          params = params + v;
+          autoComplete = new AutoComplete(params, input);
+          autoComplete.show();
+      }
+  });
+}
+</script>
+</html>

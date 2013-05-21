@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+			xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+			http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<note>
+  <name>码头信息表</name>
+  <event>dockform</event>
+</note>
+<note>
+  <name>船舶锚泊信息</name>
+  <event>anchorform</event>
+</note>
+<note>
+  <name>抵港船舶动态表</name>
+  <event>arrivedactiveform</event>
+</note>
+<note>
+  <name>施工船舶动态表</name>
+  <event>activecontentform</event>
+</note>
+<note>
+  <name>离港船舶动态表</name>
+  <event>departactiveform</event>
+</note>
+<note>
+  <name>锚泊船舶登记表</name>
+  <event>anchorregisterform</event>
+</note>
+<note>
+  <name>密码修改</name>
+  <event>modifyform</event>
+</note>
+<note>
+  <name>普通用户表</name>
+  <event>userlist</event>
+</note>
+<note>
+  <name>后台成员表</name>
+  <event>usersform</event>
+</note>
+<note>
+  <name>权限分配表</name>
+  <event>aclform</event>
+</note>
+<note>
+  <name>内容管理</name>
+  <event>messageinfoform</event>
+</note>
+<note>
+  <name>分类管理</name>
+  <event>categorylist</event>
+</note>
+</urlset>

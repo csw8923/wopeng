@@ -1,0 +1,376 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+<script src="../../../kindeditor/kindeditor.js"></script>
+<script src="<{$domain}>/artDialog/artDialog.js?skin=default"></script>
+<script src="<{$domain}>/artDialog/plugins/iframeTools.js"></script>
+<script charset="utf-8" src="../../../kindeditor/lang/zh_CN.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+	editor = K.create('textarea[name="content"]', {
+		allowFileManager : true
+	});
+	K('input[name=getHtml]').click(function(e) {
+		alert(editor.html());
+	});
+	K('input[name=isEmpty]').click(function(e) {
+		alert(editor.isEmpty());
+	});
+	K('input[name=getText]').click(function(e) {
+		alert(editor.text());
+	});
+	K('input[name=selectedHtml]').click(function(e) {
+		alert(editor.selectedHtml());
+	});
+	K('input[name=setHtml]').click(function(e) {
+		editor.html('<h3>Hello KindEditor</h3>');
+	});
+	K('input[name=setText]').click(function(e) {
+		editor.text('<h3>Hello KindEditor</h3>');
+	});
+	K('input[name=insertHtml]').click(function(e) {
+		editor.insertHtml('<strong>插入HTML</strong>');
+	});
+	K('input[name=appendHtml]').click(function(e) {
+		editor.appendHtml('<strong>添加HTML</strong>');
+	});
+	K('input[name=clear]').click(function(e) {
+		editor.html('');
+	});
+});
+</script>
+<script type="text/javascript">
+$(function(){
+  $("#first").find(":input").focus().live('keyup',function(){
+    //获取keyup传输进来的值
+    var nkeys=$.trim($(this).val());
+    var nkeybak=$.trim($(this).val());
+    nkeys=nkeys.split(",");
+    var nkey = nkeys[nkeys.length-1];
+    //若值为空则不显示;
+    if(nkey==''||nkey==null){
+      $("#first_a").hide();
+    }else{
+      //异步传输
+      $.post('<{spUrl c=chainform a=sword}>',{name:nkey},function(v){
+        $("#first_a").html(v);
+        $("#first_a").show("slow");
+        //对生成出来的表格里面的值进行操作
+        $("#first_a table tr td").click(function(){
+           nkeys.pop();
+           if(nkeys.length == 0)
+           { $("#tags").val(nkeys.join() + $(this).html() +",") ; }
+           else
+           { $("#tags").val(nkeys.join() + "," + $(this).html() +",") ; }
+          $("#first_a").hide() ;
+        })
+      });
+      
+    }
+      
+  })
+})
+</script>
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+  // 例子三
+  $("#ex3button").click(function(){ // "提交"按钮被点击
+    // 构造发送的数据，请注意如果获取表单各项的值
+    var formdata = {
+      'id' : $('#id').val(),
+      'title' : $('#title').val(),
+      'username' : $('#username').val(),
+      'picurl' : $('#picurl').val(),
+      'releasedate' : $('#releasedate').val(),
+      'content' : editor.html(),
+      'provinceid' : $('#provinceid').val(),
+      'cityid' : $('#cityid').val(),
+      'areaid' : $('#areaid').val(),
+      'map' : $('#map').val(),
+      'tags' : $('#tags').val()
+    };
+    var id  = $('#id').val();  // 根据有没有id 判断是编辑还是增加
+    if(id == '')
+    {
+      // 用$.post发送数据
+      $.post('<{spUrl c=linesinfoform a=adddata}>', formdata, function(result){
+                $('#resulttable').append(result);
+                feedback(result,id);
+      });
+    }
+    else
+    {
+        // 用$.post发送数据
+      $.post('<{spUrl c=linesinfoform a=editdata}>', formdata, function(result){
+        $('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+        feedback(result,id);
+      }); 
+    }
+  });
+});
+
+function del(id){
+    $.get('<{spUrl c=linesinfoform a=deldata}>', 'id='+id, function(result){
+      $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+      if(result == 1)
+      {alert('删除成功!!');}else{alert('删除失败!!')}
+      window.location.reload(); 
+    });
+}
+
+// 搜索功能调用
+function searchs(){
+  var filter = $('#filter').val();
+  if(filter != ''){
+    window.location.href="index.php?c=linesinfoform&a=index&t=scenery&filter="+filter+"";
+  }
+}
+
+// 分类列出
+function Class(nums){
+  var filter = $('#filter').val();
+  if(nums.value != '')
+  {window.location.href="index.php?c=linesinfoform&a=index&t=scenery&classid="+nums.value+"&filter="+filter+"";}
+}
+
+// 分类列出
+function province(id){
+ if(id.value != 0)
+  {
+    var formdata = {
+      'id' : id.value
+    };
+    $.post('<{spUrl c=linesinfoform a=subclass}>', formdata, function(result){
+      $('#resulttable').append(result);
+      //alert(result);
+      $("#cityid option").remove();
+      var response = eval("("+result+")");
+      $("#cityid").append("<option value='0'>请选择城市</option>");
+      for(var i in response.cityinfo){
+        $("#cityid").append("<option value='"+response.cityinfo[i].id+"'>" + response.cityinfo[i].citystate+ "</option>"); 
+      }  
+    });
+   }
+   else
+   {alert("你没有选择哦！");}
+}
+  
+// 列出区
+function area(id){
+  if(id.value != 0)
+  {
+    var formdata = {
+      'id' : id.value
+    };
+    $.post('<{spUrl c=linesinfoform a=subclass}>', formdata, function(result){
+      $('#resulttable').append(result);
+      //alert(result);
+      $("#areaid option").remove();
+      var response = eval("("+result+")");
+      $("#areaid").append("<option value='0'>请选择区</option>"); 
+      for(var i in response.cityinfo){
+        $("#areaid").append("<option value='"+response.cityinfo[i].id+"'>" + response.cityinfo[i].citystate+ "</option>"); 
+      }  
+    });
+   }
+   else
+   {alert("你没有选择哦！");}
+}
+
+function syslable(str)
+{
+  var sts = $("#tags").val();
+  $("#tags_tag").val(str.value);
+  $('#tags_tag').trigger("focus");
+  $('#tags_tag').trigger("blur");
+  $(".cho").data("placeholder","Select Frameworks...").chosen();
+}
+</script>
+<style type="text/css">
+#first_a{
+	width:241px;
+	border:1px solid #CCC;
+}
+#first_a tr:hover{
+	background:#969;
+}
+#first_a table{
+	width:100%;
+}
+#first_a{
+	display:none;
+}
+</style>
+<div style="width:960px;">
+<div class="control-group">
+   <label for="req" class="control-label">文章名称：</label>
+   <div class="controls">
+   <input type="text" name="title" id="title" value="<{$title}>">
+   <span></span>
+  </div>
+</div>
+
+  <div class="control-group">
+<label for="req" class="control-label">城市选择：</label>
+<div class="controls">
+<select onchange="province(this)" name="provinceid" id="provinceid">
+   <option selected value="0">无选择省份</option>
+   <{foreach item=resultclassname from=$resultclass key=enname}>
+     <{if $provinceid == $resultclassname.id}>
+        <option selected value="<{$resultclassname.id}>"><{$resultclassname.citystate}></option>
+     <{else}>
+        <option value="<{$resultclassname.id}>"><{$resultclassname.citystate}></option>
+     <{/if}>
+   <{/foreach}>
+</select>
+<select onchange="area(this)" name="cityid" id="cityid">
+   <option selected value="0">无选择城市</option>
+   <{foreach item=resultsubname from=$resultsub key=enname}>
+     <{if $cityid == $resultsubname.id}>
+        <option selected value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option>
+     <{else}>
+        <!-- <option value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option> -->
+     <{/if}>
+   <{/foreach}>
+</select>
+ <select name="areaid" id="areaid">
+   <option selected value="0">无选择区</option>
+   <{foreach item=resultsubname from=$resultsub key=enname}>
+     <{if $areaid == $resultsubname.id}>
+        <option selected value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option>
+     <{else}>
+        <!-- <option value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option> -->
+     <{/if}>
+   <{/foreach}>
+</select>
+<span></span>
+</div>
+</div>
+    
+<div class="control-group">
+   <label for="req" class="control-label">发布人：</label>
+   <div class="controls">
+   <input type="text" name="username" id="username" value="<{$username}>">
+   <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+   <label for="req" class="control-label">图片地址：</label>
+   <div class="controls">
+   <input type="text" name="picurl" id="picurl" value="<{$picurl}>">
+   <span></span>
+   <input id="fileupload" type="file" value="上传" name="mypic">
+   <div class="files"></div>
+  </div>
+</div>
+ 
+ <div class="control-group">
+   <label for="req" class="control-label">地图：</label>
+   <div class="controls">
+   <input type="text" name="picurl" id="map" value="<{$map}>">
+   <span></span>
+  </div>
+</div>
+<div class="control-group">
+<label for="select" class="control-label">标签属性</label>
+<div id="first" class="controls">
+<input type="text" id="tags" value="<{$tags}>" class='tagsinput span8'>
+<div id="first_a"></div>
+</div>
+</div>
+    
+<div class="control-group">
+   <label for="req" class="control-label">内容：</label>
+   <div class="controls">
+   <textarea name="content" id="content" style="width:850px;height:500px;visibility:hidden;"><{$content}></textarea>
+   <span></span>
+  </div>
+</div>
+
+<div class="form-actions">
+      <input type="button" id="ex3button" value="提交" class='btn btn-primary'>
+      <input type="hidden" name="id" id="id" value="<{$id}>">
+</div>
+</div>
+
+<script type="text/javascript" src="../upload/jquery.form.js"></script>
+<script type="text/javascript">
+$(function () {
+  var bar = $('.bar');
+  var percent = $('.percent');
+  var showimg = $('#showimg');
+  var progress = $(".progress");
+  var files = $(".files");
+  var btn = $(".btn span");
+  $("#fileupload").wrap("<form id='myupload' action='../upload/action.php' method='post' enctype='multipart/form-data'></form>");
+    $("#fileupload").change(function(){
+    $("#myupload").ajaxSubmit({
+      dataType:  'json',
+      beforeSend: function() {
+            showimg.empty();
+        progress.show();
+            var percentVal = '0%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+        btn.html("上传中...");
+        },
+        uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+        },
+      success: function(data) {
+        files.html("<b>"+data.name+"("+data.size+"k)</b> <span class='delimg' rel='"+data.pic+"'>删除</span>");
+        var img = "http://qz.jmxzw.com/upload/files/"+data.pic;
+        showimg.html("<img src='"+img+"'>");
+        $("#picurl").val(img);
+        art.dialog.open('../upload/index.php?srcurl='+img,{title: '图片上传', width: 980, height: 500}, false);
+        btn.html("添加附件");
+      },
+      error:function(xhr){
+        btn.html("上传失败");
+        bar.width('0')
+        files.html(xhr.responseText);
+      }
+    });
+  });
+  
+  $(".delimg").live('click',function(){
+    var pic = $(this).attr("rel");
+    $.post("../upload/action.php?act=delimg",{imagename:pic},function(msg){
+      if(msg==1){
+        files.html("删除成功.");
+        showimg.empty();
+        progress.hide();
+      }else{
+        alert(msg);
+      }
+    });
+  });
+});
+
+function feedback(result,id){
+  if(result != 'false')
+  {
+    $('.badge').removeClass('badge badge-info').text('');
+    var response = eval("("+result+")");
+    for(var i in response){
+      $('#' + i).next().addClass('badge badge-info');
+      $('#' + i).next().text(response[i].toString());
+      //console.log(response[i].toString());
+    }
+    //$('.badge').text('sdfsd');
+  }
+  else
+  {
+    if(id == '')
+    {alert('添加成功!!');window.location.reload();}
+    else if(id == 'reg')
+    {alert('注册成功!!');window.location.href="login.html"}
+    else
+    {alert('修改成功!!');window.location.reload(); }
+  }
+}
+
+</script>

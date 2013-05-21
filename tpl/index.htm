@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://www.roadqu.com/ -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="js/jquery.bxSlider.min.js"></script>
+<script src="js/jquery.placeholder.min.js"></script>
+<script src="js/gotop.js"></script>
+<script src="js/jquery.hoverIntent.minified.js"></script>
+<meta charset="utf-8">
+<title>路趣网|帮你发现周边好玩的地方|LBS|旅游游记|旅游SNS</title>
+<meta name="Keywords" content="路趣旅游网，好玩的地方,周边游,旅游攻略,旅游游记,旅游景点,旅游LBS,旅游SNS,休闲旅游,自助游,户外旅游,户外休闲,旅游社区">
+<meta name="Description" content="路趣网-旅游LBS户外休闲社区，发现周边好玩的地方，分享旅游胜地自助旅游攻略信息，加入兴趣圈通过旅游SNS旅游交友，制定旅游目的地计划。快来与大家一起分享户外休闲生活，DIY你的个性出游计划吧！">
+<link rel="shortcut icon" href="http://www.roadqu.com/favicon.ico">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="http://www.roadqu.com/themes/default/css/global.css?v=201209010" media="all">
+<link rel="stylesheet" href="http://www.roadqu.com/static/min/css/boxy,jquery.fancybox-1.3.4.css?t=201211291821">
+<link rel="stylesheet" type="text/css" href="css/index.css" media="all">
+<script type="text/javascript">
+    var userjson = '';
+    var c_cityinfo = '';
+</script>
+<!-- 合并jquery and $LAB -->
+<script type="text/javascript" src="js/jquery-1.4.4.min,LAB.min.js"></script>
+</head>
+<body>
+<!--top-->
+  <div class="header">
+    <div class="headWrap">
+        <div class="headTop">
+            <h1 class="logo">
+                <a href="images/index.htm" title="路趣网"> 路趣网</a>
+            </h1>
+            <h2 class="slogan" title="帮你发现周边好玩的地方">帮你发现周边好玩的地方</h2>
+            <div class="loginInfo">
+                <!--已登录状态-->
+                <!--未登录状态-->
+            <div class="write-journey"><a href="javascript:void(0);" onclick="javascript:needLogin();">写游记</a></div>            <ul class="not_login">
+                    <li><a href="http://www.roadqu.com/reg.php" class="btn_reg">注册</a></li>
+                    <li><a href="javascript:needLogin();" id="top-nav-login" class="btn_login">登录</a></li>
+                    <li><a href="http://www.roadqu.com/trd/sina2/index.php" class="login_sina"><em>新浪</em>微博登陆</a></li>
+                    <li><a href="http://www.roadqu.com/trd/tencent/index.php" class="login_qq"><em>腾讯</em>微博登陆</a></li>
+             </ul>
+　　　　　　　　　　　　　<!--未登录状态end-->
+            </div>
+        </div>
+        <ul class="dropdown">
+            <li class="current">
+                <a href="images/index.htm">首页</a>
+            </li>
+            <li class=" "><a href="http://www.roadqu.com/zhuanti/">发现好玩</a></li>
+            <li class=" "><a href="http://www.roadqu.com/youwan/">游玩地图</a></li>
+            <li class=" "><a href="http://www.roadqu.com/gonglue/">游记</a></li>
+            <li class=" "><a href="http://www.roadqu.com/gonglue/">游记</a></li>
+            <li class=" "><a href="http://www.roadqu.com/event/">出发吧</a></li>
+        </ul>
+        <div class="navSearch">
+            <form action="http://www.roadqu.com/pages/search/blog.php" method="get" id="searchForm" target="_blank">
+                <input name="k" type="text" class="top-search-input" id="searchKey" value="搜索微博/人/地点/话题" maxlength="50" autocomplete="off">
+                <input name="" type="submit" value="搜索" class="search_btn">
+            </form>
+            <div id="keyword_tip_content"></div>
+        </div>
+    </div>
+</div>
+<!--top end-->
+<!--main body-->
+<div id="container">
+<!--新鲜玩法-->
+<div class="ui-box fn-clear">
+    <div class="ui-title">
+        <h2 class="ui-title-cnt fn-left"><em>热点图闻</em> 带给你最新最热资讯</h2>
+
+        <div class="ui-title-subcnt fn-right"></div>
+
+    </div>
+    <ul class="wanfa_pic fn-left" id="wanfa_pic">
+
+        <li>
+            <a target="_blank" href="http://www.roadqu.com/journey/15192">
+                <img src="images/0_201211290951_index_fp.jpg" alt="阳朔，烟雨漓江如画，若跌一场梦境。" title="阳朔，烟雨漓江如画，若跌一场梦境。" width="285" height="362">
+            </a>
+
+            <p class="alpha-txt alpha-txt-green">阳朔，烟雨漓江如画，若跌一场梦境。</p>
+
+            <div class="alpha-txt intro_info">
+                <p>烟雨漓江，若跌一场梦境。阳朔，让人魂牵梦绕，念念不忘，心有千千结。</p>
+            </div>
+        </li>
+        <li>
+            <a target="_blank" href="http://www.roadqu.com/journey/10944">
+                <img src="images/8_201211290958_index_fp.jpg" alt="西街风情，不仅仅是邂逅" title="西街风情，不仅仅是邂逅" width="142" height="180">
+
+            </a>
+
+            <p class="alpha-txt">西街风情，不仅仅是邂..</p>
+        </li>
+        <li>
+            <a target="_blank" href="http://www.roadqu.com/journey/11457">
+                <img src="images/7_201211290958_index_fp.jpg" alt="氤氲环绕，画中、梦里...." title="氤氲环绕，画中、梦里...." width="142" height="180">
+
+            </a>
+
+            <p class="alpha-txt">氤氲环绕，画中、梦里..</p>
+        </li>
+        <li>
+            <a target="_blank" href="http://www.roadqu.com/journey/10605">
+                <img src="images/10_201211290958_index_fp.jpg" alt="舌尖上的阳朔美食，吃货走起！" title="舌尖上的阳朔美食，吃货走起！" width="142" height="180">
+
+            </a>
+
+            <p class="alpha-txt">舌尖上的阳朔美食，吃..</p>
+        </li>
+        <li>
+            <a target="_blank" href="http://www.roadqu.com/journey/15210">
+                <img src="images/11_201211290958_index_fp.jpg" alt="宿在阳朔，静谧的悠闲时光" title="宿在阳朔，静谧的悠闲时光" width="142" height="180">
+
+            </a>
+
+            <p class="alpha-txt">宿在阳朔，静谧的悠闲..</p>
+        </li>
+    </ul>
+    <ul class="wanfa_txt fn-right">
+        <li class="fn-clear">
+            <a class="cnt_img fn-left" target="_blank" href="http://www.roadqu.com/zhuanti/hongye">
+                <img src="images/6_201211221111_index_fp.jpg" alt="细看广东最美红叶" title="细看广东最美红叶" width="90" height="90">
+            </a>
+
+            <div class="cnt_txt fn-right">
+                <h3><a target="_blank" href="http://www.roadqu.com/zhuanti/hongye">细看广东最美红叶</a></h3>
+
+                <p>秋意正浓时，枫叶红了，银杏黄了，带你去看广东最美红叶，深深醉了......</p>
+            </div>
+
+        </li>
+        <li class="fn-clear">
+            <a class="cnt_img fn-left" target="_blank" href="http://www.roadqu.com/journey/15385?type=new">
+                <img src="images/0_201211261012_index_fp.jpg" alt="韶关新丰自驾旅游攻略，看红叶，泡温泉，玩摄影...." title="韶关新丰自驾旅游攻略，看红叶，泡温泉，玩摄影...." width="90" height="90">
+            </a>
+
+            <div class="cnt_txt fn-right">
+                <h3><a target="_blank" href="http://www.roadqu.com/journey/15385?type=new">韶关新丰自驾旅游攻略..</a></h3>
+
+                <p>周末快给自己的身心放个假，泡着温泉，看满山红叶，“酒不醉人人自醉”....</p>
+            </div>
+
+        </li>
+        <li class="fn-clear">
+            <a class="cnt_img fn-left" target="_blank" href="http://www.roadqu.com/journey/15344">
+                <img src="images/0_201211190959_index_fp.jpg" alt="七娘山农家乐——孩纸们的野趣生活，童真的回忆" title="七娘山农家乐——孩纸们的野趣生活，童真的回忆" width="90" height="90">
+            </a>
+
+            <div class="cnt_txt fn-right">
+                <h3><a target="_blank" href="http://www.roadqu.com/journey/15344" title="七娘山农家乐——孩纸们的野趣生活，童真的回忆">
+                    七娘山农家乐——孩纸..</a></h3>
+
+                <p>用镜头，捕捉童年的精彩，用笑声，追忆童年的快乐....</p>
+            </div>
+
+        </li>
+
+
+    </ul>
+</div>
+
+<!--新鲜玩法 end-->
+<!--快速导航-->
+<div class="guide_nav ui-box fn-clear" id="guide_nav">
+
+    <ul class="mobile-app fn-left">
+
+        <li>
+            <a class="cnt-img fn-left" target="_blank" href="http://www.roadqu.com/mobile/index.php"><img src="images/icon01.png" alt="" width="50" height="50"></a>
+
+            <div class="cnt-txt fn-right">
+                <h3><a target="_blank" href="http://www.roadqu.com/mobile/index.php">趣旅游APP</a></h3>
+
+                <p class="txt_notes">随时发现好玩的地方</p>
+
+            </div>
+        </li>
+        <li>
+            <a class="cnt-img fn-left" target="_blank" href="http://www.roadqu.com/mobile/roadqu.php"><img src="images/icon02.png" alt=""></a>
+
+            <div class="cnt-txt fn-right">
+                <h3><a target="_blank" href="http://www.roadqu.com/mobile/roadqu.php">路趣网APP</a></h3>
+
+                <p class="txt_notes">旅游社交，一路同行</p>
+
+            </div>
+        </li>
+    </ul>
+    <ul class="app-list fn-right">
+
+        <li>
+            <a target="_blank" href="http://www.roadqu.com/apps/sihui" class="cnt-img fn-left"><img src="images/icon032.png" alt="今天我跟Ta去哪私会" width="50" height="50"></a>
+            <a target="_blank" href="http://www.roadqu.com/apps/sihui" class="cnt-txt fn-left"><p>去哪私会</p></a>
+        </li>
+        <li>
+            <a target="_blank" href="http://www.roadqu.com/magazine/" class="cnt-img fn-left"><img src="images/icon04.png" alt="趣邮寄" width="50" height="50"></a>
+            <a target="_blank" href="http://www.roadqu.com/magazine/" class="cnt-txt fn-left"><p>趣邮寄</p></a>
+
+        </li>
+        <li>
+            <a target="_blank" href="http://www.roadqu.com/special/xuezi.php" class="cnt-img fn-left"><img src="images/icon05.png" alt="照片PK" width="50" height="50"></a>
+            <a target="_blank" href="http://www.roadqu.com/special/xuezi.php" class="cnt-txt fn-left"><p>照片PK</p></a>
+        </li>
+    </ul>
+
+
+</div>
+<!--快速导航 end-->
+
+<!--新闻频道模板-->
+<div class="ui-box fn-clear">
+    <div class="travel_guide fn-left">
+        <div class="ui-title">
+            <h2 class="ui-title-cnt fn-left"><em>新闻频道</em></h2>
+
+            <div class="ui-title-subcnt fn-right"><a target="_blank" href="http://www.roadqu.com/journey">+ 更多</a></div>
+
+        </div>
+        <ul class="cnt-txt">
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+        </ul>
+
+    </div>
+    <div class="coupon fn-right">
+        <div class="ui-title">
+            <h2 class="ui-title-cnt fn-left"><em>栏目热点</em></h2>
+
+            <div class="ui-title-subcnt fn-right"><a target="_blank" href="http://www.roadqu.com/youhui/">+ 更多</a></div>
+        </div>
+        <div class="youhui-other">
+            <ul class="youhui-txt fn-left">
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/240" title="【茉莉花园】周日至周四房费8折">
+                【茉莉花园】周日至周四房..</a></li>
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/84" title="【泽木强巴客栈】周日至周四房费8折">
+                【泽木强巴客栈】周日至周..</a></li>
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/199" title="【友谊客栈】周六房价9折">
+                【友谊客栈】周六房价9折</a></li>
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/115" title="【海角七号客栈】周日至周五房费7折">
+                【海角七号客栈】周日至周..</a></li>
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/253" title="【大鹏水上自行车】水上单车50元/半小时">
+                【大鹏水上自行车】水上单..</a></li>
+            </ul>
+        </div>
+        <!--                    <a href="#"><img src="/themes/2012/demo-img/pic10.jpg" alt="" width="285" height="70"></a>-->
+                <a data-lang="advertise_3_201211210951.jpg" href="http://www.roadqu.com/youji/zhuanti/lthy" target="_blank"><img src="images/advertise_3_201211210951.jpg" alt="第二期游记活动" width="285" height="70"></a>
+        
+    </div>
+</div>
+
+<!--新闻频道模板-->
+<div class="ui-box fn-clear">
+    <div class="travel_guide fn-left">
+        <div class="ui-title">
+            <h2 class="ui-title-cnt fn-left"><em>新闻频道</em></h2>
+
+            <div class="ui-title-subcnt fn-right"><a target="_blank" href="http://www.roadqu.com/journey">+ 更多</a></div>
+
+        </div>
+        <ul class="cnt-txt">
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+           <li><h5><a target="_blank" href="http://www.roadqu.com/149929" class="user_name" title="静妞儿">周末快给自己的身心放个假，泡着温测 </a>2012-11-23</h5></li>
+        </ul>
+
+    </div>
+    <div class="coupon fn-right">
+        <div class="ui-title">
+            <h2 class="ui-title-cnt fn-left"><em>栏目热点</em></h2>
+
+            <div class="ui-title-subcnt fn-right"><a target="_blank" href="http://www.roadqu.com/youhui/">+ 更多</a></div>
+        </div>
+        <div class="youhui-other">
+            <ul class="youhui-txt fn-left">
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/240" title="【茉莉花园】周日至周四房费8折">
+                【茉莉花园】周日至周四房..</a></li>
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/84" title="【泽木强巴客栈】周日至周四房费8折">
+                【泽木强巴客栈】周日至周..</a></li>
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/199" title="【友谊客栈】周六房价9折">
+                【友谊客栈】周六房价9折</a></li>
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/115" title="【海角七号客栈】周日至周五房费7折">
+                【海角七号客栈】周日至周..</a></li>
+               <li><a target="_blank" href="http://www.roadqu.com/youhui/253" title="【大鹏水上自行车】水上单车50元/半小时">
+                【大鹏水上自行车】水上单..</a></li>
+            </ul>
+        </div>
+        <!--                    <a href="#"><img src="/themes/2012/demo-img/pic10.jpg" alt="" width="285" height="70"></a>-->
+                <a data-lang="advertise_3_201211210951.jpg" href="http://www.roadqu.com/youji/zhuanti/lthy" target="_blank"><img src="images/advertise_3_201211210951.jpg" alt="第二期游记活动" width="285" height="70"></a>
+        
+    </div>
+</div>
+
+<div class="ui-box fn-clear">
+
+    <div class="ui-title">
+        <h2 class="ui-title-cnt fn-left"><em>友情链接</em></h2>
+
+        <div class="ui-title-subcnt fn-right"><a target="_blank" href="http://www.roadqu.com/link.php">+ 更多</a></div>
+
+    </div>
+    <div class="friend-link">
+
+
+        <div class="bx-wrapper" style="width:841px; position:relative;"><div class="bx-window" style="position:relative; overflow:hidden; width:841px;"><div class="link-list" id="link-list" style="width: 999999px; position: relative; left: -841px; "><div style="width: 841px; float: left; list-style-type: none; list-style-position: initial; list-style-image: initial; ">
+
+                <ul>
+                                        <li><a href="http://www.uuzhufu.com/" target="_blank">中秋节礼品</a></li>
+                                        <li><a href="http://www.maidou.cn/" target="_blank">旅游网</a></li>
+                                        <li><a href="http://travel.szonline.net/" target="_blank">旅游网站大全</a></li>
+                                        <li><a href="http://www.redidai.com/" target="_blank">热地带旅行网</a></li>
+                                        <li><a href="http://www.szaeia.com/" target="_blank">车联网</a></li>
+                                        <li><a href="http://chat.uzai.com/" target="_blank">悠哉旅游社区</a></li>
+                                        <li><a href="http://www.960km.com/" target="_blank">自驾游</a></li>
+                                        <li><a href="http://www.wsqsgo.com/" target="_blank">户外装备</a></li>
+                                        <li><a href="http://www.18-yf.com/cots" target="_blank">深圳户外展</a></li>
+                                        <li><a href="http://www.egotour.cn/" target="_blank">自游e派</a></li>
+                                        <li><a href="http://www.tao123.com/" target="_blank">淘网址</a></li>
+                                        <li><a href="http://www.roadqu.com/apps/qunawan/" target="_blank">今天去哪玩?</a></li>
+                                    </ul>
+
+            </div>
+            <!--第一屏-->
+                        <div style="width: 841px; float: left; list-style-type: none; list-style-position: initial; list-style-image: initial; " class="pager">
+
+                <ul>
+                                        <li><a href="images/index.htm" target="_blank">路趣旅游网</a></li>
+                                        <li><a href="http://www.roadqu.com/journey/" target="_blank">旅游攻略</a></li>
+                                        <li><a href="http://www.roadqu.com/event/" target="_blank">休闲旅游</a></li>
+                                        <li><a href="http://www.roadqu.com/youwan/rank" target="_blank">旅游景点</a></li>
+                                        <li><a href="http://www.roadqu.com/interest/" target="_blank">旅游社区</a></li>
+                                        <li><a href="http://www.roadqu.com/lvyouquan/" target="_blank">旅游圈</a></li>
+                                        <li><a href="http://www.ruci.cn/" target="_blank">户外装备</a></li>
+                                        <li><a href="http://www.roadqu.com/interest/1" target="_blank">旅行</a></li>
+                                        <li><a href="http://www.tvtour.com.cn/" target="_blank">环视旅游网</a></li>
+                                        <li><a href="http://www.jimuyou.com/" target="_blank">积木游</a></li>
+                                        <li><a href="http://travel.poco.cn/" target="_blank">poco旅游</a></li>
+                                        <li><a href="http://www.tourye.com/" target="_blank">陶冶户外</a></li>
+                                        <li><a href="http://www.szwalking.com/" target="_blank">深圳徒步网</a></li>
+                                        <li><a href="http://www.szooo.com/" target="_blank">深圳康辉旅行社</a></li>
+                                        <li><a href="http://www.roadqu.com/interest/11" target="_blank">亲子旅游</a></li>
+                                        <li><a href="http://www.taiwandao.tw/" target="_blank">台湾旅游</a></li>
+                                        <li><a href="http://taiguo.mipang.com/" target="_blank">泰国旅游</a></li>
+                                        <li><a href="http://www.naliwan.com/" target="_blank">哪里玩旅游网</a></li>
+                                        <li><a href="http://www.xjlxw.com/" target="_blank">新疆旅游</a></li>
+                                        <li><a href="http://www.topsnj.com/" target="_blank">神农架旅游</a></li>
+                                        <li><a href="http://www.sccts.com/" target="_blank">成都旅游</a></li>
+                                        <li><a href="http://www.xzlyt.com/" target="_blank">西藏旅游在线</a></li>
+                                        <li><a href="http://weyou.wehefei.com/" target="_blank">我游网</a></li>
+                                        <li><a href="http://www.ctisvip.com/" target="_blank">哈尔滨旅行社</a></li>
+                                        <li><a href="http://www.zjjta.com/" target="_blank">张家界旅游</a></li>
+                                        <li><a href="http://www.xz5u.cn/" target="_blank">自驾游</a></li>
+                                        <li><a href="http://shenzhen.8684.com/" target="_blank">深圳生活频道</a></li>
+                                        <li><a href="http://www.hunlimama.com/" target="_blank">婚礼妈妈</a></li>
+                                    </ul>
+
+            </div>
+                        <div style="width: 841px; float: left; list-style-type: none; list-style-position: initial; list-style-image: initial; " class="pager">
+
+                <ul>
+                                        <li><a href="http://www.cssn.com.cn/" target="_blank">中国景点网</a></li>
+                                        <li><a href="http://www.rido.cc/" target="_blank">健身装备</a></li>
+                                        <li><a href="http://www.nmglxs.com/" target="_blank">内蒙古旅行社</a></li>
+                                        <li><a href="http://www.xoutshop.cn/" target="_blank">户外用品</a></li>
+                                        <li><a href="http://bbs.hnhw.com/" target="_blank">河南户外论坛</a></li>
+                                        <li><a href="http://www.ljjsly.com/" target="_blank">丽江旅游</a></li>
+                                        <li><a href="http://www.tianqiyubao.cn/" target="_blank">天气预报</a></li>
+                                        <li><a href="http://www.iqiyi.com/lvyou/" target="_blank">爱奇艺旅游</a></li>
+                                        <li><a href="http://www.xiwenquan.com/" target="_blank">大连温泉</a></li>
+                                        <li><a href="http://www.heshuixian.com/" target="_blank">合水线户外</a></li>
+                                        <li><a href="http://www.jhgl.cn/" target="_blank">嘉华国旅</a></li>
+                                        <li><a href="http://www.gaotieshike.com/" target="_blank">高铁</a></li>
+                                        <li><a href="http://www.uutrip.net/" target="_blank">大连旅游景点</a></li>
+                                        <li><a href="http://shenzhen.9chun.com/" target="_blank">深圳旅游网</a></li>
+                                        <li><a href="http://www.kunmingkanghui.com/" target="_blank">昆明旅行社</a></li>
+                                        <li><a href="http://piao.gaotie.cn/" target="_blank">网上订票</a></li>
+                                        <li><a href="http://www.huantu.com/" target="_blank">幻途旅游网</a></li>
+                                        <li><a href="http://www.517jh.com/" target="_blank">义乌旅行社</a></li>
+                                        <li><a href="http://www.cnutg.com/" target="_blank">旅游攻略网</a></li>
+                                        <li><a href="http://shenzhen.qd8.com.cn/" target="_blank">深圳分类信息</a></li>
+                                        <li><a href="http://trip.uuyoyo.com/" target="_blank">旅游预订</a></li>
+                                        <li><a href="http://www.cnutg.com/" target="_blank">特价机票网</a></li>
+                                        <li><a href="http://huoche.mipang.com/" target="_blank">火车票查询</a></li>
+                                        <li><a href="http://yupiao.114piaowu.com/" target="_blank">火车余票查询</a></li>
+                                        <li><a href="http://home.sz.soufun.com/" target="_blank">深圳家居</a></li>
+                                        <li><a href="http://www.vaazaa.com/" target="_blank">四川旅游</a></li>
+                                        <li><a href="http://gz.ganji.com/tejiajipiao/" target="_blank">广州特价机票</a></li>
+                                        <li><a href="http://chizhou.ganji.com/" target="_blank">池州分类信息</a></li>
+                                        <li><a href="http://tukeq.com/" target="_blank">途客圈旅行网</a></li>
+                                    </ul>
+
+            </div>
+                        <div style="width: 841px; float: left; list-style-type: none; list-style-position: initial; list-style-image: initial; " class="pager">
+
+                <ul>
+                                        <li><a href="http://www.uuzhufu.com/" target="_blank">中秋节礼品</a></li>
+                                        <li><a href="http://www.maidou.cn/" target="_blank">旅游网</a></li>
+                                        <li><a href="http://travel.szonline.net/" target="_blank">旅游网站大全</a></li>
+                                        <li><a href="http://www.redidai.com/" target="_blank">热地带旅行网</a></li>
+                                        <li><a href="http://www.szaeia.com/" target="_blank">车联网</a></li>
+                                        <li><a href="http://chat.uzai.com/" target="_blank">悠哉旅游社区</a></li>
+                                        <li><a href="http://www.960km.com/" target="_blank">自驾游</a></li>
+                                        <li><a href="http://www.wsqsgo.com/" target="_blank">户外装备</a></li>
+                                        <li><a href="http://www.18-yf.com/cots" target="_blank">深圳户外展</a></li>
+                                        <li><a href="http://www.egotour.cn/" target="_blank">自游e派</a></li>
+                                        <li><a href="http://www.tao123.com/" target="_blank">淘网址</a></li>
+                                        <li><a href="http://www.roadqu.com/apps/qunawan/" target="_blank">今天去哪玩?</a></li>
+                                    </ul>
+
+            </div>
+                    <div style="width: 841px; float: left; list-style-type: none; list-style-position: initial; list-style-image: initial; ">
+
+                <ul>
+                                        <li><a href="images/index.htm" target="_blank">路趣旅游网</a></li>
+                                        <li><a href="http://www.roadqu.com/journey/" target="_blank">旅游攻略</a></li>
+                                        <li><a href="http://www.roadqu.com/event/" target="_blank">休闲旅游</a></li>
+                                        <li><a href="http://www.roadqu.com/youwan/rank" target="_blank">旅游景点</a></li>
+                                        <li><a href="http://www.roadqu.com/interest/" target="_blank">旅游社区</a></li>
+                                        <li><a href="http://www.roadqu.com/lvyouquan/" target="_blank">旅游圈</a></li>
+                                        <li><a href="http://www.ruci.cn/" target="_blank">户外装备</a></li>
+                                        <li><a href="http://www.roadqu.com/interest/1" target="_blank">旅行</a></li>
+                                        <li><a href="http://www.tvtour.com.cn/" target="_blank">环视旅游网</a></li>
+                                        <li><a href="http://www.jimuyou.com/" target="_blank">积木游</a></li>
+                                        <li><a href="http://travel.poco.cn/" target="_blank">poco旅游</a></li>
+                                        <li><a href="http://www.tourye.com/" target="_blank">陶冶户外</a></li>
+                                        <li><a href="http://www.szwalking.com/" target="_blank">深圳徒步网</a></li>
+                                        <li><a href="http://www.szooo.com/" target="_blank">深圳康辉旅行社</a></li>
+                                        <li><a href="http://www.roadqu.com/interest/11" target="_blank">亲子旅游</a></li>
+                                        <li><a href="http://www.taiwandao.tw/" target="_blank">台湾旅游</a></li>
+                                        <li><a href="http://taiguo.mipang.com/" target="_blank">泰国旅游</a></li>
+                                        <li><a href="http://www.naliwan.com/" target="_blank">哪里玩旅游网</a></li>
+                                        <li><a href="http://www.xjlxw.com/" target="_blank">新疆旅游</a></li>
+                                        <li><a href="http://www.topsnj.com/" target="_blank">神农架旅游</a></li>
+                                        <li><a href="http://www.sccts.com/" target="_blank">成都旅游</a></li>
+                                        <li><a href="http://www.xzlyt.com/" target="_blank">西藏旅游在线</a></li>
+                                        <li><a href="http://weyou.wehefei.com/" target="_blank">我游网</a></li>
+                                        <li><a href="http://www.ctisvip.com/" target="_blank">哈尔滨旅行社</a></li>
+                                        <li><a href="http://www.zjjta.com/" target="_blank">张家界旅游</a></li>
+                                        <li><a href="http://www.xz5u.cn/" target="_blank">自驾游</a></li>
+                                        <li><a href="http://shenzhen.8684.com/" target="_blank">深圳生活频道</a></li>
+                                        <li><a href="http://www.hunlimama.com/" target="_blank">婚礼妈妈</a></li>
+                                    </ul>
+
+            </div></div></div><a href="" class="bx-prev">prev</a><a href="" class="bx-next">next</a></div>
+
+    </div>
+
+</div>
+
+</div>
+
+<!--友情链接 end-->
+<!--main body end-->
+<div class="footer ">
+    <div class="footerWrap fn-clear">
+
+        <ul class="about_roadqu ">
+            <li><a href="http://www.roadqu.com/pages/about/aboutus.php" target="_blank">关于路趣</a>|</li>
+
+            <li><a href="http://www.roadqu.com/pages/about/contactus.php" target="_blank">联系我们</a>|</li>
+
+            <li><a href="http://www.roadqu.com/pages/about/convention.php">用户公约</a>|</li>
+
+            <li><a href="http://www.roadqu.com/tag/%E5%BE%AE%E5%BB%BA%E8%AE%AE">意见反馈</a>|</li>
+            <li><a href="http://www.roadqu.com/pages/about/newguide1.php">帮助中心</a>|</li>
+            <li><a href="http://www.roadqu.com/link.php">友情链接</a></li>
+        
+        </ul>
+        <div class="foot">
+          <p>
+
+            <span class="fn-left">
+              
+版权所有：深圳市路友网络科技有限公司  <a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow">粤ICP备12008262号-2</a>
+
+
+  <a href="http://www.roadqu.com/#">增值电信业务经营许可证 粤B2-20120564</a>
+
+            </span>
+       
+
+   
+
+        </p>
+            <div class="sns">
+               
+                <span>关注我们： </span><a href="http://weibo.com/roadqu" class="login_sina">新浪微博 </a><a href="http://t.qq.com/roadqu" class="login_qq">腾讯微博</a>
+           
+ <a href="http://trust.360.cn/search.php" target="_blank" title="360绿色网站"><img src="images/img.php" border="0"></a> 
+            
+
+          <!-- WPA Button Begin -->
+          <script type="text/javascript" src="images/wpa.js"></script><iframe id="iframediv1354188769848" scrolling="no" frameborder="0" width="102" height="24" allowtransparency="true" src="images/wpa_a01.htm"></iframe>
+<!-- WPA Button END -->
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+<!-- footer end -->
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //导航菜单
+        $("li.has_child_menu").hover(function () {
+
+            $(this).addClass("hover");
+            $('ul:first', this).css('visibility', 'visible');
+
+        }, function () {
+
+            $(this).removeClass("hover");
+            $('ul:first', this).css('visibility', 'hidden');
+
+        });
+
+
+
+    // 用户下拉菜单
+      var config = {    
+         sensitivity: 3, // number = sensitivity threshold (must be 1 or higher)    
+         interval: 200,  // number = milliseconds for onMouseOver polling interval    
+         over: doOpen,   // function = onMouseOver callback (REQUIRED)    
+         timeout: 200,   // number = milliseconds delay before onMouseOut    
+         out: doClose    // function = onMouseOut callback (REQUIRED)    
+    };
+
+    function doOpen() {
+         $(this).addClass("dropdown-hover");
+         $('#select-menu').css('visibility', 'visible');
+    }
+  
+    function doClose() {
+    
+         $(this).removeClass("dropdown-hover");
+         $('#select-menu').css('visibility', 'hidden');
+    }
+
+
+    $LAB.script("/static/js_2012/third-party/jquery.hoverIntent.minified.js?t=201211291821")
+    .wait(function(){
+    $("#user_dropdown").hoverIntent(config);
+
+    })
+
+
+
+
+
+
+    });
+</script>
+<a href="http://www.roadqu.com/#map_picker_content" id="mappickerfancybox" class="disnone">更改</a>
+<div class="disnone" id="map_picker_wrap">
+    <div id="map_picker_content"></div>
+</div>
+
+
+
+<!-- js -->
+<a href="http://www.roadqu.com/#" id="gotop" class="gotop-btn fn-hide" onclick="window.scrollTo(0,0);return false" style="display: inline; "></a>
+
+
+
+<script type="text/javascript" src="images/jquery.cookie,json2,jquery.boxy,jquery.elastic-min,jquery.fancybox-1.3.4.pack,swfobject.js"></script>
+<script type="text/javascript" src="images/common,userAutoTips,top,searchTips,uBrade,blogissuebox,personalcard,sidemain,sideinteresteduser,sideuser,sidevistor.js"></script>
+<script type="text/javascript" src="images/mapcommon,mapmappicker_bmap.js"></script>
+<script type="text/javascript" src="images/jquery.uploadify.v2.1.4-min.js"></script>
+<script type="text/javascript" src="images/jquery.autocomplete,jquery-ui-1.8.14.Draggable.min,jquery.bt.min.js" defer></script>
+
+
+<!-- STUFF YOU NEED FOR BEAUTYTIPS -->
+<!--[if IE]>
+<script src="/static/js/excanvas.js?t=201211291821" type="text/javascript" charset="utf-8"></script><![endif]-->
+<!-- /STUFF -->
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        
+        //加载iisuebox.js
+        if ($("#postBox").size() > 0 && $("#checkin-2012").size() == 0) {
+            $LAB.script("/static/js_2012/lib/blog/blog.js?t=201211291821");
+            $LAB.script("/static/js_2012/lib/blog/issuebox.js?t=201211291821");
+
+        }
+
+        $LAB.script("/static/js_2012/lib/gotop.js?t=201211291821");
+
+
+        $LAB.script("/static/js_2012/third-party/jquery.placeholder.min.js?t=201211291821").wait(function () {
+            $('input.placeholder').placeholder();
+
+        })
+        //微薄私信等通知
+        $('#notice_close').click(function () {
+            $('#floatN').hide();
+            return false;
+        });
+
+
+        //回调应用函数
+        if (typeof parent.setQnwFrameWinHeight == 'function') {
+            parent.setQnwFrameWinHeight();
+        }
+
+    })
+
+
+</script>
+
+
+<!-- 添加统计代码 -->
+<div class="disnone" id="tongjicode">
+    <script src="images/stat.php" type="text/javascript"></script><script src="images/cnzz_core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=3164758" target="_blank" title="站长统计">站长统计</a>
+</div>
+<!-- end 添加统计代码 -->
+
+<script type="text/javascript" src="images/jquery.hoverIntent.minified(1).js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // 幻灯片
+        $("#poi_hot li,#wanfa_pic li:first").hover(function () {
+            var $this = $(this);
+            $this.find('div.intro_info').show();
+
+        }, function () {
+            var $this = $(this);
+            $this.find('div.intro_info').hide();
+
+        })
+        $LAB.script("/static/js/jquery.bxSlider.min.js?t=201211291821")
+                .wait(function () {
+                    $('#slider').bxSlider({ auto:true, pager:true});
+                    $('#link-list').bxSlider({ speed:1000});
+                })
+        $("#guide_nav li").hover(function () {
+            var $this = $(this);
+            $this.addClass("guide_nav_item_hover");
+
+
+        }, function () {
+            var $this = $(this);
+            $this.removeClass("guide_nav_item_hover");
+
+        })
+       
+        //youhui pop
+    
+           var isInDiscountCard = false;
+
+       
+
+                $("#youhui-hot>li").bt(
+                        {
+                            fill:'#FFFFFF',
+                            strokeStyle:'#BFBFA8',
+                            cornerRadius:5,
+                            padding:20,
+                            width:285,
+                            spikeLength:10,
+                            spikeGirth:10,
+                            ajaxPath:["$(this).attr('data-href')"],
+                            closeWhenOthersOpen:true,
+
+
+                            hideTip:function (box, callback) {
+                                if (!isInDiscountCard) {
+                                    $(box).hide();
+
+                                    callback();
+                                }
+                            },
+                            hoverIntentOpts:{
+                                interval:300,
+                                timeout:1000
+                            }
+
+                        });
+
+                $('#pop-discount').live('mouseenter', function () {
+
+                    isInDiscountCard = true;
+                });
+
+                $('#pop-discount').live('mouseleave', function () {
+
+                    isInDiscountCard = false;
+                    $("#container").trigger('click');
+                });
+
+    });
+
+
+
+ 
+
+     
+
+</script>
+
+
+
+
+<div id="fancybox-tmp"></div><div id="fancybox-loading"><div></div></div><div id="fancybox-overlay"></div><div id="fancybox-wrap"><div id="fancybox-outer"><div class="fancybox-bg" id="fancybox-bg-n"></div><div class="fancybox-bg" id="fancybox-bg-ne"></div><div class="fancybox-bg" id="fancybox-bg-e"></div><div class="fancybox-bg" id="fancybox-bg-se"></div><div class="fancybox-bg" id="fancybox-bg-s"></div><div class="fancybox-bg" id="fancybox-bg-sw"></div><div class="fancybox-bg" id="fancybox-bg-w"></div><div class="fancybox-bg" id="fancybox-bg-nw"></div><div id="fancybox-content"></div><a id="fancybox-close"></a><div id="fancybox-title"></div><a href="javascript:;" id="fancybox-left"><span class="fancy-ico" id="fancybox-left-ico"></span></a><a href="javascript:;" id="fancybox-right"><span class="fancy-ico" id="fancybox-right-ico"></span></a></div></div></body></html>

@@ -1,0 +1,230 @@
+<{include file="tpl/admin/header.html"}>
+<script src="tpl/src/js/jscal2.js"></script>
+<script src="tpl/src/js/unicode-letter.js"></script>
+<script src="tpl/src/js/lang/cn.js"></script>
+<script type="text/javascript" src="tpl/admin/js/jquery.boxy.js?ver=20091101"></script>
+<link rel="stylesheet" type="text/css" href="tpl/admin/css/boxy.css?ver=20091102" />
+<link rel="stylesheet" type="text/css" href="tpl/admin/src/css/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="tpl/admin/src/css/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="tpl/admin/src/css/steel/steel.css" />
+
+<script type="text/javascript">
+    function approval(id,control){
+
+        $.get('index.php?c='+control+'&a=approval', 'id='+id, function(result){
+            $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+            if(result == 1)
+            {alert('审批成功!!');}else{alert('审批失败!!')}
+            window.location.reload(); 
+        });
+}
+
+
+function hotkey()  
+{  
+    var a=window.event.keyCode;  
+    if((a==13)&&(event.ctrlKey))  
+    {  
+       $('#close').click();
+    }  
+    }// end hotkey  
+    document.onkeydown = hotkey; //当onkeydown 事件发生时调用hotkey函数  
+//-->  
+var diagnose = function(boxy) {
+  alert("位置: " + boxy.getPosition() +
+        "\n大小: " + boxy.getSize() +
+        "\n内容区域大小: " + boxy.getContentSize() +
+        "\n中心点: " + boxy.getCenter());
+};
+$(function() {
+Boxy.DEFAULTS.title = "请输入拒绝理由";
+// Callbacks 
+});
+
+ function bindConfirmBtn(id){
+   var newcontent = $.trim($('#newcontent').val());
+   var control = $.trim($('#control').val());
+   if(newcontent != 0){
+      referjj(newcontent,id,control);
+   }else{ alert('必须填写拒绝理由！ ');}
+}
+
+function refuse(id,control){
+      new Boxy("<div><textarea id='newcontent' name='newcontent' class='span6' cols='15' rows='10'></textarea><br /><input id='control' type='hidden'  value="+control+" /><input id='close' type='submit' class='close' name='测试' onclick='bindConfirmBtn("+ id +")' value='确认提交' /></div>", {
+         beforeUnload: function() {
+        },
+          unloadOnHide: true
+        });
+        //return false;
+  } 
+  
+function referjj(newcontent,id,control){
+        var formdata = {
+            'reason' : newcontent,
+            'id' : id
+        };
+            $.post('index.php?c='+control+'&a=refuse', formdata, function(result){
+            $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+            if(result == 1)
+            {alert('拒绝成功!!');}else{alert('拒绝失败!!')}
+            window.location.reload(); 
+        });
+}
+</script>
+<div class="breadcrumbs">
+    <div class="container-fluid">
+        <ul class="bread pull-left">
+            <li>
+            <a href="index.php?c=manage&a=index"><i class="icon-home icon-white"></i></a>
+            </li>
+            <li>
+            <a href="index.php?c=manage&a=index">
+                首页
+            </a>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div class="main">
+    <{include file="tpl/admin/left.html"}>
+    <div class="container-fluid">
+        <div class="content">
+            <div class="row-fluid no-margin">
+ 
+                <div class="row-fluid">
+                <div class="span12">
+                    <div class="box">
+                        <div class="box-head tabs">
+                            <h3>工作统计 | <a href="index.php?c=usersform&a=index&t=user">添加</a></h3>
+                            <ul class='nav nav-tabs'>
+                                <li class='active'>
+                                    <a href="#basic" data-toggle="tab">Basic</a>
+                                </li>
+                                <li>
+                                    <a href="#nohead" data-toggle="tab">No header</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="box-content box-nomargin">
+                            <div class="tab-content">
+                                    <div class="tab-pane active" id="basic">
+                                        <table class='table table-striped dataTable table-condensed table-bordered'>
+                                              <thead>
+                                                <th>编号</th>
+                                                <th>用户名</th>
+                                                <th>积分</th>
+                                                <th>景点统计</th>
+                                                <th>线路统计</th>
+                                                <th>活动统计</th>
+                                                <th>榜单统计</th>
+                                                <th>游记统计</th>
+                                                <th>点评统计</th>
+                                                <th>图片统计</th>
+                                                <th>自由行统计</th>
+                                                <th>论坛统计</th>
+                                              </thead>
+                                            <tbody>
+                                              <{foreach item=colorname from=$result_statistical key=enname}>
+                                              <tr>
+                                                 <td><{$colorname.uid}></td>
+                                                 <td><{$colorname.uname}></td>
+                                                 <td><{$colorname.integral}></td>
+                                                 <td>
+                                                     今天:<{$colorname.scenery.scenerytoday}><br />
+                                                     3天前:<{$colorname.scenery.scenery3}><br />
+                                                     7天前:<{$colorname.scenery.scenery7}><br />
+                                                     30天前:<{$colorname.scenery.scenery30}><br />
+                                                 </td>
+                                                 <td>
+                                                     今天:<{$colorname.lines.scenerytoday}><br />
+                                                     3天前:<{$colorname.lines.scenery3}><br />
+                                                     7天前:<{$colorname.lines.scenery7}><br />
+                                                     30天前:<{$colorname.lines.scenery30}><br />
+                                                 </td>
+                                                <td>
+                                                     今天:<{$colorname.activity.scenerytoday}><br />
+                                                     3天前:<{$colorname.activity.scenery3}><br />
+                                                     7天前:<{$colorname.activity.scenery7}><br />
+                                                     30天前:<{$colorname.activity.scenery30}><br />
+                                                 </td>
+                                                 <td>
+                                                     今天:<{$colorname.listbd.scenerytoday}><br />
+                                                     3天前:<{$colorname.listbd.scenery3}><br />
+                                                     7天前:<{$colorname.listbd.scenery7}><br />
+                                                     30天前:<{$colorname.listbd.scenery30}><br />
+                                                 </td>
+                                                 <td>
+                                                     今天:<{$colorname.youji.scenerytoday}><br />
+                                                     3天前:<{$colorname.youji.scenery3}><br />
+                                                     7天前:<{$colorname.youji.scenery7}><br />
+                                                     30天前:<{$colorname.youji.scenery30}><br />
+                                                 </td>
+                                                 <td>
+                                                     今天:<{$colorname.comment.scenerytoday}><br />
+                                                     3天前:<{$colorname.comment.scenery3}><br />
+                                                     7天前:<{$colorname.comment.scenery7}><br />
+                                                     30天前:<{$colorname.comment.scenery30}><br />
+                                                 </td>
+                                                 <td>
+                                                     今天:<{$colorname.picture.scenerytoday}><br />
+                                                     3天前:<{$colorname.picture.scenery3}><br />
+                                                     7天前:<{$colorname.picture.scenery7}><br />
+                                                     30天前:<{$colorname.picture.scenery30}><br />
+                                                 </td>
+                                                <td>
+                                                     今天:<{$colorname.visits.scenerytoday}><br />
+                                                     3天前:<{$colorname.visits.scenery3}><br />
+                                                     7天前:<{$colorname.visits.scenery7}><br />
+                                                     30天前:<{$colorname.visits.scenery30}><br />
+                                                 </td>
+                                                 <td>
+                                                     今天:<{$colorname.answers.scenerytoday}><br />
+                                                     3天前:<{$colorname.answers.scenery3}><br />
+                                                     7天前:<{$colorname.answers.scenery7}><br />
+                                                     30天前:<{$colorname.answers.scenery30}><br />
+                                                 </td>
+                                              </tr>
+                                              <{/foreach}>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane" id="nohead">
+                                        <table class='table table-striped dataTable dataTable-noheader table-bordered'>
+                                            <thead>
+                                                <tr>
+                                                    <td>编号</td>
+                                                    <td>用户名</td>
+                                                    <th>实名</th>
+                                                    <td>密码</td>
+                                                    <td>权限</td>
+                                                    <td>操作</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                              <{foreach item=colorname from=$result key=enname}>
+                                              <tr>
+                                                 <td><{$colorname.uid}></td>
+                                                 <td><{$colorname.uname}></td>
+                                                 <td><{$colorname.realname}></td>
+                                                 <td><{$colorname.upass}></td>
+                                                 <td><{if $colorname.acl == "GBADMIN"}>管理员<{else}>用户<{/if}></td>
+                                                 <td><a href="index.php?c=usersform&a=index&t=user&uid=<{$colorname.uid}>">编辑</a> | <a href="javascript:del(<{$colorname.uid}>);">删除</a></td>
+                                              </tr>                                             
+                                               <{/foreach}>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+           </div>
+        </div>	
+    </div>
+	</div>
+<{include file="tpl/admin/footer.html"}>

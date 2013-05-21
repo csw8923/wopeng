@@ -1,0 +1,467 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>厦门周边游_厦门周边旅游景点_厦门周边一日游自驾游_窝棚旅游网</title>
+<meta name="keywords" content="厦门周边游,厦门周边旅游,厦门周边旅游景点,厦门景点,厦门旅游景点,厦门一日游,厦门农家乐" />
+<meta name="description" content="窝棚网是厦门最专业的周边游网站,为您解决周末去哪玩,哪里好玩,怎么玩.客服电话4006-592-005" />
+<{include file="header.html"}>
+<div id="main_banner">
+  <!--Slide-->
+<!--   <div class="wrapper">
+  <div id="focus">
+  <ul>
+      <{foreach item=slideout from=$result_slide key=enname}>
+        <li><a target="_blank" href="<{$slideout.url}>"><img alt="<{$slideout.name}>" src="<{$slideout.picurl}>" width="1000" height="396" /></a></li>
+      <{/foreach}>
+  </ul>
+  </div> -->
+  <!--Slide end-->
+</div>
+<div style="margin-top:10px;" id="cont">
+  <div class="leftd">
+    <div id="ind_le01">
+      <div class="topd"></div>
+      <div class="cend">
+        <h2 class="ind_ltit1">厦门周边自驾游</h2>
+        <div class="ind_le01_A">
+            <{foreach item=keywordsout from=$keywords key=enname}>
+            <{if $keywordsout.types=="时间"}>
+            <a title="<{$keywordsout.title}>" href="<{spUrl}>xm/tag/<{$keywordsout.id}>.html"><{$keywordsout.keywords}></a>
+            <{/if}>
+            <{/foreach}>
+          <div class="c1"></div>
+	    </div>   
+        <h2 class="ind_ltit2">厦门好玩的地方</h2>
+	    <div class="ind_le01_A">
+            <{foreach item=keywordsout from=$keywords key=enname}>
+            <{if $keywordsout.types=="类型"}>
+            <a title="<{$keywordsout.title}>" href="<{spUrl}>xm/tag/<{$keywordsout.id}>.html"><{$keywordsout.keywords}></a>
+            <{/if}>
+            <{/foreach}>
+          <div class="c1"></div>
+	    </div>   
+        <h2 class="ind_ltit3">找去处</h2>
+	    <div class="ind_le01_A">
+            <{foreach item=keywordsout from=$cityinfo key=enname}>
+            <a title="<{$keywordsout.title}>" href="<{spUrl}>city/scenery/<{$keywordsout.id}>"><{$keywordsout.title}></a>
+            <{/foreach}>
+          <div class="c1"></div>
+        </div>
+        <div id="ind_but01">
+         <a target="_blank" href="<{spUrl c=sceneryinfoform a=add}>">
+             <img src="tpl/images/nlw_bt2.gif" width="148" height="36" />
+        </a>
+       </div>
+      <div id="ind_but01">
+         <a target="_blank" href="<{spUrl c=linesinfoform a=add}>">
+             <img src="tpl/images/nlw_bt16.gif" width="148" height="36" />
+        </a>
+       </div>
+      </div>
+      <div class="botd"> </div>
+    </div>
+
+    <div id="tit01">
+      <div class="tit01l">旅游动态</div>
+      <div class="tit01r"></div>
+    </div>
+    <div id="ind_l02bk">
+      <div class="indtext01">
+          <{foreach from=$syshistory_result item=result}>
+          <ul>
+              <li><span class="tgreen"><{$result.uname}></span><span class="tgreen">                  <{if $result.types == 'album'}>
+                                   <span class="tgreen">相册</span>
+                                <{elseif $result.types == 'picture'}>
+                                   <span class="tgreen">上传图片</span>
+                                <{elseif $result.types == 'answers'}>
+                                   <span class="tgreen">发布帖子</span>
+                                <{elseif $result.types == 'comment'}>
+                                   <span class="tgreen">发布点评</span>
+                                <{elseif $result.types == 'lines'}>
+                                   <span class="tgreen">发布线路</span>
+                                <{elseif $result.types == 'locals'}>
+                                   <span class="tgreen">发布风土人情</span>
+                                <{elseif $result.types == 'reply'}>
+                                   <span class="tgreen">发布回复</span>
+                                <{elseif $result.types == 'scenery'}>
+                                   <span class="tgreen">发布景点</span>
+                                <{elseif $result.types == 'visits'}>
+                                   <span class="tgreen">发布自由行线路</span>
+                                <{elseif $result.types == 'youji'}>
+                                   <span class="tgreen">发布游记</span>
+                                <{elseif $result.types == 'user'}>
+                                   <span class="tgreen">欢迎</span>  
+                                <{elseif $result.types == 'cover'}>
+                                   <span class="tgreen">上传新封面</span>  
+                                <{/if}>
+
+                                <{if $result.types == 'album'}>
+                                   <a target="_blank" title="<{$result.titlee}>"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'picture'}>
+                                   <a target="_blank" title="<{$result.title}>" href="<{spUrl}>photo/<{$result.linkid}>"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'answers'}>
+                                   <a target="_blank" title="<{$result.title}>" href="<{spUrl}>ask/info/<{$result.linkid}>.html"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'comment'}>
+                                   <a target="_blank" title="<{$result.title}>" href="<{spUrl}>comment/info/<{$result.linkid}>.html"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'lines'}>
+                                   <a target="_blank" title="<{$result.title}>" href="<{spUrl}>xm/lines/<{$result.linkid}>.html"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'locals'}>
+                                   <a target="_blank" title="<{$result.title}>"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'reply'}>
+                                   <a target="_blank" title="<{$result.title}>"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'scenery'}>
+                                  <a target="_blank" title="<{$result.title}>" href="<{spUrl}>scenery/<{$result.linkid}>.html"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'visits'}>
+                                  <a target="_blank" title="<{$result.title}>" href="<{spUrl}>visits/info/<{$result.linkid}>.html"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'youji'}>
+                                   <a target="_blank" title="<{$result.title}>" href="<{spUrl}>youji/info/<{$result.linkid}>.html"><{$result.title|truncate:13:"...":true}></a>
+                  <{elseif $result.types == 'user'}>
+                                   <{$result.title}>加入我们
+                  <{elseif $result.types == 'cover'}>
+                                   谢谢他的贡献.
+                  <{/if}></a></span><p>
+                  <{$result.releasedate|date_format:"%Y-%m-%d %H:%M:%S"}></p></li>
+          </ul>
+          <{/foreach}>
+
+      </div>
+    </div>
+  </div>
+  
+  <div class="spa15">          
+    <div class="c1"></div>
+ </div>
+  <div class="rigd pad_t20">
+  
+    <div>
+      <table>
+         <tr>
+           <td>
+             <div style="margin-top:-18px;" class="wrapper">
+<div id="focus_change">
+<div id="loading">请稍候...</div>
+<div id="ts_bg"><!-- 文字标题的背景 --></div>
+<div id="btn_bg">数字标签的背景</div>
+<div id="pics">
+    <ul>
+        <{foreach item=slideout from=$result_slide key=enname}>
+          <li><a target="_blank" href="<{$slideout.url}>"><img alt="<{$slideout.name}>" src="<{$slideout.picurl}>" width="460" height="320" /></a></li>
+        <{/foreach}>
+        <{foreach item=youjiphotoout from=$youjiphoto key=enname}>
+          <li><a target="_blank" href="<{$domain}>/youji/info/<{$youjiphotoout.id}>.html"><img alt="<{$youjiphotoout.title}>" src="<{$youjiphotoout.picurl}>" width="460" height="320" /></a></li>
+        <{/foreach}>
+    </ul>
+</div>
+<div id="ts">
+  <ul>
+        <{foreach item=slideout from=$result_slide key=enname}>
+          <li><a target="_blank" href="<{$slideout.url}>"></a><{$slideout.name}></li>
+        <{/foreach}>
+        <{foreach item=youjiphotoout from=$youjiphoto key=enname}>
+          <li><a target="_blank" href="<{$domain}>/youji/info/<{$youjiphotoout.id}>.html"><{$youjiphotoout.title}></a></li>
+        <{/foreach}>
+    </ul>
+</div>
+<div id="btn">
+  <ul>
+        <{foreach item=slideout from=$result_slide key=senname}>
+          <li><{$senname+1}></li>
+        <{/foreach}>
+        <{foreach item=youjiphotoout from=$youjiphoto key=enname}>
+          <li><{math equation="<{$slidenum}> + <{$enname+1}>"}></li>
+        <{/foreach}>
+    </ul>
+</div>
+</div>
+</body>
+</html>
+              </div>
+           </td>
+           <td width="10"></td>
+           <td>
+             <div style="width:220px;margin-top:-20px" id="ind_cen03_r">
+              <div style="width:210px;width: 210px!important;" class="ttit">推荐线路</div>
+                <div style="margin-left:5px;margin-bottom:5px;">
+                   <div align="left" style="margin-right:15px">
+                        <{foreach from=$tjlines item=resultline key=num}>
+                          <a title="<{$resultline.title}>" href="<{spUrl}>lines/<{$resultline.cityid['another']}>/<{$resultline.id}>.html"><{$resultline.title|truncate:17:"...":true}></a><br />
+                        <{/foreach}>
+                   </div>
+                </div>
+            </div>
+           </td>
+         </tr>
+      </table>
+    </div>
+       
+    <div id="tit02">
+      <div id="tit02_l"></div>
+      <div id="tit02_c">
+        <h2 id="tit02_t">好去处</h2>
+        <div id="tit02_b">good place</div>
+      </div>
+      <div id="tit02_r"><img src="tpl/images/nlw_more1.gif" /></div>
+    </div>
+    <div class="spa30">          <div class="c1"></div></div>
+    <div id="ind_cen02">
+
+         <{foreach from=$youjiinfo_result item=result}>
+        <div style="display:inline" id="ind_cen02_l">·<a href="<{spUrl}>youji/info/<{$result.id}>.html">【<{$result.title|truncate:10:"...":true}>】</a></div>
+        <div style="display:inline;" id="ind_cen02_r"><a href="#"><{$result.username}></a> <{$result.releasedate|date_format:"%Y-%m-%d"}></div>
+        <{/foreach}>
+
+
+    </div>
+    <div id="ind_cen03">
+      <div id="ind_cen03_l">
+        <div id="tit02">
+          <div id="tit02_l"></div>
+          <div id="tit02_c">
+            <h2 id="tit02_t">景点点评</h2>
+            <div id="tit02_b">attractions reviews</div>
+          </div>
+          <div id="tit02_r"><img src="tpl/images/nlw_more1.gif" /></div>
+        </div>
+          <{foreach from=$commentinfo_result item=result key=enname}>
+        <div id="ind_cen04">
+          <div id="ind_cen04_l"><img src="<{$userarray[$enname]|replace:'.jpg':''}>thumb_02.jpeg" width="50" height="50" /></div>
+          <div id="ind_cen04_r">
+            <div id="ind_cen04_r01">
+              <div id="ind_cen04_r01_l"><a href="#"><{$result.username}></a> 点评<a href="<{spUrl}>scenery/<{$result.sid}>.html"> <{$result.title}></a></div>
+              <div id="ind_cen04_r01_r"><{$result.releasedate|date_format:"%Y-%m-%d %H:%M:%S"}></div>
+            </div>
+            <div id="ind_cen04_r02"><{$result.content|strip_tags|truncate:28:"...":true}><a href="<{spUrl}>comment/info/<{$result.id}>.html">.[显示全文]</a></div>
+            <div id="ind_cen04_r03">加颗钻石&nbsp;<img src="tpl/images/nlw_ic2.gif" width="16" height="16" align="absmiddle" />1</span>&nbsp;<a href="<{spUrl}>comment/info/<{$result.id}>.html#content">添加回应</a></div>
+          </div>
+          </div>
+           <{/foreach}>
+      </div>
+      <div class="spa15">          
+        <div class="c1"></div></div>
+        <!-- fsdfds -->
+      <div id="ind_cen03_r">
+        <div class="ttit">当季人气景点</div>
+        <div style="width:180px;" id="ind_ph1l">
+            <{foreach from=$sceneryinfo_result_clicknumber item=result key=num}>
+              <div style="width:180px;" id="ind_ph1l_02">
+                <div id="ind_num1"><{$num+1}></div><div style="width:100px;" id="ind_numt2"><a href="<{spUrl}>scenery/<{$result.id}>.html"><{$result.title|strip_tags|truncate:10:"...":true}></a></div>
+              </div>
+            <{/foreach}>
+        </div>
+      </div>
+      <!-- fsdfdf -->
+    </div>
+    <div class="spa15"> <div class="c1"></div></div>
+    <div></div>
+  </div>
+</div>
+
+  <script>
+  $(function() {
+    //$( "#ind_cen05" ).tabs();
+    var ddd = $("#ind_cen05").tabs({ active: 1 });
+  });
+
+  </script>
+<div id="cont">
+  <div id="ind_cen05" style="height:495px;">
+    <ul id="d_tit05">
+      <li><a href="#tabs-1">厦门周边旅游</a></li>
+      <li><a href="#tabs-2">厦门周末休闲</a></li>
+    </ul>
+    <!-- 菜单1 -->
+    <div id="tabs-1" class="d_pic_m">
+          <div class="ui-box fn-clear">
+              <ul class="poi_hot" id="poi_hot">
+                <{foreach item=peripherybig from=$peripheryscenerybig key=num}>
+                  <li>
+                      <a target="_blank" title="<{$peripherybig.title}>" href="<{$domain}>/scenery/<{$peripherybig.id}>.html">
+                          <img src="<{$domain}>/uploadify3.2/uploads/<{$peripherybig.picurl['picurl']|replace:'.jpg':''}>_243x295.jpg" alt="<{$peripherybig.title}>" width="243" height="295">
+
+                      </a>
+                      <p class="alpha-txt alpha-txt-green"><a target="_blank" title="<{$peripherybig.title}>" href="<{$domain}>/scenery/<{$peripherybig.id}>.html"><{$peripherybig.title}></a>
+                      </p>
+                      <div class="alpha-txt intro_info">
+                          <p><{$peripherybig.ndly|strip_tags|truncate:50:"...":true}></p>
+                      </div>
+                  </li>
+                <{/foreach}>
+              </ul>
+              <ul class="poi_more">
+                <{foreach item=peripherymore from=$peripherybigscenerymore key=num}>
+                  <li>
+                     <a target="_blank" href="<{$domain}>/scenery/<{$peripherymore.id}>.html"><img src="<{$peripherymore.picurl}>" alt="<{$peripherymore.title}>" width="96" height="96"></a>
+                     <p><{$peripherymore.title}></p>
+                  </li>
+                <{/foreach}>
+              </ul>    
+          </div>
+    </div>
+    <!-- 菜单1 end -->
+    <!-- 菜单2 -->
+    <div id="tabs-2" class="d_pic_m">
+            <div class="ui-box fn-clear">
+                  <ul class="poi_hot2" id="poi_hot2">
+                <{foreach item=weekendbig from=$weekscenerybig key=num}>
+                  <li>
+                      <a target="_blank" title="<{$weekendbig.title}>" href="<{$domain}>/scenery/<{$weekendbig.id}>.html">
+                          <img src="<{$domain}>/uploadify3.2/uploads/<{$weekendbig.picurl['picurl']|replace:'.jpg':''}>_243x295.jpg" alt="<{$weekendbig.title}>" width="243" height="295">
+
+                      </a>
+                      <p class="alpha-txt alpha-txt-green"><a target="_blank" title="<{$weekendbig.title}>" href="<{$domain}>/scenery/<{$weekendbig.id}>.html"><{$weekendbig.title}></a>
+                      </p>
+                      <div class="alpha-txt intro_info">
+                          <p><{$weekendbig.ndly|strip_tags|truncate:50:"...":true}></p>
+                      </div>
+                  </li>
+                <{/foreach}>
+              </ul>
+                
+                <ul class="poi_more2">
+                 <{foreach item=weekscenerymorout from=$weekscenerymore key=num}>
+                  <li>
+                     <a target="_blank" href="<{$domain}>/scenery/<{$weekscenerymorout.id}>.html"><img src="<{$weekscenerymorout.picurl}>" alt="<{$weekscenerymorout.title}>" width="96" height="96"></a>
+                     <p><{$weekscenerymorout.title}></p>
+                  </li>
+                <{/foreach}>
+            </ul>    
+            </div>
+    </div>
+   <!-- 菜单2 end -->
+  </div>
+  <div></div>
+</div>
+<div id="cont">
+  <div class="leftd">
+    <div id="tit01">
+      <div class="tit01l">榜单</div>
+      <div class="tit01r"></div>
+    </div>
+    <div id="ind_l02bk">
+      <div id="ind_ph1l">
+          <{foreach from=$bdlist item=bdlistout key=num}>
+            <div id="ind_ph1l_01">
+              <div id="ind_num1"><{$num+1}></div><div id="ind_numt2"><a target="_blank" href='<{$domain}>/bdlist/info/<{$bdlistout.id}>.html'><{$bdlistout['title']|truncate:18:"...":true}></a></div>
+            </div>
+          <{/foreach}>
+      </div>
+    </div>
+
+        <div id="tit01">
+      <div class="tit01l">最新景点</div>
+      <div class="tit01r"></div>
+    </div>
+    <div id="ind_l02bk">
+      <div id="ind_ph1l">
+          <{foreach from=$sceneryinfo_result item=result key=num}>
+            <div id="ind_ph1l_01">
+              <div id="ind_num1"><{$num+1}></div><div id="ind_numt2"><a href="<{spUrl}>scenery/<{$result.id}>.html"><{$result.title}></a></div>
+            </div>
+          <{/foreach}>
+      </div>
+    </div>
+
+  </div>
+  <div class="spa15">          <div class="c1"></div></div>
+  <div class="rigd">
+    <div id="tit02">
+      <div id="tit02_l"></div>
+      <div id="tit02_c">
+        <h2 id="tit02_t">论坛问答</h2>
+        <div id="tit02_b">forum q &amp; a</div>
+      </div>
+      <div id="tit02_r"><img src="tpl/images/nlw_more1.gif" /></div>
+    </div>
+    <div id="ind_cen06">
+        <{foreach from=$answersinfo_result item=result key=num}>
+        <div id="ind_cen06_l"><a href="<{spUrl}>ask/info/<{$result.id}>.html"><{$result.title|strip_tags|truncate:15:"...":true}></a>&nbsp&nbsp&nbsp&nbsp<a href="#"><{$result.username}></a>发表于<a href="<{spUrl}>scenery/<{$result.sid}>.html"><{$sceneryuser[$num]}></a></div>
+        <div id="ind_cen06_r"> <{$result.releasedate|date_format:"%Y-%m-%d %H:%M:%S"}></div>
+        <{/foreach}>
+
+    </div>
+    <div id="tit02">
+      <div id="tit02_l"></div>
+      <div id="tit02_c">
+        <h2 id="tit02_t">哪玩达人</h2>
+        <div id="tit02_b">daren</div>
+      </div>
+      <div id="tit02_r"><img src="tpl/images/nlw_more1.gif" /></div>
+    </div>
+      <{foreach from=$top_resultuser item=resultuser key=num}>
+        <div id="d_pic03">
+          <div id="d_pic03_t"><img src="<{$resultuser.avatar|replace:'.jpg':''}>thumb_02.jpeg" width="64" height="64" /></div>
+          <div id="d_pic03_b"><{$resultuser.uname|truncate:10:"...":true}></div>
+        </div>
+      <{/foreach}>
+  </div>
+</div>
+<div id="cont">
+  <div id="d_bkgreen1">
+    <div id="d_bkgreen2">
+      <div  id="d_bkgreen_le">
+        <div id="d_bkgreen_let">
+          <div id="d_bkgreen_let1">参加活动</div>
+          <div id="tit02_r"><img src="tpl/images/nlw_more1.gif" /></div>
+        </div>
+
+      <{foreach from=$activitytop item=activity key=num}>
+        <div id="ind_cen07">
+          <div id="ind_cen07_l"><a href="<{spUrl}>activity/<{$cityabb}>/<{$activity.id}>.html">
+          <img src="<{$activity.picurl}>" />
+          </a></div>
+          <div id="ind_cen07_r">
+            <h3 id="ind_cen07_r01"><a href="<{spUrl}>activity/<{$cityabb}>/<{$activity.id}>.html"><{$activity.title|truncate:12:"...":true}></a></h3>
+            <div id="ind_cen07_r02">地点：<{$activity.address|truncate:7:"...":true}></div>
+            <div id="ind_cen07_r02">报名截止：<{$activity.endtime|date_format:"%Y-%m-%d"}></div>
+            <div id="ind_cen07_r02">活动开始：<{$activity.releasedate|date_format:"%Y-%m-%d"}></div>
+            <div id="ind_cen07_r02" class="torange1">费用：<{$activity.tickets}>元</div>
+          </div>
+        </div>
+      <{/foreach}>
+
+      </div>
+      <div id="d_bkgreen_ce"><img src="tpl/images/nlw_jb1.jpg" width="23" height="413" /></div>
+      <div  id="d_bkgreen_ri">
+        <div id="d_bkgreen_let">
+          <div id="d_bkgreen_let1">专题策划</div>
+          <div id="tit02_r"><img src="tpl/images/nlw_more1.gif" /></div>
+        </div>
+       
+       <{foreach from=$activitytop item=activity key=num}>
+         <div id="ind_zt01">
+          <div id="ind_ztpibg1"><a href="<{spUrl}>activity/<{$cityabb}>/<{$activity.id}>.html"><img src="<{$activity.picurl}>" /> </a></div>
+          <h3 id="ind_ztpitxt1"><a href="<{spUrl}>activity/<{$cityabb}>/<{$activity.id}>.html"><{$activity.title|truncate:16}></a></h3>
+          <div id="ind_ztpitxt2"><{$activity.content|strip_tags|truncate:60}></div>
+          <div id="ind_ztpitxt3"><a style="color:#FFF;" href="<{spUrl}>activity/<{$cityabb}>/<{$activity.id}>.html">去看看吧</a></div>
+        </div>
+      <{/foreach}>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // 菜单1
+        $("#poi_hot li,#wanfa_pic li:first").hover(function () {
+            var $this = $(this);
+            $this.find('div.intro_info').show();
+            Tab('b','bx',5,3);
+
+        }, function () {
+            var $this = $(this);
+            $this.find('div.intro_info').hide();
+        })
+        // 菜单2
+        $("#poi_hot2 li,#wanfa_pic li:first").hover(function () {
+            var $this = $(this);
+            $this.find('div.intro_info').show();
+            Tab('b','bx',5,3);
+
+        }, function () {
+            var $this = $(this);
+            $this.find('div.intro_info').hide();
+        })
+        return document.getElementById(obj)
+    });
+</script>
+<{include file="home_footer.html"}>

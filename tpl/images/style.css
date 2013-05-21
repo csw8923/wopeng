@@ -1,0 +1,284 @@
+
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+*/
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #FFFFFF url(img01.gif) repeat-x left top;
+	font-size: 12px;
+	color: #8A8A8A;
+}
+
+h1, h2, h3 {
+	margin: 0;
+	text-transform: uppercase;
+	font-weight: normal;
+	color: #618C04;
+}
+
+h1 { font-size: 44px; }
+
+h2 { font-size: 18px; }
+
+h3 { }
+
+p, ul, ol {
+	margin-top: 0;
+	line-height: 240%;
+	text-align: justify;
+}
+
+ul, ol { }
+
+blockquote { }
+
+a { color: #77B003; }
+
+a:hover { text-decoration: none; }
+
+a img {
+	border: none;
+}
+
+img.left {
+	float: left;
+	margin: 7px 30px 0 0;
+}
+
+img.right {
+	float: right;
+	margin: 7px 0 0 30px;
+}
+
+hr { display: none; }
+
+.list1 {
+}
+
+p span{padding-left:20px;}
+
+.list1 li {
+	float: left;
+	line-height: normal;
+}
+
+.list1 li img {
+	margin: 0 30px 30px 0;
+}
+
+.list1 li.alt img {
+	margin-right: 0;
+}
+
+#wrapper {
+}
+
+/* Header */
+
+#header-wrapper {
+}
+
+#header {
+	width: 960px;
+	height: 36px;
+	margin: 0 auto;
+}
+
+/* Menu */
+
+#menu {
+	float: left;
+	width: 680px;
+	height: 43px;
+	background: url(img02.jpg) no-repeat left top;
+}
+
+#menu ul {
+	margin: 0;
+	padding: 0px 0px 0px 0px;
+	list-style: none;
+	line-height: normal;
+}
+
+#menu li {
+	display: block;
+	float: left;
+}
+
+#menu a {
+	display: block;
+	float: left;
+	height: 30px;
+	margin: 0;
+	padding: 13px 30px 0px 30px;
+	background: url(img02.gif) no-repeat left top;
+	text-decoration: none;
+	text-align: center;
+	text-transform: capitalize;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+#menu a:hover { 
+	text-decoration: none; 
+}
+
+#menu .current_page_item a {
+}
+
+#menu .first {
+}
+
+
+/* Page */
+
+#page {
+	width: 980px;
+	margin: 0 auto;
+	padding: 70px 0px 0px 0px;
+	min-height:300px; /*高度最小值设置*/
+	height:auto !important; /*兼容FF,IE7也支持 !important标签*/
+	height:300px; /*兼容ie6*/
+}
+
+#leftbox{
+  float:left;
+  width:260px;
+}
+#rightbox{
+  float:right;
+  width:720px;
+}
+
+/** LOGO */
+
+#logo {
+	width: 980px;
+	height: 115px;
+	margin: 0 auto;
+}
+
+#logo h1, #logo p {
+	margin: 0px;
+	line-height: normal;
+	text-transform: lowercase;
+	font-weight: normal;
+	color: #618C04;
+}
+
+#logo p {
+	margin-top: -4px;
+	text-transform: lowercase;
+	font-size: 13px;
+	color: #A8A8A8;
+}
+
+#logo h1 {
+	padding-top: 10px;
+	font-size: 48px;
+}
+
+#logo a {
+	text-decoration: none;
+	color: #A8A8A8;
+}
+
+#logo h1 a {
+	text-decoration: none;
+	color: #618C04;
+}
+
+
+#banner {
+	padding-bottom: 20px;
+}
+
+/* Content */
+
+#content {
+	float: right;
+	width: 670px;
+}
+
+/* Post */
+
+.post {
+	margin-bottom: 45px;
+}
+
+.post .title {
+	height: 44px;
+	font-size: 30px;
+	padding-left: 15px;
+}
+
+.post .title a {
+	text-decoration: none;
+	text-transform: capitalize;
+	font-size: 30px;
+	color: #618C04;
+}
+
+.post .date {
+}
+
+.post .meta {
+	margin-top: -8px;
+	margin-left: 2px;
+	padding: 0px 30px 2px 15px;
+	border-bottom: 1px solid #D4D8CB;
+	color: #66665E;
+}
+
+.post .meta span {
+	display: block;
+	margin-top: -10px;
+}
+
+.post .meta a { }
+
+.post .entry {
+	margin-bottom: 10px;
+	padding: 10px 15px 10px 15px;
+}
+
+.post .links {
+	width: 120px;
+	height: 24px;
+	background: url(img03.gif) no-repeat left top;
+	font-size: 12px;
+	color: #666666;
+	border:0;
+	padding-left:28px;
+}
+
+/* Footer */
+
+#footer {
+	width: 100%;
+	height: 100px;
+	margin: 0 auto;
+	padding: 0;
+	background: #E1E1E1;
+}
+
+#footer-bgcontent {
+}
+
+#footer p {
+	margin: 0;
+	padding: 30px 0px 0px 0px;
+	text-align: center;
+	line-height: normal;
+	text-transform: uppercase;
+	font-size: 10px;
+}
+
+#footer a {
+}

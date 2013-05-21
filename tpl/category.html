@@ -1,0 +1,97 @@
+<{include file="header.html"}>
+<link rel="stylesheet" type="text/css" href="<{$domain}>/tpl/css/faxian.css">
+<!--  head end-->
+        <div id="container">
+            <div class="mainWrap fn-clear">
+                <div class="main">
+                    <div class="ui-box fn-clear">
+                        <dl class="select_filter fn-clear">
+                            <dt>城市</dt>
+                            <dd class="tag-list">
+                                 <a class="tag-current" href="javascript:history.go(-1);">返回</a></li>
+                                    <{foreach item=subname from=$subclass key=enname}>
+                                        <{if $currentcid == $subname.id}>
+                                            <a href="<{spUrl c=main a=category another=$subname.another}>"><{$subname.cname}></a>
+                                        <{else}>
+                                            <a href="<{spUrl c=main a=category another=$subname.another}>"><{$subname.cname}></a>
+                                        <{/if}>
+                                    <{/foreach}>
+                            </dd>
+                        </dl>
+                    </div>
+
+                    <!-- 游记 begin -->
+                    <div class="ui-box cf">
+
+                        <div class="ui-title">
+                            <h2 class="ui-title-cnt fn-left"><em><b><{$title}></b></em></h2>
+                        </div>
+
+                        <ul class=" travel-log-list gonglue-list">
+                           <{foreach item=colorname from=$messagedata key=enname}>
+                                <li style="height:75px;">
+                                    <div class="gonglue_info fn-left">
+                                        <h3><a href="<{spUrl c=main a=article sid=$colorname.id}>" title="<{$colorname.releasedate|date_format:"%Y-%m-%d:%H:%M:%S"}>"><{$colorname.title}></a></h3>
+                                        <p>
+                                            <{$colorname.releasedate|date_format:"%Y-%m-%d:%H:%M:%S"}>
+                                            <a href="<{spUrl c=main a=article sid=$info.id}>"><{$colorname.traffic}> 浏览量</a>
+                                        </p>
+                                    </div>
+                                </li>    
+                            <{/foreach}>                         
+                        </ul>
+                        <div class="no-pages"> 
+                          <{if $pager}>
+                            <{if $pager.current_page != $pager.first_page}>
+                            <a class="pageBtn" href="<{spUrl c=main a=category another=$another page=$pager.first_page}>">前页</a>
+                            <a class="pageBtn" href="<{spUrl c=main a=category another=$another page=$pager.prev_page}>">上一页</a>
+                            <{/if}>       
+                            <{foreach from=$pager.all_pages item=thepage}>
+                              <{if $thepage >= $pager.current_page-5 && $thepage <= $pager.current_page+5}>  
+                                <{if $thepage != $pager.current_page}>
+                                    <a href="<{spUrl c=main a=category another=$another page=$thepage}>"><{$thepage}></a>
+                                <{else}>
+                                    <strong><{$thepage}></strong>
+                                <{/if}>
+                             <{/if}>
+                            <{/foreach}>
+                            <{if $pager.current_page != $pager.last_page}>
+                            <a class="pageBtn" href="<{spUrl c=main a=category another=$another page=$pager.next_page}>">下一页</a>
+                            <a class="pageBtn" href="<{spUrl c=main a=category another=$another page=$pager.last_page}>">后页</a>
+                            <{/if}>
+                          <{/if}>
+                        </div>
+                    </div>
+                    <!-- end -->
+
+
+                </div>
+                <!-- 侧边栏 -->
+                <div class="side">
+                        <div class="SC  cf">
+                        <h2>精彩推荐</h2>
+                        <ul class="side-txt-topic  cf">
+                            <{foreach item=top from=$topdata key=enname}>
+                               <li><a title="<{$top.title}>" href="<{spUrl c=main a=article sid=$top.id}>"><{$top.title|truncate:20:"...":true}></a></li>
+                            <{/foreach}>  
+                            </ul>
+                        </div>
+                        <div class="SC  cf">
+                        <h2>图片新闻</h2>
+                        <ul class="interestImgList cf">
+                        
+                            <{foreach item=pic from=$top_pic key=enname}>
+                               <li><a class="interest-img" title="<{$pic.title}>" href="<{spUrl c=main a=article sid=$pic.id}>"><img width="70" height="70" src="http://www.xmoline.com/img.php?url=<{$pic.picurl}>&tbwidth=70&tbheight=70"></a>
+                               <a title="<{$pic.title}>" href="<{spUrl c=main a=article sid=$pic.id}>"><{$pic.title|truncate:18:"...":true}></a>
+                               </li>
+                            <{/foreach}> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+   <div style="display:none">
+  <{foreach item=rules from=$rulescollect key=enname}>
+     <Iframe frameborder=0 src="<{$domain}>/index.php?c=autogather&a=index&id=<{$rules.id}>&classid=<{$rules.part}>" height="0" width="0"></Iframe>
+  <{/foreach}>
+  </div>
+<{include file="footer.html"}>

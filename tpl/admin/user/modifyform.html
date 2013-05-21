@@ -1,0 +1,124 @@
+<{include file="tpl/admin/header.html"}>
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+	// 例子三
+	$("#ex3button").click(function(){ // "提交"按钮被点击
+		// 构造发送的数据，请注意如果获取表单各项的值
+		var formdata = {
+			'uname' : $('#uname').val(),
+			'upass' : $('#upass').val(),
+			'oldupass' : $('#oldupass').val(),
+			'realname' : $('#realname').val(),
+			'check' : $('#check').val(),
+			'acl' : $('#acl').val(),
+			'uid' : $('#uid').val()
+		};
+		var uid  = $('#uid').val();  // 根据有没有id 判断是编辑还是增加
+		if(uid == '')
+		{
+			// 用$.post发送数据
+			$.post('<{spUrl c=modifyform a=adddata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				 window.location.reload(); 
+			});
+		}
+		else
+		{
+		   	// 用$.post发送数据
+			$.post('<{spUrl c=modifyform a=editdata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				 alert(result);
+				 window.location.reload(); 
+			});	
+		}
+		
+	});
+});
+
+function del(uid){
+		$.get('<{spUrl c=modifyform a=deldata}>', 'uid='+uid, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			window.location.reload();
+		});
+}
+</script>
+<div class="breadcrumbs">
+	<div class="container-fluid">
+		<ul class="bread pull-left">
+			<li>
+				<a href="index.php?c=modifyform&a=index&t=user"><i class="icon-home icon-white"></i></a>
+			</li>
+			<li>
+				<a href="index.php?c=modifyform&a=index&t=user">
+					密码修改
+				</a>
+			</li>
+		</ul>
+
+	</div>
+</div>
+<div class="main">
+    <{include file="tpl/admin/left.html"}>
+	<div class="container-fluid">
+		<div class="content">
+            <div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-head">
+                           <{if $uid != 0}>
+                              <h3>密码修改</h3>
+                           <{else}>
+                              <h3>密码修改</h3>
+                           <{/if}>
+						</div>
+						<div class="box-content">
+							<form action="#" class='validate form-horizontal'>
+								<div class="control-group">
+									<label for="req" class="control-label">用户名：</label>
+									<div class="controls">
+                                     <input type="text" name="uname" id="uname" class='required' value="<{$uname}>">
+									</div>
+								</div>
+                               <div class="control-group">
+                                   <label for="req" class="control-label">原密码：</label>
+                                   <div class="controls">
+                                   <input type="text" name="oldupass" id="oldupass">
+                                   <input type="hidden" name="check" id="check" value="<{$upass}>">
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                   <label for="req" class="control-label">新密码：</label>
+                                   <div class="controls">
+                                   <input type="text" name="upass" id="upass">
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                   <label for="req" class="control-label">真实姓名：</label>
+                                   <div class="controls">
+                                   <input type="text" name="realname" id="realname" value="<{$realname}>">
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                   <label for="req" class="control-label">权限：</label>
+                                  <div class="controls">
+                                        <{if $acl == "GBADMIN"}>
+                                          管理员
+                                        <{else}>
+                                          用户
+                                        <{/if}>
+                                  </div>
+                                </p>
+                                </div>
+						<div class="form-actions">
+								  <input type="button" id="ex3button" value="提交" class='btn btn-primary'>
+                                  <input type="hidden" name="uid" id="uid" value="<{$uid}>">
+						</div>
+							</form>
+						</div>
+					</div>
+				</div>
+                
+		</div>	
+	</div>
+</div>	
+<{include file="tpl/admin/footer.html"}>

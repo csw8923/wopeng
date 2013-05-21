@@ -1,0 +1,20 @@
+﻿ <ul>
+      <li><a href="<{spUrl c=ucenter a=UserData}>"><span class="tgreen">- 修改资料</span></a></li>
+      <li><a href="<{spUrl c=ucenter a=UserPass}>">- 修改密码</a></li>
+      <li><a href="<{spUrl c=ucenter a=UserGuide}>">- 更换头像</a></li>
+      <li><a href="<{spUrl c=ucenter a=Userprivateletter}>">- 私信管理</a>
+      <li><a href="<{spUrl c=ucenter a=UserRemind}>">- 提醒管理</a>
+      <li><a href="<{spUrl c=ucenter a=UserPayment}>">- 报名付款</a>
+      <li><a href="<{spUrl c=ucenter a=UserActivity}>">- 发起活动</a>
+      <li><a href="<{spUrl c=ucenter a=UserListbd}>">- 榜单管理</a>
+      </li>
+      <{if empty($qqlink)}>
+      <li><a href="<{spUrl}>qqlink/oauth/bind.php">- 账号关联(QQ 微博)</a></li>
+      <{/if}>
+      <li><a href="<{spUrl c=ucenter a=UserSantgoScenery}>">- 想去地方</a>
+      </li>
+      <li><a href="<{spUrl c=ucenter a=UserSantgoScenery}>">- 去过地方</a>
+      </li>
+<!--   <li><a href="#">- 我的提醒</a></li>
+      <li><a href="#">- 我的私信</a></li> -->
+  </ul>

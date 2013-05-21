@@ -1,0 +1,477 @@
+<div class="navi">
+    <ul class='main-nav'>
+
+         <{if $t_type == "core"}>
+           <li class='active open'>
+         <{else}>
+           <li>
+         <{/if}>
+            <a href="#" class='light toggle-collapsed'>
+                <div class="ico"><i class="icon-th-large icon-white"></i></div>
+                核心业务管理
+                <img src="tpl/admin/img/toggle-subnav-up-white.png" alt="">
+            </a>
+             <{if $t_type == "core"}>
+                <ul class='collapsed-nav'>
+             <{else}>
+                <ul class='collapsed-nav closed'>
+             <{/if}>
+             
+            <{if $t_curl == "cityinfolist"}>
+                <li class='active'>
+                <a href="index.php?c=cityinfolist&a=index&t=core">
+                    省份城市管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=cityinfolist&a=index&t=core">
+                    省份城市管理
+                </a>
+                </li>
+             <{/if}>
+
+             <{if $t_curl == "chainform"}>
+                  <li class='active'>
+                  <a href="index.php?c=chainform&a=index&t=core&limit=10">
+                      关键词分类
+                  </a>
+                  </li>
+              <{else}>
+                  <li>
+                  <a href="index.php?c=chainform&a=index&t=core&limit=10">
+                      关键词分类
+                  </a>
+                  </li>
+              <{/if}>
+
+            <{if $t_curl == "sceneryinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=sceneryinfoform&a=index&t=core">
+                    景点管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=sceneryinfoform&a=index&t=core">
+                    景点管理
+                </a>
+                </li>
+             <{/if}>
+
+             <{if $t_curl == "debuginfoform"}>
+                <li class='active'>
+                <a href="index.php?c=debuginfoform&a=index&t=core">
+                    bug和任务管理
+                    <{if $smarty.session.quser.uid eq '1'}>
+                    (<{$debuginfonum}>)
+                    <{/if}>
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=debuginfoform&a=index&t=core">
+                    bug和任务管理
+                    <{if $smarty.session.quser.uid eq '1'}>
+                    (<{$debuginfonum}>)
+                    <{/if}>
+                </a>
+                </li>
+             <{/if}>
+
+             <{if $t_curl == "soldoutinfoform"}>
+                    <li class='active'>
+                    <a href="index.php?c=soldoutinfoform&a=index&t=core">
+                        城市出团管理
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=soldoutinfoform&a=index&t=core">
+                        城市出团管理
+                    </a>
+                    </li>
+            <{/if}>
+                 
+            <{if $t_curl == "activityinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=activityinfoform&a=index&t=core">
+                    活动管理
+                </a>
+                </li>
+            <{else}>
+                <li>
+                <a href="index.php?c=activityinfoform&a=index&t=core">
+                    活动管理
+                </a>
+                </li>
+             <{/if}>
+
+            <{if $t_curl == "listbdinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=listbdinfoform&a=index&t=core">
+                    榜单管理
+                </a>
+                </li>
+            <{else}>
+                <li>
+                <a href="index.php?c=listbdinfoform&a=index&t=core">
+                    榜单管理
+                </a>
+                </li>
+             <{/if}>
+                 
+            <{if $t_curl == "linesinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=linesinfoform&a=index&t=core">
+                    线路管理
+                </a>
+                </li>
+            <{else}>
+                <li>
+                <a href="index.php?c=linesinfoform&a=index&t=core">
+                    线路管理
+                </a>
+                </li>
+             <{/if}>
+
+            </ul>
+        </li>
+
+        <{if $t_type == "info"}>
+           <li class='active open'>
+         <{else}>
+           <li>
+         <{/if}>
+            <a href="#" class='light toggle-collapsed'>
+                <div class="ico"><i class="icon-th-large icon-white"></i></div>
+                特色功能管理
+                <img src="tpl/admin/img/toggle-subnav-up-white.png" alt="">
+            </a>
+             <{if $t_type == "info"}>
+                <ul class='collapsed-nav'>
+             <{else}>
+                <ul class='collapsed-nav closed'>
+             <{/if}>
+
+             <{if $t_curl == "youjiinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=youjiinfoform&a=index&t=info">
+                    游记管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=youjiinfoform&a=index&t=info">
+                    游记管理
+                </a>
+                </li>
+             <{/if}>
+
+            <{if $t_curl == "privateletterinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=privateletterinfoform&a=index&t=info">
+                    私信管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=privateletterinfoform&a=index&t=info">
+                    私信管理
+                </a>
+                </li>
+             <{/if}>
+
+             <{if $t_curl == "remindinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=remindinfoform&a=index&t=info">
+                    提醒管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=remindinfoform&a=index&t=info">
+                    提醒管理
+                </a>
+                </li>
+             <{/if}>
+
+             <{if $t_curl == "commentinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=commentinfoform&a=index&t=info">
+                    点评管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=commentinfoform&a=index&t=info">
+                    点评管理
+                </a>
+                </li>
+             <{/if}>
+             
+             <{if $t_curl == "replyinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=replyinfoform&a=index&t=info">
+                    评论管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=replyinfoform&a=index&t=info">
+                    评论管理
+                </a>
+                </li>
+             <{/if}>
+
+             <{if $t_curl == "answersinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=answersinfoform&a=index&t=info">
+                    问答库管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=answersinfoform&a=index&t=info">
+                    问答库管理
+                </a>
+                </li>
+             <{/if}>
+             
+            <{if $t_curl == "localsinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=localsinfoform&a=index&t=info">
+                    风土人情库管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=localsinfoform&a=index&t=info">
+                    风土人情库管理
+                </a>
+                </li>
+             <{/if}>
+
+              <{if $t_curl == "albuminfoform"}>
+                <li class='active'>
+                <a href="index.php?c=albuminfoform&a=index&t=info">
+                    相册管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=albuminfoform&a=index&t=info">
+                    相册管理
+                </a>
+                </li>
+             <{/if}>
+    
+             <{if $t_curl == "visitsinfoform"}>
+                <li class='active'>
+                <a href="index.php?c=visitsinfoform&a=index&t=info">
+                    自由行线路库管理
+                </a>
+                </li>
+             <{else}>
+                <li>
+                <a href="index.php?c=visitsinfoform&a=index&t=info">
+                    自由行线路库管理
+                </a>
+                </li>
+             <{/if}>
+                 
+            </ul>
+        </li>
+        
+         <{if $t_type == "user"}>
+           <li class='active open'>
+         <{else}>
+           <li>
+         <{/if}>
+            <a href="#" class='light toggle-collapsed'>
+                <div class="ico"><i class="icon-book icon-white"></i></div>
+                 网站管理
+                <img src="tpl/admin/img/toggle-subnav-down.png" alt="">
+            </a>
+             <{if $t_type == "user"}>
+                <ul class='collapsed-nav'>
+             <{else}>
+                <ul class='collapsed-nav closed'>
+             <{/if}>
+
+                <{if $t_curl == "deploy"}>
+                    <li class='active'>
+                    <a href="index.php?c=deploy&a=index&t=user">
+                        网站配置
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=deploy&a=index&t=user">
+                        网站配置
+                    </a>
+                    </li>
+               <{/if}>
+                 
+               <{if $t_curl == "modifyform"}>
+                    <li class='active'>
+                    <a href="index.php?c=modifyform&a=index&t=user">
+                        密码修改
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=modifyform&a=index&t=user">
+                        密码修改
+                    </a>
+                    </li>
+                 <{/if}>
+                 
+                <{if $t_curl == "usersform"}>
+                    <li class='active'>
+                    <a href="index.php?c=usersform&a=index&t=user">
+                        用户管理
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=usersform&a=index&t=user">
+                        用户管理
+                    </a>
+                    </li>
+                 <{/if}>
+                 
+                 <{if $t_curl == "aclform"}>
+                    <li class='active'>
+                    <a href="index.php?c=aclform&a=index&t=user">
+                        权限分配表
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=aclform&a=index&t=user">
+                        权限分配表
+                    </a>
+                    </li>
+                 <{/if}>
+                 
+                 <{if $t_curl == "linksform"}>
+                    <li class='active'>
+                    <a href="index.php?c=linksform&a=index&t=user&limit=10">
+                        友情链接管理
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=linksform&a=index&t=user&limit=10">
+                        友情链接管理
+                    </a>
+                    </li>
+                 <{/if}>
+
+                 <{if $t_curl == "insidelinksform"}>
+                    <li class='active'>
+                    <a href="index.php?c=insidelinksform&a=index&t=user&limit=10">
+                        关键字内链管理
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=insidelinksform&a=index&t=user&limit=10">
+                        关键字内链管理
+                    </a>
+                    </li>
+                 <{/if}>
+
+                 <{if $t_curl == "slideform"}>
+                    <li class='active'>
+                    <a href="index.php?c=slideform&a=index&t=user&limit=10">
+                        首页幻灯片管理
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=slideform&a=index&t=user&limit=10">
+                        首页幻灯片管理
+                    </a>
+                    </li>
+                 <{/if}>
+
+                <{if $t_curl == "windisplayform"}>
+                    <li class='active'>
+                    <a href="index.php?c=windisplayform&a=index&t=user&limit=10">
+                        展示窗口管理
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=windisplayform&a=index&t=user&limit=10">
+                        展示窗口管理
+                    </a>
+                    </li>
+                 <{/if}>
+            </ul>
+        </li>
+        
+        <{if $t_type == "message"}>
+           <li class='active open'>
+         <{else}>
+           <li>
+         <{/if}>
+            <a href="#" class='light toggle-collapsed'>
+                <div class="ico"><i class="icon-book icon-white"></i></div>
+                 文章信息管理
+                <img src="tpl/admin/img/toggle-subnav-down.png" alt="">
+            </a>
+             <{if $t_type == "message"}>
+                <ul class='collapsed-nav'>
+             <{else}>
+                <ul class='collapsed-nav closed'>
+             <{/if}>
+                   <{if $t_curl == "messageinfoform"}>
+                    <li class='active'>
+                    <a href="index.php?c=messageinfoform&a=index&t=message">
+                        内容管理
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=messageinfoform&a=index&t=message">
+                        内容管理
+                    </a>
+                    </li>
+                 <{/if}>
+
+                 <{if $t_curl == "categorylist"}>
+                    <li class='active'>
+                    <a href="index.php?c=categorylist&a=index&t=message">
+                        分类管理
+                    </a>
+                    </li>
+                 <{else}>
+                    <li>
+                    <a href="index.php?c=categorylist&a=index&t=message">
+                        分类管理
+                    </a>
+                    </li>
+                 <{/if}>
+
+              <{if $t_curl == "dockform"}>
+                  <li class='active'>
+                  <a href="index.php?c=rulesform&a=index&t=message&limit=10">
+                      采集规则表
+                  </a>
+                  </li>
+              <{else}>
+                  <li>
+                  <a href="index.php?c=rulesform&a=index&t=message&limit=10">
+                      采集规则表
+                  </a>
+                  </li>
+              <{/if}>
+
+            </ul>
+        </li>
+
+    </ul>
+</div>

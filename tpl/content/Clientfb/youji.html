@@ -1,0 +1,228 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>游记发布</title>
+  <{include file="header.html"}>
+<style type="text/css">
+  #first_a{
+  width:241px;
+  border:1px solid #CCC;
+}
+#first_a tr:hover{
+  background:#969;
+}
+#first_a table{
+width:100%;
+}
+#first_a{
+  display:none;
+}
+</style>
+<!-- <div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="<{$domain}>/tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门好玩的地方</h1>
+        <div id="tban_le_txt">推荐厦门好玩的地方，把网友去过的好玩的地方的经历感触，分享给没去过或正想去的人。</div>
+      </div>
+      <div id="tban_le_03"><img src="<{$domain}>/tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="<{$domain}>/tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1">厦门周边一日游 厦门周边农家乐 厦门有什么好玩的地方
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="<{$domain}>/tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div> -->
+    <div style="margin-top:10px;" id="cont">
+        <div id="d_tit06">
+            游记发布</div>
+        <div id="d_bk_t">
+            <div id="d_bk_t01">
+                <div class="c1">
+                </div>
+            </div>
+            <div id="d_bk_t02">
+                <div class="c1">
+                </div>
+            </div>
+        </div>
+            <div id="userinfo_bk">
+              <div id="userinfo_bk2">
+                <table width="800" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#d1d1d1">
+                    <tr>
+                        <td width="150" height="55" class="tab_left">
+                            标题：
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                            <input type="text" name="title" class="tab_txt1" id="title" size="60" value="<{$out_youji['title']}>"><span class="torange1"></span>
+                        </td>
+                    </tr>
+                     <script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/publish_editor_config.js"></script>
+                     <script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/editor_all.js"></script>
+                     <style type="text/css">
+                      .clear {
+                          clear: both;
+                      }
+                    </style>
+
+                    <tr>
+                        <td height="55" class="tab_left">
+                            内容：
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                          <div>
+                              <script id="content" type="text/plain"><{$out_youji['content']}></script>
+                              <span class="torange1"></span>
+                          </div>
+                            <script type="text/javascript">
+                                //实例化编辑器
+                                var ue = UE.getEditor('content');
+                                ue.addListener('selectionChange',function(){
+                                    var content =  UE.getEditor('content').getContent();
+                                    var rrs =  /(<a([^>]*)>)(.*)(<\/a([^>]*)>)/gi;
+                                    var returns = content.match(rrs);
+                                    if(returns != null)
+                                    {
+                                      setContent();
+                                      return false
+                                    }
+                                });
+                            </script>
+                            <script type="text/javascript">
+                                function setContent() {
+                                  var content =  UE.getEditor('content').getContent();
+                                  content = content.replace(/(<\/?a[^>]*>)(?!.*\1)/ig,"");
+                                  UE.getEditor('content').setContent(content);
+                                }
+                            </script>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="55" class="tab_left"> 
+                        </td>
+                        <td bgcolor="#FFFFFF" class="tab_right">
+                            <a id="ex3button" href="javascript:;"><img src="../../../tpl/images/nlw_bt3.gif" width="148" height="36" /></a>
+                            <{if $funs == 'edit'}>
+                            <input type="hidden" name="id" id="id" value="<{$linkid}>">
+                            <{else}>
+                            <input type="hidden" name="id" id="id" value="">
+                            <{/if}>
+                        </td>
+                    </tr>
+                </table>
+                </div>
+      </div>
+  <div id="d_bk_b">
+            <div id="d_bk_b01">
+                <div class="c1">
+                </div>
+            </div>
+            <div id="d_bk_b02">
+                <div class="c1">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+<script type="text/javascript">
+<!--  
+function hotkey()  
+{  
+  var a=window.event.keyCode;  
+  if(a==13)  
+  {  
+    updata();
+  }  
+  }// end hotkey  
+  document.onkeydown = hotkey; 
+  </script>
+<script type="text/javascript">
+$(document).ready(function(){
+  // 例子三
+  $("#ex3button").click(function(){
+    updata();
+  });
+});
+</script>
+<script>
+function updata(){
+
+    var formdata = {
+      'id' : $('#id').val(),
+      'title' : $('#title').val(),
+      'username' : '<{$username}>',
+      'content' : UE.getEditor('content').getContent(),
+      'provinceid' : '<{$provinceid}>',
+      'cityid' : '<{$cityid}>',
+      'areaid' : '<{$areaid}>',
+      'types' : '<{$types}>',
+      'linkid' : '<{$linkid}>',
+      'userid' : '<{$userid}>'
+    };
+    var id  = $('#id').val(); 
+    var newId;
+    if(id == '')
+    {
+      // 用$.post发送数据
+      $.post('<{spUrl c=youjiinfoform a=adddata}>', formdata, function(result){
+                $('#resulttable').append(result);
+          newId =result.match(/^\d.*$/);
+          feedback(result,id,newId);
+      });
+    }
+    else
+    {
+        // 用$.post发送数据
+      $.post('<{spUrl c=youjiinfoform a=useredit}>', formdata, function(result){
+        $('#resulttable').append(result); 
+         newId =result.match(/^\d.*$/);
+        feedback(result,id,newId);
+      }); 
+    }
+}
+
+function feedback(result,id,newId){
+  if(newId == null)
+  {
+    $('.badge').removeClass('badge badge-info').text('');
+    var response = eval("("+result+")");
+    var msg = "<font color='red'>错误提示！！</font><br />";
+    var n = 1;
+    for(var i in response){
+      msg += n+"、"+response[i].toString()+"<br />";
+      n++;
+    }
+     art.dialog({
+        lock: true,
+        opacity: 0.87,
+        content: msg
+     });
+  }
+  else
+  {
+     art.dialog({
+        time: 2,
+        lock: true,
+        opacity: 0.87,
+        content: "<font color='#FF0000'>恭喜你！发布游记成功！</font><br /><a href='javascript:yd("+newId+")''>立刻去看发布内容</a>.<br /></a>"
+     });
+     setTimeout("yd("+newId+")",2000); 
+  }
+}
+
+function yd(newId)
+{
+   window.location.href='<{spUrl}>youji/info/'+newId+'.html';
+}
+
+</script>
+<{include file="footer.html"}>

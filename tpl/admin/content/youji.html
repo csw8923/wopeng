@@ -1,0 +1,517 @@
+<{include file="tpl/admin/header.html"}>
+<script src="tpl/admin/src/js/jscal2.js"></script>
+<script src="tpl/admin/src/js/unicode-letter.js"></script>
+<script src="tpl/admin/src/js/lang/cn.js"></script>
+<link rel="stylesheet" type="text/css" href="tpl/admin/src/css/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="tpl/admin/src/css/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="tpl/admin/src/css/steel/steel.css" />
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+	// 例子三
+	$("#ex3button").click(function(){ // "提交"按钮被点击
+		// 构造发送的数据，请注意如果获取表单各项的值
+		var formdata = {
+			'id' : $('#id').val(),
+			'title' : $('#title').val(),
+			'ctitle' : $('#ctitle').val(),
+			'ckeyword' : $('#ckeyword').val(),
+			'cdirections' : $('#cdirections').val(),
+			'types' : $('#types').val(),
+			'linkid' : $('#linkid').val(),
+			'username' : $('#username').val(),
+			'picurl' : $('#picurl').val(),
+			'releasedate' : $('#releasedate').val(),
+			'content' : UE.getEditor('content').getContent(),
+			'provinceid' : $('#provinceid').val(),
+			'cityid' : $('#cityid').val(),
+			'areaid' : $('#areaid').val(),
+			'userid' : $('#userid').val(),
+			'score' : $('#score').val(),
+			'clicknumber' : $('#clicknumber').val(),
+			'hotnumber' : $('#hotnumber').val(),
+			'ispass' : $('#ispass').val()
+		};
+		var id  = $('#id').val();  // 根据有没有id 判断是编辑还是增加
+		if(id == '')
+		{
+			// 用$.post发送数据
+			$.post('<{spUrl c=youjiinfoform a=adddata}>', formdata, function(result){
+                $('#resulttable').append(result);
+                feedback(result,id);
+			});
+		}
+		else
+		{
+		   	// 用$.post发送数据
+			$.post('<{spUrl c=youjiinfoform a=editdata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				feedback(result,id);
+			});	
+		}
+	});
+});
+
+function del(id){
+		$.get('<{spUrl c=youjiinfoform a=deldata}>', 'id='+id, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			if(result == 1)
+			{alert('删除成功!!');}else{alert('删除失败!!')}
+			window.location.reload(); 
+		});
+}
+
+// 搜索功能调用
+function searchs(){
+	var filter = $('#filter').val();
+	if(filter != ''){
+	  window.location.href="index.php?c=youjiinfoform&a=index&t=info&filter="+filter+"";
+	}
+}
+
+// 分类列出
+function Class(nums){
+	var filter = $('#filter').val();
+	if(nums.value != '')
+	{window.location.href="index.php?c=youjiinfoform&a=index&t=info&classid="+nums.value+"&filter="+filter+"";}
+}
+
+// 分类列出
+function province(id){
+	if(id.value != 0)
+	{
+		var formdata = {
+			'id' : id.value
+		};
+		$.post('<{spUrl c=youjiinfoform a=subclass}>', formdata, function(result){
+			$('#resulttable').append(result);
+			//alert(result);
+			$("#cityid option").remove();
+			var response = eval("("+result+")");
+			$("#cityid").append("<option value='0'>请选择城市</option>");
+			for(var i in response.cityinfo){
+				$("#cityid").append("<option value='"+response.cityinfo[i].id+"'>" + response.cityinfo[i].citystate+ "</option>"); 
+			}  
+		});
+   }
+   else
+   {alert("你没有选择哦！");}
+}
+	
+// 列出区
+function area(id){
+	if(id.value != 0)
+	{
+		var formdata = {
+			'id' : id.value
+		};
+		$.post('<{spUrl c=youjiinfoform a=subclass}>', formdata, function(result){
+			$('#resulttable').append(result);
+			//alert(result);
+			$("#areaid option").remove();
+			var response = eval("("+result+")");
+			$("#areaid").append("<option value='0'>请选择区</option>"); 
+			for(var i in response.cityinfo){
+				$("#areaid").append("<option value='"+response.cityinfo[i].id+"'>" + response.cityinfo[i].citystate+ "</option>"); 
+			}  
+		});
+   }
+   else
+   {alert("你没有选择哦！");}
+}
+
+function syslable(str)
+{
+	var sts = $("#tags").val();
+	$("#tags_tag").val(str.value);
+	$('#tags_tag').trigger("focus");
+	$('#tags_tag').trigger("blur");
+	$(".cho").data("placeholder","Select Frameworks...").chosen();
+}
+
+function yesapproval(id){
+    $.get('<{spUrl c=youjiinfoform a=yesapproval}>', 'id='+id, function(result){
+        $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+        if(result == 1)
+        {alert('拒绝成功!!');}else{alert('设置失败!!')}
+        window.location.reload();
+    });
+}
+function noapproval(id){
+    $.get('<{spUrl c=youjiinfoform a=noapproval}>', 'id='+id, function(result){
+        $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+        if(result == 1)
+        {alert('显示成功!!');}else{alert('设置失败!!')}
+        window.location.reload();
+    });
+}
+
+</script>
+<div class="breadcrumbs">
+	<div class="container-fluid">
+		<ul class="bread pull-left">
+			<li>
+				<a href="index.php?c=manage&a=index"><i class="icon-home icon-white"></i></a>
+			</li>
+			<li>
+				<a href="index.php?c=youjiinfoform&a=index&t=info">
+					游记管理
+				</a>
+			</li>
+		</ul>
+
+	</div>
+</div>
+<div class="main">
+    <{include file="tpl/admin/left.html"}>
+	<div class="container-fluid">
+		<div class="content">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-head tabs">
+							<h3>游记管理 | <a href="index.php?c=youjiinfoform&a=index&t=info">添加</a></h3>
+							<ul class='nav nav-tabs'>
+								<li class='active'>
+									<a href="#basic" data-toggle="tab">Basic</a>
+								</li>
+								<li>
+									<a href="#nohead" data-toggle="tab">No header</a>
+								</li>
+							</ul>
+						</div>
+						<div class="box-content box-nomargin">
+							<div class="tab-content">
+									<div class="tab-pane active" id="basic">
+										<table class='table table-striped dataTable table-condensed table-bordered'>
+                                        	  <thead>
+                                                <th>编号</th>
+                                                <th>图片</th>
+                                                <th>标题</th>
+                                                <th>城市</th>
+                                                <th>发布人</th>
+                                                <th>点击数</th>
+                                                <th>审核</th>
+                                                <th>时间</th>
+                                                <th>操作</th>
+                                              </thead>
+											<tbody>
+                                              <{foreach item=resultsname from=$results key=enname}>
+                                                <tr>
+                                                 <td><{$resultsname.id}></td>                                                 
+                                                 <{if $resultsname.picurl != ''}>
+                                                 <td><a target="_blank" class="preview" href="<{$resultsname.picurl}>">
+                                                 <img src="<{$resultsname.picurl}>" width="18" height="18">
+                                                 </a>
+                                                 </td>
+                                                 <{else}>
+                                                  <td>无</td>
+                                                 <{/if}>
+                                                 <td><a target="_blank" href="youji/info/<{$resultsname.id}>.html"><{$resultsname.title}></a></td>
+                                                 <td><{$resultsname.cityid}></td>
+                                                 <td><{$resultsname.username}></td>
+                                                 <td><{$resultsname.clicknumber}></td>
+                                                 <td>
+                                                  <{if $resultsname.ispass eq '0'}>
+                                                  <a href="javascript:yesapproval(<{$resultsname.id}>)">显示</a>
+                                                  <{else}>
+                                                  <a href="javascript:noapproval(<{$resultsname.id}>);">拒绝</a>
+                                                  <{/if}>
+                                                 </td>
+                                                 <td><{$resultsname.releasedate|date_format:"%Y-%m-%d:%H:%M:%S"}></td>
+                                                 <td><a href="index.php?c=youjiinfoform&a=index&t=info&id=<{$resultsname.id}>#mao">编辑</a> | <a href="javascript:del(<{$resultsname.id}>);">删除</a></td> 
+                                                </tr>
+                                              <{/foreach}>
+											</tbody>
+										</table>
+									</div>
+									<div class="tab-pane" id="nohead">
+										<table class='table table-striped dataTable dataTable-noheader table-bordered'>
+											<thead>
+												<tr>
+                                                <th>编码</th>
+                                                <th>图片</th>
+                                                <th>标题</th>
+                                                <th>分类</th>
+                                                <th>发布人</th>
+                                                <th>时间</th>
+                                                <th>操作</th>											
+                                                </tr>
+											</thead>
+											<tbody>
+                                              <{foreach item=resultsname from=$results key=enname}>
+                                                <tr>
+                                                 <td><{$resultsname.id}></td>
+                                                 <td><{$resultsname.picurl}></td>
+                                                 <td><{$resultsname.title}></td>
+                                                 <td><{$resultsname.cityid}></td>
+                                                 <td><{$resultsname.username}></td>
+                                                 <td><{$resultsname.releasedate}></td>
+                                                 <td><a href="index.php?c=youjiinfoform&a=index&t=info&id=<{$resultsname.id}>">编辑</a> | <a href="javascript:del(<{$resultsname.id}>);">删除</a></td> 
+                                                </tr>
+                                              <{/foreach}>											
+                                           </tbody>
+                                           <tr>
+                                              <td>fdsfds</td>
+                                           </tr>
+										</table>
+									</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+            
+            			<div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-head">
+							<h3>数据高级检索</h3>
+						</div>
+						<div class="box-content">
+							<form action="#" class="form-horizontal">
+								<fieldset>
+									<div class="control-group">
+										<label for="tags" class="control-label">高级搜索</label>
+										<div class="controls">
+                                             <div class="input-append">
+                                              <input style="width:350px;" class="span8" id="filter" type="text">
+                                              <button onclick="searchs()" class="btn" type="button">开始搜索</button>
+                                             </div>
+										</div>
+									</div>
+									<div class="control-group">
+										<label for="selsear" class="control-label">城市检索</label>
+										<div class="controls">
+                                           <select onchange="Class(this)" name="classid" id="classid">
+                                               <option selected value="0">根目录</option>
+                                               <{foreach item=classname from=$resultsub key=enname}>
+                                                 <{if $sclassid == $classname.id}>
+                                                    <option selected value="<{$classname.id}>">
+                                                    <{$classname.citystate}></option>
+                                                 <{else}>
+                                                    <option value="<{$classname.id}>"><{$classname.citystate}></option>
+                                                 <{/if}>
+                                               <{/foreach}>
+                                            </select>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+            <div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-head">
+					
+                           <{if $uid != 0}>
+                              <h3>编辑数据</h3>
+                           <{else}>
+                              <h3>增加数据</h3>
+                           <{/if}>
+						</div>
+						<div class="box-content">
+							<a href="" name="mao"></a>
+							<form action="#" class='validate form-horizontal'>
+                                <div class="control-group">
+                                    <label for="req" class="control-label">是否通过：</label>
+                                    <div class="controls">
+                                        <select name="ispass" id="ispass">
+                                            <option value="0" <{if $ispass==0 }>selected="selected"<{/if}>>显示</option>
+                                            <option value="1" <{if $ispass==1 }>selected="selected"<{/if}>>拒绝</option>
+                                        </select>
+                                        <span></span>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label for="req" class="control-label">点击数：</label>
+                                    <div class="controls">
+                                        <input type="text" name="clicknumber" id="clicknumber" value="<{$clicknumber}>">
+                                        <span></span>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                   <label for="req" class="control-label">游记名称：</label>
+                                   <div class="controls">
+                                   <input type="text" name="title" id="title" value="<{$title}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+                                
+                              <div class="control-group">
+                                   <label for="req" class="control-label">类型：</label>
+                                   <div class="controls">
+                                   <input type="text" name="types" id="types" value="<{$types}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                   <label for="req" class="control-label">关联：</label>
+                                   <div class="controls">
+                                   <input type="text" name="linkid" id="linkid" value="<{$linkid}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+                             
+                             <div class="control-group">
+                                   <label for="req" class="control-label">地图：</label>
+                                   <div class="controls">
+                                   <input type="text" name="picurl" id="map" value="<{$map}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label for="req" class="control-label">自定义标题：</label>
+                                    <div class="controls">
+                                        <input type="text" name="ctitle" id="ctitle" value="<{$ctitle}>">
+                                        <span></span>
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label for="req" class="control-label">自定义关键字：</label>
+                                    <div class="controls">
+                                        <input type="text" name="ckeyword" id="ckeyword" value="<{$ckeyword}>">
+                                        <span></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="control-group">
+                                    <label for="req" class="control-label">自定义说明：</label>
+                                    <div class="controls">
+                                        <input type="text" name="cdirections" id="cdirections" value="<{$cdirections}>">
+                                        <span></span>
+                                    </div>
+                                </div>
+
+                              <div class="control-group">
+									<label for="req" class="control-label">城市选择：</label>
+									<div class="controls">
+                                       <select onchange="province(this)" name="provinceid" id="provinceid">
+                                           <option selected value="0">无选择省份</option>
+                                           <{foreach item=resultclassname from=$resultclass key=enname}>
+                                             <{if $provinceid == $resultclassname.id}>
+                                                <option selected value="<{$resultclassname.id}>"><{$resultclassname.citystate}></option>
+                                             <{else}>
+                                                <option value="<{$resultclassname.id}>"><{$resultclassname.citystate}></option>
+                                             <{/if}>
+                                           <{/foreach}>
+                                        </select>
+                                        <select onchange="area(this)" name="cityid" id="cityid">
+                                           <option selected value="0">无选择城市</option>
+                                           <{foreach item=resultsubname from=$resultsub key=enname}>
+                                             <{if $cityid == $resultsubname.id}>
+                                                <option selected value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option>
+                                             <{else}>
+                                                <!-- <option value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option> -->
+                                             <{/if}>
+                                           <{/foreach}>
+                                        </select>
+                                        <select name="areaid" id="areaid">
+                                           <option selected value="0">无选择区</option>
+                                           <{foreach item=resultsubname from=$resultsub key=enname}>
+                                             <{if $areaid == $resultsubname.id}>
+                                                <option selected value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option>
+                                             <{else}>
+                                                <!-- <option value="<{$resultsubname.id}>"><{$resultsubname.citystate}></option> -->
+                                             <{/if}>
+                                           <{/foreach}>
+                                        </select>
+                                        <span></span>
+                                  </div>
+								</div>
+                                
+                                <div class="control-group">
+                                   <label for="req" class="control-label">发布人：</label>
+                                   <div class="controls">
+                                   <input type="text" name="username" id="username" value="<{$username}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+
+                                <div class="control-group">
+                                   <label for="req" class="control-label">图片地址：</label>
+                                   <div class="controls">
+                                   <input type="text" name="picurl" id="picurl" value="<{$picurl}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+                             
+                             <div class="control-group">
+                                   <label for="req" class="control-label">用户id：</label>
+                                   <div class="controls">
+                                   <input type="text" name="userid" id="userid" value="<{$userid}>">
+                                   <span></span>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                    <label for="select" class="control-label">评分：</label>
+                                    <div class="controls">
+                                        <input type="text" name="score" id="score" value="<{$score}>" >
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                   <label for="req" class="control-label">时间：</label>
+                                   <div class="controls">
+                                   <input type="text" name="releasedate" id="releasedate" value="<{$releasedate}>">
+                                   <span></span>
+								   <script type="text/javascript">//<![CDATA[
+                                    Calendar.setup({
+                                      inputField : "releasedate",
+                                      trigger    : "releasedate",
+                                      onSelect   : function() { this.hide() },
+                                      showTime   : 24,
+                                      dateFormat : "%Y-%m-%d %H:%M:%S"
+                                    });
+                                  //]]>
+                                  </script>
+                                  </div>
+                                </div>
+                                
+
+                              
+                              <div class="control-group">
+                                   <label for="req" class="control-label">内容：</label>
+                                   <div class="controls">
+                                   	<script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/editor_config.js"></script>
+				                     <script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/editor_all.js"></script>
+				                     <style type="text/css">
+				                      .clear {
+				                          clear: both;
+				                      }
+				                    </style>
+                                    <div>
+		                              <script id="content" type="text/plain"><{$content}></script>
+		                              <span></span>
+		                            </div>
+		                            <script type="text/javascript">
+		                                //实例化编辑器
+		                                var ue = UE.getEditor('content');
+		                                ue.addListener('ready',function(){
+		                                    this.focus()
+		                                });
+		                            </script>
+                                  </div>
+                                  
+                                </div>
+
+						<div class="form-actions">
+								  <input type="button" id="ex3button" value="提交" class='btn btn-primary'>
+                                  <input type="hidden" name="id" id="id" value="<{$id}>">
+						</div>
+							</form>
+						</div>
+					</div>
+				</div>
+                
+		</div>	
+	</div>
+</div>	
+<{include file="tpl/admin/footer.html"}>

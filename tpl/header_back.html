@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+<meta charset="utf-8">
+<title><{$title}></title>
+<meta name="keywords" content="<{$keywords}>" />
+<meta name="description" content="<{$description}>">
+<link rel="shortcut icon" href="http://www.roadqu.com/favicon.ico">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="<{$domain}>/tpl/css/global.css?v=201209010" media="all">
+<link rel="stylesheet" href="<{$domain}>/tpl/css/boxy,jquery.fancybox-1.3.4.css?t=201211291821">
+<link rel="stylesheet" type="text/css" href="<{$domain}>/tpl/css/index.css" media="all">
+<!-- 合并jquery and $LAB -->
+</head>
+<body>
+<!--top-->
+<style>
+.logo a {
+display: block;
+width: 120px;
+height: 46px;
+text-indent: -999em;
+background: url("<{$domain}>/tpl/images/logo.png") left top no-repeat;
+_background: url("<{$domain}>/tpl/images/logo.png") left top no-repeat;
+}
+.slogan {
+float: left;
+width: 280px;
+height: 46px;
+text-indent: -999em;
+background: url("<{$domain}>/tpl/images/logo.png") -120px top no-repeat;
+_background: url("<{$domain}>/tpl/images/logo.png") -120px top no-repeat;
+}
+</style>
+  <div class="header">
+    <div class="headWrap">
+        <div class="headTop">
+            <h1 class="logo">
+                <a href="<{$domain}>" title="<{$title}>"><{$title}></a>
+            </h1>
+            <h2 class="slogan" title="<{$description}>"><{$description}></h2>
+            <div class="loginInfo">
+                <!--已登录状态-->
+                <!--未登录状态-->
+            <!--<div class="write-journey"><a href="javascript:void(0);" onclick="javascript:needLogin();">写游记</a></div>-->             <ul class="not_login">
+                  	<{if $quser == 0}>
+                        <li><a href="<{spUrl c=ucenter a=index}>" class="btn_reg">注册</a></li>
+                        <li><a href="<{spUrl c=login a=index}>" id="top-nav-login" class="btn_login">录</a></li>
+<!--                    <li><a href="http://www.roadqu.com/trd/sina2/index.php" class="login_sina"><em>新浪</em>微博登陆</a></li>
+                        <li><a href="http://www.roadqu.com/trd/tencent/index.php" class="login_qq"><em>腾讯</em>微博登陆</a></li>
+-->                    <{else}>
+                        <{if $smarty.session.quser.acl == "GBADMIN"}>
+                         <li><a class="ac" target="_blank" href="<{spUrl c=admin a=index}>">后台管理</a> | </li> 
+                        <{/if}>
+                        <li><a class="ac" href="<{spUrl c=ucenter a=index}>">用户中心</a> | </li> 
+                        <li> &nbsp;<a class="ac" href="<{spUrl c=ucenter a=logout}>">退出</a><li>
+                    <{/if}>
+
+             </ul>
+　　　　　　　　　　　　　<!--未登录状态end-->
+            </div>
+        </div>
+        <ul class="dropdown">
+            <li class="current">
+                <a href="/">首页</a>
+            </li>
+            <{foreach item=resultclassname from=$resultclass key=enname}><li class=" "><a href="<{spUrl c=main a=category another=$resultclassname.another}>"><{$resultclassname.cname}></a></li><{/foreach}>
+        </ul>
+        <div class="navSearch">
+        	<script type="text/javascript">
+				function serachgo(){
+					var detail = document.getElementById('input').value;
+					if(detail == 0)
+					{ alert("搜索内容不能为空哦！！");}		
+					var selects = $(':radio[name="radiosearth"]:checked').val();
+					if( selects == "show" && detail != 0)
+					{ window.location.href="?c=main&a=search&name="+detail; }	
+					else if(selects == "file" && detail != 0)
+					{ window.location.href="?c=main&a=filesearch&filename="+detail; }
+				}
+			
+			</script>
+            <form action="" method="get" id="searchForm" target="_blank">
+             <input type="text" class="top-search-input" id="input" value="输入搜索内容" maxlength="50" autocomplete="off">
+             <input type="button" value="搜索" onClick="serachgo()" class="search_btn">
+            </form>
+            <div id="keyword_tip_content">
+              <div style="display:none">
+              文章
+              <input checked="checked" id="radiosearth" name="radiosearth" style="margin-bottom:10px;" type="radio" value="show" />
+              文件
+              <input id="radiosearth" name="radiosearth" style="margin-bottom:10px;" type="radio" value="file" />
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--top end-->
+
+     <Iframe frameborder=0 src="<{$domain}>/index.php?c=newsword&a=index" height="0" width="0"></Iframe>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MoreWindows>
+  <article>
+    <name>主域名</name>
+    <event>www.wopeng.net</event>
+  </article>
+  <article>
+    <name>公告id</name>
+    <event>1</event>
+  </article>
+  <article>
+    <name>邮箱SMTP服务器</name>
+    <event>smtp.126.com</event>
+  </article>
+  <article>
+    <name>邮箱端口</name>
+    <event>25</event>
+  </article>
+  <article>
+    <name>服务器邮箱账号</name>
+    <event>CSW8923@126.com</event>
+  </article>
+  <article>
+    <name>密码</name>
+    <event>CSW520#Lss23</event>
+  </article>
+  <article>
+    <name>首页标题</name>
+    <event>厦门在线新闻网_厦门资讯_厦门新闻_国内时事_新闻热点_IT资讯</event>
+  </article>
+  <article>
+    <name>首页关键字</name>
+    <event>厦门资讯,厦门新闻,国内时事,新闻热点,IT资讯</event>
+  </article>
+  <article>
+    <name>首页说明</name>
+    <event>厦门在线新闻网提供立足于厦门本地、面向全国的新闻资讯内容,通过厦门在线新闻网,即可及时、全面地了解发生在厦门地区的民生、时政新闻.</event>
+  </article>
+</MoreWindows>

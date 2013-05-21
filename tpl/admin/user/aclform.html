@@ -1,0 +1,217 @@
+<{include file="tpl/admin/header.html"}>
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+	// 例子三
+	$("#ex3button").click(function(){ // "提交"按钮被点击
+		// 构造发送的数据，请注意如果获取表单各项的值
+		var formdata = {
+			'controller' : $('#controller').val(),
+			'action' : $('#action').val(),
+			'acl_name' : $('#acl_name').val(),
+			'aclid' : $('#aclid').val()
+		};
+		
+		var aclid  = $('#aclid').val();  // 根据有没有id 判断是编辑还是增加
+		if(aclid == '')
+		{
+			// 用$.post发送数据
+			$.post('<{spUrl c=aclform a=adddata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				feedback(result,aclid);
+			});
+		}
+		else
+		{
+		   	// 用$.post发送数据
+			$.post('<{spUrl c=aclform a=editdata}>', formdata, function(result){
+				$('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+				feedback(result,aclid);
+			});	
+		}
+		
+	});
+});
+
+function del(aclid){
+		$.get('<{spUrl c=aclform a=deldata}>', 'aclid='+aclid, function(result){
+			$('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+			if(result == 1)
+			{alert('删除成功!!');}else{alert('删除失败!!')}
+			window.location.reload(); 
+		});
+}
+</script>
+<div class="breadcrumbs">
+	<div class="container-fluid">
+		<ul class="bread pull-left">
+			<li>
+				<a href="index.php?c=aclform&a=index&t=user"><i class="icon-home icon-white"></i></a>
+			</li>
+			<li>
+				<a href="index.php?c=aclform&a=index&t=user">
+					权限分配表
+				</a>
+			</li>
+		</ul>
+
+	</div>
+</div>
+<div class="main">
+     <{include file="tpl/admin/left.html"}>
+	<div class="container-fluid">
+		<div class="content">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-head tabs">
+							<h3>权限分配表 | <a href="index.php?c=aclform&a=index&t=user">添加</a></h3>
+							<ul class='nav nav-tabs'>
+								<li class='active'>
+									<a href="#basic" data-toggle="tab">Basic</a>
+								</li>
+								<li>
+									<a href="#nohead" data-toggle="tab">No header</a>
+								</li>
+							</ul>
+						</div>
+						<div class="box-content box-nomargin">
+							<div class="tab-content">
+									<div class="tab-pane active" id="basic">
+										<table class='table table-striped dataTable table-condensed table-bordered'>
+                                        	  <thead>
+                                                <td>编号</td>
+                                                <td>控制器</td>
+                                                <td>动作</td>
+                                                <td>对应权限</td>
+                                                <td>操作</td>
+                                              </thead>
+											<tbody>
+                                              <{foreach item=colorname from=$result key=enname}>
+                                              <tr>
+                                                 <td><{$colorname.aclid}></td>
+                                                 <td>
+                                                    <{foreach item=controllers from=$infocontroller key=enname}>     
+                                                     <{if $colorname.controller == $controllers.event}>
+                                                      <{$controllers.name}>
+                                                    <{/if}>
+                                                    <{/foreach}>
+                                                 </td>
+                                                 <td>
+                                                    <{foreach item=actions from=$infoaction key=enname}>     
+                                                     <{if $colorname.action == $actions.event}>
+                                                      <{$actions.name}>
+                                                    <{/if}>
+                                                    <{/foreach}>
+                                                 </td>
+                                                 <td>
+                                                    <{if $colorname.acl_name == "GBADMIN"}>
+                                                       <font color="#FF0000">管理员</font>
+                                                    <{else}>
+                                                       普通成员
+                                                    <{/if}>
+                                                 </td>
+                                                 <td><a href="index.php?c=aclform&a=index&t=user&aclid=<{$colorname.aclid}>#mao">编辑</a> | <a href="javascript:del(<{$colorname.aclid}>);">删除</a></td>
+                                              </tr>
+                                              <{/foreach}>
+											</tbody>
+										</table>
+									</div>
+									<div class="tab-pane" id="nohead">
+										<table class='table table-striped dataTable dataTable-noheader table-bordered'>
+											<thead>
+												<tr>
+                                                <td>编号</td>
+                                                <td>控制器</td>
+                                                <td>动作</td>
+                                                <td>对应权限</td>
+                                                <td>操作</td>
+												</tr>
+											</thead>
+											<tbody>
+                                              <{foreach item=colorname from=$result key=enname}>
+                                              <tr>
+                                                 <td><{$colorname.aclid}></td>
+                                                 <td><{$colorname.controller}></td>
+                                                 <td><{$colorname.action}></td>
+                                                 <td><{$colorname.acl_name}></td>
+                                                 <td><a href="index.php?c=aclform&a=index&t=user&aclid=<{$colorname.aclid}>">编辑</a> | <a href="javascript:del(<{$colorname.aclid}>);">删除</a></td>
+                                              </tr>                                             
+                                               <{/foreach}>
+											</tbody>
+										</table>
+									</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+            <div class="row-fluid">
+				<div class="span12">
+					<div class="box">
+						<div class="box-head">
+                           <{if $aclid != 0}>
+                              <h3>编辑数据</h3>
+                           <{else}>
+                              <h3>增加数据</h3>
+                           <{/if}>
+						</div>
+						<div class="box-content">
+						<a href="" name="mao"></a>
+							<form action="#" class='validate form-horizontal'>
+                                <div class="control-group">
+                                   <label for="req" class="control-label">控制器：</label>
+                                   <div class="controls">                      
+                                       <select name="controller" id="controller">
+                                       <{foreach item=controllers from=$infocontroller key=enname}>     
+                                         <{if $controllers.event == $controller}>
+                                          <option selected="selected" value="<{$controllers.event}>"><{$controllers.name}> </option>
+                                        <{else}>
+                                          <option value="<{$controllers.event}>"><{$controllers.name}> </option>
+                                        <{/if}>
+                                        <{/foreach}>
+                                       </select>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                   <label for="req" class="control-label">动作：</label>
+                                   <div class="controls">
+                                   <select name="action" id="action">
+                                   <{foreach item=actions from=$infoaction key=enname}>     
+                                     <{if $actions.event == $action}>
+                                      <option selected="selected" value="<{$actions.event}>"><{$actions.name}> </option>
+                                    <{else}>
+                                      <option value="<{$actions.event}>"><{$actions.name}> </option>
+                                    <{/if}>
+                                    <{/foreach}>
+                                   </select>
+                                  </div>
+                                </div>
+                                <div class="control-group">
+                                   <label for="req" class="control-label">权限：</label>
+                                  <div class="controls">
+                                      <select name="acl_name" id="acl_name">
+                                        <{if $acl_name == "GBADMIN"}>
+                                          <option selected value="GBADMIN">管理员</option>
+                                          <option value="GBUSER">普通用户</option>
+                                        <{else}>
+                                          <option selected value="GBUSER">普通用户</option>
+                                          <option value="GBADMIN">管理员</option>                                 
+                                        <{/if}>
+                                      </select>
+                                  </div>
+                                </p>
+                                </div>
+						<div class="form-actions">
+								  <input type="button" id="ex3button" value="提交" class='btn btn-primary'>
+                                  <input type="hidden" name="aclid" id="aclid" value="<{$aclid}>">
+						</div>
+							</form>
+						</div>
+					</div>
+				</div>
+                
+		</div>	
+	</div>
+</div>	
+<{include file="tpl/admin/footer.html"}>

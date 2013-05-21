@@ -1,0 +1,175 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+风土人情标题:<{$title}> 
+<br />===========评论<a target="_blank" href="<{spUrl}>reply/youji/<{$show['id']}>.html">(更多)</a>===========<br />
+<a target="_blank" href="<{spUrl c=replyinfoform a=add id=$id}>?type=scenery">【发布评论】</a><br />
+<{foreach item=replyout from=$reply key=enname}>
+    <li><a target="_blank" title="<{$replyout.username}>" href="<{spUrl}>reply/info/<{$replyout.id}>.html"><{$replyout.username|truncate:14:"...":true}></a></li>
+    <span><{$replyout.content|strip_tags|truncate:100:"...":true}></span>
+<{/foreach}> 
+
+<br />===========评论回复===========<br />
+<!-- 评论回复 -->
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+<script src="../../../kindeditor/kindeditor.js"></script>
+<script charset="utf-8" src="../../../kindeditor/lang/zh_CN.js"></script>
+<script>
+var editor;
+KindEditor.ready(function(K) {
+    editor = K.create('textarea[name="content"]', {
+        allowFileManager : true
+    });
+    K('input[name=getHtml]').click(function(e) {
+        alert(editor.html());
+    });
+    K('input[name=isEmpty]').click(function(e) {
+        alert(editor.isEmpty());
+    });
+    K('input[name=getText]').click(function(e) {
+        alert(editor.text());
+    });
+    K('input[name=selectedHtml]').click(function(e) {
+        alert(editor.selectedHtml());
+    });
+    K('input[name=setHtml]').click(function(e) {
+        editor.html('<h3>Hello KindEditor</h3>');
+    });
+    K('input[name=setText]').click(function(e) {
+        editor.text('<h3>Hello KindEditor</h3>');
+    });
+    K('input[name=insertHtml]').click(function(e) {
+        editor.insertHtml('<strong>插入HTML</strong>');
+    });
+    K('input[name=appendHtml]').click(function(e) {
+        editor.appendHtml('<strong>添加HTML</strong>');
+    });
+    K('input[name=clear]').click(function(e) {
+        editor.html('');
+    });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+    // 例子三
+    $("#ex3button").click(function(){ // "提交"按钮被点击
+        // 构造发送的数据，请注意如果获取表单各项的值
+        var formdata = {
+            'id' : $('#id').val(),
+            'replyid' : $('#replyid').val(),
+            'username' : $('#username').val(),
+            'content' : editor.html(),
+            'provinceid' : $('#provinceid').val(),
+            'cityid' : $('#cityid').val(),
+            'types' : $('#types').val(),
+            'linkid' : $('#linkid').val(),
+            'userid' : $('#userid').val()
+        };
+        var id  = $('#id').val();  // 根据有没有id 判断是编辑还是增加
+        //alert(id);
+        if(id == '')
+        {
+            // 用$.post发送数据
+            $.post('<{spUrl c=replyinfoform a=adddata}>', formdata, function(result){
+                $('#resulttable').append(result);
+                alert(result);
+                feedback(result,id);
+            });
+        }
+        else
+        {
+            // 用$.post发送数据
+            $.post('<{spUrl c=replyinfoform a=editdata}>', formdata, function(result){
+                $('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+                alert(result);
+                feedback(result,id);
+            }); 
+        }
+    });
+});
+</script>
+
+<div class="control-group">
+   <label for="req" class="control-label">评论回复人：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="replyid" id="replyid" value="0">
+   <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+<label for="req" class="control-label">城市选择：</label>
+<div class="controls">
+    <input type="text" class="input-xlarge" name="provinceid" id="provinceid" value="<{$provinceid}>">
+    <input type="text" class="input-xlarge" name="cityid" id="cityid" value="<{$cityid}>">
+        <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+   <label for="req" class="control-label">发布人：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="username" id="username" value="<{$username}>">
+   <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+   <label for="req" class="control-label">类型：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="types" id="types" value="<{$types}>">
+   <span></span>
+  </div>
+</div>
+
+
+<div class="control-group">
+   <label for="req" class="control-label">关联id：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="linkid" id="linkid" value="<{$linkid}>">
+   <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+   <label for="req" class="control-label">用户id：</label>
+   <div class="controls">
+   <input type="text" class="input-xlarge" name="userid" id="userid" value="<{$userid}>">
+   <span></span>
+  </div>
+</div>
+
+<div class="control-group">
+   <label for="req" class="control-label">内容：</label>
+   <div class="controls">
+   <textarea name="content" id="content" style="width:700px;height:500px;visibility:hidden;"><{$content}></textarea>
+   <span></span>
+  </div>
+</div>
+
+<div class="form-actions">
+<input type="button" id="ex3button" value="提交" class='btn btn-primary'>
+  <input type="hidden" name="id" id="id">
+</div>
+<script>
+function feedback(result,id){
+  if(result != 'false')
+  {
+    $('.badge').removeClass('badge badge-info').text('');
+    var response = eval("("+result+")");
+    for(var i in response){
+      $('#' + i).next().addClass('badge badge-info');
+      $('#' + i).next().text(response[i].toString());
+      //console.log(response[i].toString());
+    }
+    //$('.badge').text('sdfsd');
+  }
+  else
+  {
+    if(id == '')
+    {alert('添加成功!!');window.location.reload();}
+    else if(id == 'reg')
+    {alert('注册成功!!');window.location.href="login.html"}
+    else
+    {alert('修改成功!!');window.location.reload(); }
+  }
+}
+</script>

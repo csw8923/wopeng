@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><{$show['title']}></title>
+<meta name="keywords" content="<{$show['tags']}>" />
+<meta name="description" content="<{$show['content']|strip_tags|truncate:200}>">
+<{include file="header.html"}>
+<!-- <div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门好玩的地方</h1>
+        <div id="tban_le_txt">推荐厦门好玩的地方，把网友去过的好玩的地方的经历感触，分享给没去过或正想去的人。</div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1"> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/3.html"><{$city['title']}>周边一日游</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/6.html"><{$city['title']}>周边农家乐</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/rank/bset.html"><{$city['title']}>有什么好玩的地方</a>
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div> -->
+
+<div style="margin-top:10px;" id="cont">
+  <div style="height:25px;">
+        <div id="tban_le_txt" class="tgray1"> 
+          <a style="color:#999" href="<{$domain}>/"><{$city['title']}>周边游</a> > <a style="color:#999" href="<{$domain}>/<{$city['another']}>/hot/bdlist"><{$city['title']}>榜单</a> > <a style="color:#999" href="<{spUrl}>bdlist/info/<{$show['id']}>.html"><{$show['title']|truncate:60:"...":true}></a>
+        </div>
+  </div>
+</div>
+
+<div id="cont">
+    <div id="xlzy_tit01"><{$show['title']}></div>
+</div>
+<div id="cont">
+  <div class="yjgl_le">
+    <div id="d_tit06"><h2><{$out_youji['title']|truncate:60:"...":true}></h2></div>
+<div id="yjgl_lta1">
+  <div id="d_bk_t">
+    <div id="d_bk_t01"><div class="c1"></div></div>
+    <div id="d_bk_t02"><div class="c1"></div></div>
+  </div>  
+  <div id="jddp_bk2">
+    <div id="d_bk3_c03">
+     <div class="jddp_cen04">
+          <div id="ind_cen04_l" class="h24">
+           <{if $showscenery['picurl'] == '../tpl/images/pic15.jpg'}>
+               <img src="<{$domain}><{$show['picurl']}>" width="90" height="65" />
+            <{else}>
+               <img src="<{$show['picurl']}>" width="90" height="65" />
+            <{/if}>   
+            <br /></div>
+          <div class="jddp_cen04_r">
+            <div id="ind_cen04_r01">
+              <div id="ind_cen04_r01_l"><span class="tgreen">作者：<{$show['username']}></span></div>
+            </div>
+            <div id="ind_cen04_r02" style="font-size:12px;table-layout:fixed;word-break:break-all;width:580px;overflow:hidden;">
+                <{$show['content']}>
+            </div>
+            <div id="ind_cen04_r03"><img src="../../tpl/images/nlw_ic2.gif" width="16" height="16" align="absmiddle" />1</span>&nbsp;
+              <{if $smarty.session.quser.uid == $out_youji.userid || $smarty.session.quser.acl == 'GBADMIN'}>
+              <a href="<{spUrl c=listbdinfoform a=edit id=$show.id}>">编辑</a>
+              <{/if}>
+              <a href="#ex3button" onclick="javascript:aGo('回复'+'<{$show["username"]}>'+':','<{$show["userid"]}>')">添加回应</a>
+              <a id="buy" href="javascript:addscenery()" style="color:#9A5B00">添加景点</a>
+            </div>
+          </div>
+          </div>
+          
+    </div>
+    
+  </div>  
+  <div id="d_bk_b" class="mar_b20">
+    <div id="d_bk_b01"><div class="c1"></div></div>
+    <div id="d_bk_b02"><div class="c1"></div></div>
+  </div>
+ 
+   <div id="d_bkgreen_let">
+            <div id="d_bkgreen_let1">景点排行</div>
+            <div id="tit02_r"><img src="../../tpl/images/nlw_ic11.gif " />&nbsp;<img src="../../tpl/images/nlw_ic12.gif " />&nbsp;<img src="../../tpl/images/nlw_ic13.gif " /></div>
+   </div>
+    <{foreach item=relatedattractionsout from=$relatedattractions key=enname}>
+        <div class="xlzy_tit05">
+          <img src="../../tpl/images/nlw_ic16.gif" width="4" height="8" /> <{$enname+1}> .<a target="_blank" style="color:#eb9300" href="<{$domain}>/scenery/<{$relatedattractionsout.sceneryname['id']}>.html"><{$relatedattractionsout.sceneryname['title']}></a></div>
+        <div class="xlzy_tit06">
+            <div class="xlzy_tit06_l">&nbsp;</div>
+            <div class="xlzy_tit06_r">
+            <div class="xlzy_tit06_r3" style="padding-bottom:10px;text-indent:0.5em;">
+              <a target="_blank" style="color:#eb9300" href="<{$domain}>/scenery/<{$relatedattractionsout.sceneryname['id']}>.html"><img style="float:right;margin-left:10px;" src="<{$relatedattractionsout.sceneryname['picurl']}>" width="167" height="115"></a><{$relatedattractionsout.sceneryname['content']}>
+             </div>
+            </div>
+          </div>
+        <hr />
+    <{/foreach}>
+
+    <div id="d_bkgreen_let" class="mar_b10"> <div id="d_bkgreen_let1">回复 </div>
+    </div>
+    <{foreach item=replyout from=$reply key=enname}>
+    <div class="jddp_cen04" style="width:730px;">
+        <div id="ind_cen04_l" class="h24"><img src="<{$userarray[$enname]['img']|replace:'.jpg':''}>thumb_02.jpeg" width="50" height="50">
+        </div>
+        <div class="jddp_cen04_r" style="width:630px;">
+            <div id="ind_cen04_r01">
+                <div id="ind_cen04_r01_l"><span class="tgreen"><a target="_blank" title="<{$replyout.username}>" href="<{spUrl}>reply/info/<{$replyout.id}>.html"><{$replyout.username|truncate:14:"...":true}></a></div>
+                <div id="ind_cen04_r01_r"><{$replyout.releasedate|date_format:"%Y-%m-%d %H:%M:%S"}></div>
+            </div>
+            <div id="ind_cen04_r02"><{$replyout.content}><br>
+            </div>
+            <div id="ind_cen04_r03">
+              <{if $smarty.session.quser.uid == $replyout.userid}>
+              <a target="_blank" href="<{spUrl c=replyinfoform a=edit id=$replyout.id}>?type=bdlist">编辑</a> |
+              <{/if}>
+              <a href="#ex3button" onclick="javascript:aGo('回复'+'<{$replyout.username|truncate:14:"...":true}>'+': ','<{$replyout.userid}>')">回复</a></div>
+        </div>
+    </div>
+
+
+    <{/foreach}>
+   <script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+   <script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/ui_editor_config.js"></script>
+   <script type="text/javascript" charset="utf-8" src="<{$domain}>/ueditor/editor_all.js"></script>
+   <style type="text/css">
+    .clear {
+        clear: both;
+    }
+  </style>
+  <script type="text/javascript">
+      //实例化编辑器
+      var ue = UE.getEditor('content');
+      ue.addListener('selectionChange',function(){
+          var content =  UE.getEditor('content').getContent();
+          var rrs =  /(<a([^>]*)>)(.*)(<\/a([^>]*)>)/gi;
+          var returns = content.match(rrs);
+          if(returns != null)
+          {
+            setContent();
+            return false
+          }
+      });
+  </script>
+  <script type="text/javascript">
+
+    function addscenery(){
+        var content = "<table>";
+         content = content + "<tr><td><b>景点名称:</b></td><td><input id='sceneryname' size='40' style='height:16px' name='sceneryname' type='text' value='' /></td></tr>";
+         content = content + "<tr><td><b>添加理由:</b></td><td><textarea id='reason' name='reason' cols='32' rows='10'></textarea></td></tr>";
+         content = content + "</table>";
+          
+          art.dialog({
+            lock: true,
+            id: 'addscenery',
+            opacity: 0.87,
+            content: content,
+            button: [
+                {
+                    name: '确定添加',
+                    callback: function () {
+                        var sceneryname = $("#sceneryname").val();
+                        var reason = $("#reason").val();
+
+                        var formdata = {
+                            'sceneryname' : sceneryname,
+                            'reason' : reason,
+                            'linkid' : '<{$id}>'
+                        };
+                        $.post('<{spUrl c=listbdinfoform a=addscenery}>', formdata, function(result){
+                              $('#resulttable').append(result);
+                              alert(result);
+                              art.dialog.list['addscenery'].close(); 
+                              location.reload();
+                          });
+                        return false;
+                    },
+                    focus: true
+                },
+                {
+                    name: '取消',
+                    callback: function () {
+                          art.dialog.list['addscenery'].close();
+                          return false;
+                      },
+                }
+            ]
+          });
+  }
+
+  function setContent() {
+    var content =  UE.getEditor('content').getContent();
+    content = content.replace(/(<\/?a[^>]*>)(?!.*\1)/ig,"");
+    UE.getEditor('content').setContent(content);
+  }
+  </script>
+
+  <div class="control-group">
+  <div class="controls">
+  <textarea name="temp" id="temp" style="width:700px;height:0px;visibility:hidden;"></textarea>
+  <div>
+      <script id="content" type="text/plain"></script><span class="torange1"></span>
+  </div>
+  </div>
+</div>
+<div style="margin-top:10px;" class="form-actions">
+    <a id="ex3button" href="javascript:;"><img src="../../../tpl/images/nlw_bt3.gif" width="148" height="36" /></a>
+  <input type="hidden" name="id" id="id">
+  <input type="hidden" class="input-xlarge" name="replyid" id="replyid" value="0">
+</div>
+</div>
+  </div>
+
+    <div class="yjgl_ri">
+      <div id="d_bk_t">
+        </div>
+         <div align="left" style="margin-top:8px;" class="jddp_rig01">
+                <a target="_blank" href="<{spUrl c=listbdinfoform a=add}>">
+                 <img src="<{$domain}>/tpl/images/fbbd.gif" width="148" height="36" />
+                </a>
+         </div>
+      <div id="d_bk_b" class="mar_b10">
+      </div>
+    <div class="yjgl_tit01">
+      <div class="tit01l"><{$city['citystate']}>推荐榜单</div>
+      <div class="tit01r"><a href="<{spUrl}>city/scenery/<{$city['id']}>"><img src="../../tpl/images/nlw_more2.gif" /></a></div>
+    </div>
+    <div class="yjgl_rbk">
+     <div id="xlzy_ph1l">
+      <{foreach item=bdlistout from=$bdlist key=enname}>
+       <div id="xlzy_ri01"><a target="_blank" title="<{$bdlistout.title}>" href="<{$domain}>/bdlist/info/<{$bdlistout.id}>.html"><{$bdlistout.title|truncate:16:"...":true}></a></div>
+      <{/foreach}>
+     </div>
+    </div>  
+
+  </div>
+</div>
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+<script src="<{$domain}>/artDialog/artDialog.js?skin=idialog"></script>
+<script src="<{$domain}>/artDialog/plugins/iframeTools.js"></script>
+<script>
+    function aGo(name,id){
+    ue.setContent("");
+    ue.execCommand('insertHtml',name)
+    $('#replyid').val(id)
+    }
+</script>
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+    // 例子三
+    $("#ex3button").click(function(){ // "提交"按钮被点击
+        // 构造发送的数据，请注意如果获取表单各项的值
+        var formdata = {
+            'id' : $('#id').val(),
+            'replyid' : $('#replyid').val(),
+            'username' : '<{$username}>',
+            'pagetitle' : document.title,
+            'pageurl' : location.href,
+            'content' : UE.getEditor('content').getContent(),
+            'provinceid' : '<{$provinceid}>',
+            'cityid' : '<{$cityid}>',
+            'types' : '<{$types}>',
+            'linkid' : '<{$id}>',
+            'userid' : '<{$userid}>'
+        };
+        var id  = $('#id').val();  // 根据有没有id 判断是编辑还是增加
+        //alert(id);
+        if(id == '')
+        {
+            // 用$.post发送数据
+            $.post('<{spUrl c=replyinfoform a=adddata}>', formdata, function(result){
+                $('#resulttable').append(result);
+              //  alert(result);
+                feedback(result,id);
+            });
+        }
+        else
+        {
+            // 用$.post发送数据
+            $.post('<{spUrl c=replyinfoform a=editdata}>', formdata, function(result){
+                $('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+                feedback(result,id);
+            }); 
+        }
+    });
+});
+</script>
+<script>
+function feedback(result,id){
+  if(result != 'false')
+  {
+    $('.badge').removeClass('badge badge-info').text('');
+    var response = eval("("+result+")");
+    for(var i in response){
+      $('#' + i).next().addClass('badge badge-info');
+      $('#' + i).next().text(response[i].toString());
+      //console.log(response[i].toString());
+    }
+    //$('.badge').text('sdfsd');
+  }else{
+      alert("添加成功");
+      location.reload();
+  }
+}
+</script>
+<{include file="footer.html"}>

@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>发布封面</title>
+<{include file="header.html"}>
+<style type="text/css">
+  #first_a{
+  width:241px;
+  border:1px solid #CCC;
+}
+#first_a tr:hover{
+  background:#969;
+}
+#first_a table{
+width:100%;
+}
+#first_a{
+  display:none;
+}
+</style>
+<!--     <div id="cont">              
+        <div id="tban">
+            <div id="tban_le">
+                <div id="tban_le_01">
+                    <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />
+                </div>
+                <div id="tban_le_02">
+                    <h1>
+                        厦门周边旅游景点
+                    </h1>
+                    <div id="tban_le_txt">
+                        厦门周边旅游景点大全，推荐当季最佳最受欢迎的旅游景点，还有适合周末休闲的好去处。
+                    </div>
+                </div>
+                <div id="tban_le_03">
+                    <img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />
+                </div>
+            </div>
+            <div id="tban_ri">
+                <div id="tban_le_01">
+                    <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />
+                </div>
+                <div id="tban_le_02">
+                    <h1>
+                        推荐分类
+                    </h1>
+                    <div id="tban_le_txt" class="tgray1">
+                        厦门周边一日游 厦门周边农家乐 厦门有什么好玩的地方
+                    </div>
+                </div>
+                <div id="tban_le_03">
+                    <img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div style="margin-top:10px;" id="cont">
+        <div id="d_tit06">发布封面</div>
+        <div id="d_bk_t">
+            <div id="d_bk_t01">
+                <div class="c1">
+                </div>
+            </div>
+            <div id="d_bk_t02">
+                <div class="c1">
+                </div>
+            </div>
+        </div>
+            <div id="userinfo_bk">
+              <div id="userinfo_bk2">
+
+                <style type="text/css">
+                .uploadify-button {
+                  background-color: transparent;
+                  border: none;
+                  padding: 0;
+                }
+                .uploadify:hover .uploadify-button {
+                  background-color: transparent;
+                }
+                </style>
+                      
+                <table id="picarray" width="420" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#d1d1d1">
+                  <{if $url != "" }>
+                  <img id="target" src="<{$url}>"  >
+                  <div style="width:240px;height:180px;margin-left:0px;margin-top:20px;margin-bottom:20px;overflow:hidden;">
+                  <img id="preview2" src="<{$url}>" ></div>
+                  <{/if}>
+                </table>
+                <br />
+                <div id="upload">
+                  <input id="file_upload" name="file_upload" type="file" multiple>
+                  <input type="hidden" class="input-xlarge" name="type" id="type" value="<{$type}>">
+                  <input type="hidden" class="input-xlarge" name="pid" id="pid" value="<{$pid}>">
+                  <input type="hidden" class="input-xlarge" name="picurl" id="picurl" value="<{$picurl}>">
+                </div>
+                <br />
+                <{if $type == "lines"}>
+                <form id="submitcut" action="../uploadify3.2/cover/linescut.php?act=cut" method="post" onsubmit="return checkCoords();">
+                <{else}>
+                <form id="submitcut" action="../uploadify3.2/cover/cut.php?act=cut" method="post" onsubmit="return checkCoords();">
+                <{/if}>
+                    <input type="hidden" id="x" name="x" />
+                    <input type="hidden" id="y" name="y" />
+                    <input type="hidden" id="w" name="w" />
+                    <input type="hidden" id="h" name="h" />
+                    <?php 
+                    ?>
+                    <input type="hidden" id="src" name="src" value="<{$url}>" />
+                    <input type="hidden" id="pid" name="pid" value="<{$pid}>" />
+                      <{if $action == "cut"}>
+                        <a id="submit" href="javascript:;"><img src="../../../tpl/images/nlw_bt15.gif" width="148" height="36" /></a>
+                      <{/if}>
+                  </form>
+
+                <div id="picsubmit" style="display:none">
+                <a id="ex3button" href="javascript:;"><img src="../../../tpl/images/nlw_bt3.gif" width="148" height="36" /></a>
+                </div>
+
+                <{if $type == "album"}>
+                <table width="420" style="margin-top:10px;" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#d1d1d1">
+                <{foreach item=picturesout from=$pictures key=enname}>
+                    <td colspan="2" bgcolor="#FFFFFF" class="tab_right"><a target="_blank" title="<{$picturesout.title}>" href="<{spUrl}>uploadify/uploads/<{$picturesout.picurl}>"><img width="400" height="300" src="<{spUrl}>uploadify/uploads/<{$picturesout.picurl}>" /></a>
+                    <{if $type == "album" }>
+                    <a href="javascript:tops(<{$picturesout.id}>);">[设置封面]</a>
+                    <{/if}>
+                    <input type="hidden" class="input-xlarge" name="<{$picturesout.id}>" id="<{$picturesout.id}>" value="<{spUrl}>uploadify3.2/uploads/<{$picturesout.picurl}>">
+                    </td>
+                <{/foreach}>
+                </table>
+                <{/if}>
+
+                </div>
+      </div>
+   <div id="d_bk_b">
+            <div id="d_bk_b01">
+                <div class="c1">
+                </div>
+            </div>
+            <div id="d_bk_b02">
+                <div class="c1">
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script> 
+<script src="<{$domain}>/uploadify3.2/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="<{$domain}>/uploadify3.2/uploadify.css">
+
+
+<{if $url != "" }>
+<script type="text/javascript">
+  $(function() {
+      $('#picsubmit').show();
+      $('#upload').css("display","none");
+      var n=0;
+      var timesing = new Date();
+      $("#picarray").append("<tr><td colspan='2'><input type='hidden' name='picname"+n+"' class='tab_txt1' size='100' id='picname"+n+"' value='<{$picname}>'><input type='hidden' name='picurl"+n+"' id='picurl"+n+"' value='<{$url}>'>");
+  });
+</script>
+
+<{/if}>
+
+<script type="text/javascript">
+    $(function() {
+    //=======================================
+    $('#file_upload').uploadify({
+       'formData'     : {
+                'timestamp' : '<{$timestamp}>',
+                'token'     : '<{$token}>'
+        },
+        'fileTypeExts' : '*.jpg',
+        //'fileSizeLimit' : '800KB',
+        'buttonImage' : '<{$domain}>/uploadify3.2/browse-btn.png',
+        'swf'      : '<{$domain}>/uploadify3.2/uploadify.swf',
+        'uploader' : '<{$domain}>/uploadify3.2/upcover.php',
+        'multi':false, 
+        'onUploadSuccess':function(file, data, response){
+           var oldfile = file.name.replace(".jpg","");
+           if(data == "imgsizeno")
+           { 
+              alert("选择上传的图片尺寸必须小于 宽650px 高650px");
+              window.location.href="upcover.html?type=<{$type}>&pid="+$('#pid').val()+""
+              return false;
+           }
+           else
+           {
+             
+              window.location.href="upcover.html?type=<{$type}>&picname="+oldfile+"&pid="+$('#pid').val()+"&url=<{$domain}>/uploadify3.2/cover/images/"+data+""
+              return false;
+           }
+           // $('#picsubmit').show();
+           // $('#upload').css("display","none");
+        }
+    });
+ //=======================================
+    $("#ex3button").click(function(){ // "提交"按钮被点击
+       // 构造发送的数据，请注意如果获取表单各项的值
+       var x = $("#x").val();
+       var y = $("#y").val();
+       //if(x > 0 && y > 0)
+       //{
+            var newId;
+            var i = 0;
+            var n = 0;
+            picurls = "";
+            picnames = "";
+            // 封面自动设置
+            var tjpicurl = $('#picurl').val();
+            if(tjpicurl == "default")
+            { tops(id); }
+            // 封面自动设置
+
+            var id = 0;
+            var formdata = {
+               'title' : $('#picname'+i).val(),
+               'types' : $('#type').val(),
+               'linkid' : $('#pid').val(),
+               'picurl' : $('#picurl'+i).val()
+             };
+                // 用$.post发送数据
+             $.post('<{spUrl c=albuminfoform a=upcoverdata}>', formdata, function(result){
+                    //$('#resulttable').append(result);
+                 newId =result.match(/^\d.*$/);
+                 feedback(result,id,newId);
+              });
+       //}
+       //else
+       //{ alert("请选择好适合位置");}
+
+    });
+
+    });
+   //$uploadify = jQuery.noConflict();
+   function tops(id){
+
+      var picurl = "";
+      if(id != null)
+      { picurl = $('#'+id).val(); }
+      else
+      { picurl = "<{spUrl}>uploadify3.2/uploads/" + $('#picurl0').val();}
+       
+      var formdata = {
+       'pid' : $('#pid').val(),
+       'picurl' : picurl
+      };
+      $.post('<{spUrl c=albuminfoform a=topsdata}>', formdata, function(result){
+            //$('#resulttable').append(result);
+      if(id != null){
+       if( result != 0)
+        { alert("封面设置成功");}
+       else
+        { alert("封面设置失败");}
+       }
+      });
+   }
+</script>
+
+<script src="<{$domain}>/uploadify3.2/jcropmodule/js/jquery.Jcrop.js" type="text/javascript"></script>
+<link rel="stylesheet" href="<{$domain}>/uploadify3.2/jcropmodule/css/jquery.Jcrop.css" type="text/css" />
+<script type="text/javascript">
+    jQuery(function($){
+       $("#x").val("5");
+       $("#y").val("5");
+       $("#w").val("260");
+       $("#h").val("180");
+  $('#submit').click(function(){ 
+	 document.getElementById("submitcut").submit();
+   return false;
+  })
+
+  $('#pmodify').click(function(){ 
+     window.location.href="../ucenter/UserGuide.html?action=cut"
+     return false;
+  })
+  
+  $('#updata').click(function(){ 
+     alert("ddd");
+  })
+
+      // Create variables (in this scope) to hold the API and image size
+      var jcrop_api, boundx, boundy;
+      
+      $('#target').Jcrop({
+    minSize: [48,48],
+    setSelect: [0,0,260,180],
+        onChange: updatePreview,
+        onSelect: updatePreview,
+    onSelect: updateCoords,
+        aspectRatio: 260/180
+      },
+  function(){
+        // Use the API to get the real image size
+        var bounds = this.getBounds();
+        boundx = bounds[0];
+        boundy = bounds[1];
+        // Store the API in the jcrop_api variable
+        jcrop_api = this;
+    });
+  function updateCoords(c)
+  {
+    $('#x').val(c.x);
+    $('#y').val(c.y);
+    $('#w').val(c.w);
+    $('#h').val(c.h);
+  };
+  function checkCoords()
+  {
+    if (parseInt($('#w').val())) return true;
+    alert('Please select a crop region then press submit.');
+    return false;
+  };
+      function updatePreview(c){
+        if (parseInt(c.w) > 0)
+        {
+          var rx = 48 / c.w;    //小头像预览Div的大小
+          var ry = 48 / c.h;
+
+          $('#preview').css({
+            width: Math.round(rx * boundx) + 'px',
+            height: Math.round(ry * boundy) + 'px',
+            marginLeft: '-' + Math.round(rx * c.x) + 'px',
+            marginTop: '-' + Math.round(ry * c.y) + 'px'
+          });
+        }
+      {
+          var rx = 260 / c.w;   //大头像预览Div的大小
+          var ry = 180 / c.h;
+          $('#preview2').css({
+            width: Math.round(rx * boundx) + 'px',
+            height: Math.round(ry * boundy) + 'px',
+            marginLeft: '-' + Math.round(rx * c.x) + 'px',
+            marginTop: '-' + Math.round(ry * c.y) + 'px'
+          });
+        }
+      };
+    });
+
+</script>
+  
+<script>
+    function feedback(result,id,newId){
+        if(newId == null)
+        {
+            $('.badge').removeClass('badge badge-info').text('');
+            var response = eval("("+result+")");
+            var msg = "<font color='red'>错误提示！！</font><br />";
+            var n = 1;
+            for(var i in response){
+              msg += n+"、"+response[i].toString()+"<br />";
+              n++;
+            }
+             art.dialog({
+                lock: true,
+                opacity: 0.87,
+                content: msg
+             });
+        }
+        else
+        {
+            document.getElementById("submitcut").submit();
+            return false;
+            //alert('添加封面成功!!');window.location.href="<{spUrl}>coveralbum.html?info=scenery&pid="+$('#pid').val();
+        }
+    }
+</script>
+<{include file="footer.html"}>

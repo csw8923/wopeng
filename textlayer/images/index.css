@@ -1,0 +1,114 @@
+@charset "utf-8";
+p,section{margin:0;padding:0}section{display:block}img{border:0},a{outline:none}a{text-decoration:none}.alpha-txt{position:absolute;left:0;bottom:0;width:240px;text-align:center;color:#fff;background:rgba(0,0,0,0.6);background:none\9;filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr='#99000000',EndColorStr='#99000000');zoom:1}
+.alpha-txt {
+  width: 142px;
+  height: 30px;
+  line-height: 30px;
+}
+.alpha-txt-green {
+  width: 285px;
+  height: 40px;
+  line-height: 40px;
+  background: #70b647;
+  font-size: 14px;
+  filter: none;
+}
+.alpha-txt-green a:link,
+.alpha-txt-green a:visited {
+  color: white;
+}
+
+/* 菜单1 */
+
+.poi_hot {
+  height: 300px;
+  margin-bottom: 15px;
+}
+.poi_hot li {
+  position: relative;
+  float: left;
+  margin: 0 1px;
+  width: 243px;
+  height: 295px;
+  overflow: hidden;
+}
+.poi_hot .alpha-txt-green {
+  width: 243px;
+}
+.poi_hot .intro_info {
+  display: none;
+  bottom: 40px;
+  line-height: 21px;
+  width: 243px;
+  height: 83px;
+  text-align: left;
+}
+.poi_hot .intro_info p {
+  padding: 10px;
+}
+.poi_more {
+  height: 112px;
+}
+.poi_more img {
+  vertical-align: top;
+}
+.poi_more li {
+  float: left;
+  margin: 0 1px;
+  width: 96px;
+  height: 96px;
+  background: #f2f2ef;
+}
+.poi_more p {
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+}
+
+/* 菜单2 */
+
+.poi_hot2 {
+  height: 300px;
+  margin-bottom: 15px;
+}
+.poi_hot2 li {
+  position: relative;
+  float: left;
+  margin: 0 1px;
+  width: 243px;
+  height: 295px;
+  overflow: hidden;
+}
+.poi_hot2 .alpha-txt-green {
+  width: 243px;
+}
+.poi_hot2 .intro_info {
+  display: none;
+  bottom: 40px;
+  line-height: 21px;
+  width: 243px;
+  height: 83px;
+  text-align: left;
+}
+.poi_hot2 .intro_info p {
+  padding: 10px;
+}
+.poi_more2 {
+  height: 112px;
+  margin-left:30px;
+}
+.poi_more2 img {
+  vertical-align: top;
+}
+.poi_more2 li {
+  float: left;
+  margin: 0 3px;
+  width: 96px;
+  height: 96px;
+  background: #f2f2ef;
+}
+.poi_more2 p {
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+}

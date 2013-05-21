@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>昕竹轩 - 后台管理系统</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+<link rel="stylesheet" href="tpl/admin/css/bootstrap.css">
+<link rel="stylesheet" href="tpl/admin/css/jquery.fancybox.css">
+<link rel="stylesheet" href="tpl/admin/css/style.css">
+<script type="text/javascript" src="tpl/admin/js/jquery-1.7.1.js"></script>
+</head>
+<body class='login_body'>
+	<div class="wrap">
+		<h2>后台管理系统 Preview 版本1.5.1</h2>
+		<form action="<{spUrl c=manage a=login}>" method="post">
+		<div class="login">
+			<div class="email">
+				<label for="user">邮  箱：</label><div class="email-input"><div class="input-prepend"><span class="add-on"><i class="icon-envelope"></i></span><input readonly type="text" id="Email" name="Email" value="<{$smarty.session.quser.Email}>"></div></div>
+			</div>
+			<div class="pw">
+				<label for="pw">密  码：</label><div class="pw-input"><div class="input-prepend"><span class="add-on"><i class="icon-lock"></i></span><input type="password" id="pw" name="upass"></div></div>
+			</div>
+            <div class="code">
+            <label for="user">验证码：</label><div class="email-input"><div class="input-prepend"><span class="add-on"><i class="icon-picture"></i></span><input type="text" id="code" name="code"></div></div>
+			</div>
+            <img src="<{spUrl c=manage a=_vcode}>" border="0" style="cursor:pointer;float:right;margin-top:5px;" onClick="this.src='index.php?c=manage&a=_vcode&' + Math.random(1)" alt="看不清楚,点击图片刷新" />
+			<!--<div class="remember">-->
+				<!--<label class="checkbox">-->
+					<!--<input type="checkbox" value="1" name="remember"> Remember me on this computer-->
+				<!--</label>-->
+			<!--</div>-->
+		</div>
+		<div class="submit">
+			<!--<a href="#">Lost password?</a>-->
+			<!--<button >Login</button>-->
+            <input style="float:right;margin-right:40px;" class="btn btn-red5" name="submit" value="登入" type="submit">
+		</div>
+		</form>
+	</div>
+<script src="tpl/admin/js/jquery.js"></script>
+</body>
+</html>

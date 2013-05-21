@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>提醒管理 - 用户中心</title>
+  <{include file="header.html"}>
+    <div id="cont">
+        <div id="tban">
+            <div id="tban_le">
+                <div id="tban_le_01">
+                    <img src="../../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />
+                </div>
+                <div id="tban_le_02">
+                    <h1>
+                        厦门周边旅游景点
+                    </h1>
+                    <div id="tban_le_txt">
+                        厦门周边旅游景点大全，推荐当季最佳最受欢迎的旅游景点，还有适合周末休闲的好去处。
+                    </div>
+                </div>
+                <div id="tban_le_03">
+                    <img src="../../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />
+                </div>
+            </div>
+            <div id="tban_ri">
+                <div id="tban_le_01">
+                    <img src="../../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />
+                </div>
+                <div id="tban_le_02">
+                    <h1>
+                        推荐分类
+                    </h1>
+                    <div id="tban_le_txt" class="tgray1">
+                        厦门周边一日游 厦门周边农家乐 厦门有什么好玩的地方
+                    </div>
+                </div>
+                <div id="tban_le_03">
+                    <img src="../../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cont">
+        <div id="d_tit06">
+            提醒管理</div>
+        <div id="d_bk_t">
+            <div id="d_bk_t01">
+                <div class="c1">
+                </div>
+            </div>
+            <div id="d_bk_t02">
+                <div class="c1">
+                </div>
+            </div>
+        </div>
+        <div id="userinfo_bk">
+            <div class="main_content">
+                <div class="main_content_left">
+                    <a href="<{spUrl c=ucenter a=UserGuide}>">
+                      <{if $avatar == '../../tpl/images/pic14.jpg'}>
+                       <img class="user_img" src="<{$domain}>/<{$avatar}>thumb_01.jpeg" width="200" height="200" />
+                      <{else}>
+                       <img class="user_img" src="<{$avatar}>thumb_01.jpeg" width="200" height="200" />
+                      <{/if}>
+                    </a>
+                    <div class="content_padding tgreen">
+                        <{$uname}><span class="tgray1"> <a href="<{spUrl c=ucenter a=UserData}>">- [编辑个人信息]</a></span></div>
+                    <div class="content_padding tgray1">
+                        钻石:&nbsp;<img src="../../../tpl/images/nlw_ic2.gif" width="16" height="16" align="absmiddle" /><{$integral}></div>
+                    <div class="content_padding">
+                        <{include file="user/UserLeft.html"}>
+                    </div>
+                </div>
+                <div class="main_content_right">
+                    <{include file="user/UserTop.html"}>
+                    <div class="content_ara">
+
+                       <table border="0" cellpadding="0" cellspacing="0" style="background-color:#70b646;color:#FFF">
+                          <tr style="height:30px;">
+                            <td align="left" width="20%"><span style="margin-left:10px">提醒信息</span></td>
+                            <td align="center" width="3%">状态</td>
+                            <td align="center" width="8%">操作</td>
+                          </tr>
+                          <{foreach item=resultsout from=$results key=enname}>
+                             <{if $resultsout.mark == '0'}>
+                             <tr style="background:#F90;color:#000;">
+                            <{else}>
+                             <tr style="background:#fff;color:#000;">
+                            <{/if}>
+                              <td align="left">
+                              <span style="margin-left:10px">
+                              <{if $smarty.session.quser.uid == $resultsout.uid['uid']}>
+                                你
+                              <{else}>
+                                <{$resultsout.uid['uname']}>
+                              <{/if}>
+                              给
+                                <{if $smarty.session.quser.uid == $resultsout.replyid['uid']}>
+                                  你
+                                <{else}>
+                                  <{$resultsout.replyid['uname']}>
+                                <{/if}>
+                              回复了【<{$resultsout.content|truncate:14:"...":true}>】
+                              </span>
+                              </td>
+                              <{if $resultsout.mark == 1}>
+                              <td align="center">已读</td>
+                               <{else}>
+                               <td align="center">未读</td>
+                               <{/if}>
+                              <td align="center"> 
+                                <a target="_blank" href="javascript:content(<{$resultsout.id}>,<{$resultsout.uid['uid']}>,<{$resultsout.replyid['uid']}>);">
+                                  详细内容</a> |
+                                <a href="javascript:delactivity('<{$resultsout.id}>')">删除</a>
+                              </td>
+                           </tr> 
+
+                          <tr style="background:#fff;color:#000;">
+                              <td colspan="4" align="left"><span style="margin-left:10px">时间：<{$resultsout.id|date_format:"%Y-%m-%d:%H:%M:%S"}></span><hr /></td>
+                           </tr> 
+                         <{/foreach}>
+                       </table>
+
+                          <div style="min-height:20px" id="d_bk3_c">
+                          <{if $pager}>
+                                <div style="width:700px;" class="green-black">
+                                    <{if $pager.current_page != $pager.first_page}>
+                                    <span class="disabled">当前<{$pager.current_page}>/<{$pager.total_page}> 页</span>
+                                    <{if $pager.current_page!=1}>
+                                       <span class="disabled">
+                                        <a href="<{spUrl c=ucenter a=UserRemind page=$pager.prev_page}>">上一页</a>
+                                      </span>
+                                    <{/if}>
+                                    <{/if}>       
+                                    <{foreach from=$pager.all_pages item=thepage}>
+                                      <{if $thepage >= $pager.current_page-5 && $thepage <= $pager.current_page+5}>  
+                                        <{if $thepage != $pager.current_page}>
+                                            <a href="<{spUrl c=ucenter a=UserRemind page=$thepage}>"><{$thepage}></a>
+                                        <{else}>
+                                            <span class="current"><{$thepage}></span>
+                                        <{/if}>
+                                     <{/if}>
+                                    <{/foreach}>
+                                    <{if $pager.current_page != $pager.last_page}>
+                                    <a href="<{spUrl c=ucenter a=UserRemind page=$pager.next_page}>">下一页</a>
+                                    <a href="<{spUrl c=ucenter a=UserRemind page=$pager.last_page}>">后页</a>
+                                    <{/if}>
+                                </div>
+                              <{/if}>
+                         </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="d_bk_b">
+            <div id="d_bk_b01">
+                <div class="c1">
+                </div>
+            </div>
+            <div id="d_bk_b02">
+                <div class="c1">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../tpl/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+<!--  
+function hotkey()  
+{  
+  var a=window.event.keyCode;  
+  if(a==13)  
+  {  
+    updata();
+  }  
+  }// end hotkey  
+  document.onkeydown = hotkey; //当onkeydown 事件发生时调用hotkey函数  
+  </script>
+<style>
+ .input-xlarge{ height:32px;}
+</style>
+<script type="text/javascript">
+$(document).ready(function(){ // 当页面加载完毕的时候
+  // 例子三
+  $("#ex3button").click(function(){ // “提交”按钮被点击
+    // 构造发送的数据，请注意如果获取表单各项的值
+      updata();
+  });
+});
+
+function updata(){
+
+    var formdata = {
+      'uname' : $('#uname').val(),
+      'oldPass' : $('#oldPass').val(),
+      'checkPass' : $('#checkPass').val(),
+      'Password' : $('#Password').val(),
+      'realname' : $('#realname').val(),
+      'Phone' : $('#Phone').val(),
+      'QQ' : $('#QQ').val(),
+      'Email' : $('#Email').val(),
+      'Address' : $('#Address').val(),
+      'provinceid' : $('#provinceid').val(),
+      'cityid' : $('#cityid').val(),
+      'areaid' : $('#areaid').val(),
+      'id' : $('#id').val()
+    };
+    var id  = $('#id').val();  // 根据有没有id 判断是编辑还是增加
+    if(id == '')
+    {
+      // 用$.post发送数据
+      $.post('<{spUrl c=ucenter a=adddata}>', formdata, function(result){
+        $('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+         feedback(result,"reg");
+      });
+    }
+    else
+    {
+        // 用$.post发送数据
+      $.post('<{spUrl c=ucenter a=editdata}>', formdata, function(result){
+        $('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+         feedback(result,id);
+      }); 
+    }
+}
+
+function del(id){
+    $.get('<{spUrl c=ucenter a=deldata}>', 'id='+id, function(result){
+      $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+      window.location.reload();
+    });
+}
+
+</script>
+ <script>
+
+ function content(id,uid,replyid){
+
+     var formdata = {
+          'id' : id,
+          'uid' : uid,
+          'replyid' : replyid
+        };
+
+      // 用$.post发送数据
+      $.post('<{spUrl c=remindinfoform a=showinfo}>', formdata, function(result){
+        $('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+            var json = eval("("+result+")");
+            var content = "<table>";
+                content = content + '<tr><td><a target="_blank" href="<{$domain}>'+json.url+'">【点击这里查看内容】</a></td></tr>'
+                content = content + '</table>'
+                 art.dialog({
+                  opacity: 0.87,
+                  id: 'replyid',
+                  content: content,
+                  button: [
+                        {
+                            name: '关闭',
+                            callback: function () {
+                                art.dialog.list['replyid'].close(); 
+                                return false;
+                            },
+                        }
+                    ]
+            });
+      });
+}
+
+ function delactivity(id){
+     art.dialog({
+            opacity: 0.87,
+            ok: function () {    
+              $.get('<{spUrl c=remindinfoform a=deldata}>', 'id='+id, function(result){
+                $('#ex1result').html(result); // 返回的数据直接显示在id=ex1result的span中。
+                if(result == 1)
+                {alert('删除成功!!');}else{alert('删除失败!!')}
+                window.location.reload(); 
+              });
+            },
+            cancel: true,
+            content: "请确认要删除这个提醒吗！！"
+      });
+}
+
+function feedback(result,id){
+  if(result != 'false')
+  {
+    $('.badge').removeClass('badge badge-info').text('');
+    var response = eval("("+result+")");
+    for(var i in response){
+      $('#' + i).next().addClass('badge badge-info');
+      $('#' + i).next().text(response[i].toString());
+      $('.tgreen').css("display","none");
+      //console.log(response[i].toString());
+    }
+    //$('.badge').text('sdfsd');
+  }
+  else
+  {
+    if(id == '')
+    {alert('添加成功!!');window.location.reload();}
+    else if(id == 'reg')
+    {alert('注册成功!!');window.location.href="login.html"}
+    else
+    {alert('修改成功!!');window.location.reload(); }
+  }
+}
+</script>
+<{include file="footer.html"}>

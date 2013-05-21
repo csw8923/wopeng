@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<{strip}>
+<{if $id == "bset"}>
+<title><{$city['title']}>周边当季推荐哪里好玩_<{$city['title']}>周边当季推荐旅游景点及攻略_窝棚旅游网</title>
+<meta name='keywords' content='<{$city['title']}>当季推荐，<{$city['title']}>周边当季推荐，当季推荐，当季推荐景点，当季推荐去哪好，当季推荐哪里好玩，<{$city['title']}>当季推荐攻略，<{$city['title']}>当季推荐景点' />
+<meta name='description' content='<{$city['title']}>周边当季推荐景点，分享旅游的经历，为喜欢旅游的朋友提供最有用的周边游攻略。' />
+<{/if}>
+<{if $id == "traffic"}>
+<title>厦门周边景点人气排行榜_窝棚旅游网</title>
+<meta name='description' content='关注厦门周边最有人气的景点，把最受欢迎的景点推荐出来，让每个人享受最有品质的旅游。' />
+<{/if}>
+<{if $id == "new"}>
+<title>厦门周边景点最新发现_窝棚旅游网</title>
+<meta name='description' content='关注厦门周边最新景点，不管自己去过的没去过的，只为了更多人能够发现她。' />
+<{/if}>
+<{/strip}>
+<{include file="header.html"}>
+<div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门周边旅游景点 </h1>
+        <div id="tban_le_txt">
+                    厦门周边旅游景点大全，推荐当季最佳最受欢迎的旅游景点，还有适合周末休闲的好去处。
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1">厦门周边一日游 厦门周边农家乐 厦门有什么好玩的地方
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div>
+
+<div id="cont">
+  <div id="d_bkgreen3">
+    <div id="d_bkgreen2" class="pad_t20 pad_b5">
+      <div class="zbjd_tit01">
+          <div class="zbjd_tit02">排</div>
+          <div class="zbjd_tit02">行</div>
+      </div>
+      <div class="zbjd_le01_A">
+          <a href="<{spUrl}>xm/rank/linebset.html">当季最佳</a>
+          <a href="<{spUrl}>xm/rank/linetraffic.html">人气排行</a>
+          <a href="<{spUrl}>xm/rank/linenew.html">最新发现</a>
+          <div class="c1"></div>
+	  </div>   
+      <div class="zbjd_tit01">
+          <div class="zbjd_tit02">类</div>
+          <div class="zbjd_tit02">型</div>
+      </div>
+      <div class="zbjd_le01_A">
+          <{foreach item=keywordsout from=$keywords key=enname}>
+          <{if $keywordsout.types=="类型"}>
+          <a title="<{$keywordsout.title}>" href="<{spUrl}>xm/lines/<{$keywordsout.id}>.html"><{$keywordsout.keywords}></a>
+          <{/if}>
+          <{/foreach}>
+          <div class="c1"></div>
+	  </div>   
+      <div class="zbjd_tit01">
+          <div class="zbjd_tit02">时</div>
+          <div class="zbjd_tit02">间</div>
+      </div>
+      <div class="zbjd_le01_A">
+          <{foreach item=keywordsout from=$keywords key=enname}>
+          <{if $keywordsout.types=="时间"}>
+          <a title="<{$keywordsout.title}>" href="<{spUrl}>xm/lines/<{$keywordsout.id}>.html"><{$keywordsout.keywords}></a>
+          <{/if}>
+          <{/foreach}>
+          <div class="c1"></div>
+	  </div>   
+      <div class="zbjd_tit01">
+          <div class="zbjd_tit02">地</div>
+          <div class="zbjd_tit02">点</div>
+      </div>
+      <div class="zbjd_le01_A">
+          <{foreach item=keywordsout from=$cityinfo key=enname}>
+          <a title="<{$keywordsout.title}>" href="<{spUrl}>city/lines/<{$keywordsout.id}>"><{$keywordsout.title}></a>
+          <{/foreach}>
+	  </div>   
+    </div>
+  </div>
+  <div id="zbjd_ri01">
+    <div id="d_bkgreen_let" class="mar_b10">
+          <h3 id="d_bkgreen_let1"><{$keywordsname}></h3>
+          <div id="tit02_r"><img src="../../tpl/images/nlw_more1.gif" /></div>
+    </div>
+    <div id="zbjd_ph2l_4">
+          <{foreach item=tagsout from=$tags key=enname}>
+            <{if $enname == '0'}>
+                <div id="zbjd_ph2l_6"><div id="ind_num1"><{$enname+1}></div><div id="zbjd_numt5"><a target="_blank" title="<{$tagsout.title}>" href="<{spUrl}>lines/<{$cityabb}>/<{$tagsout.id}>.html"><{$tagsout.title|truncate:30}></a></div>
+                <div id="zbjd_numt6">
+                <a target="_blank" href="<{spUrl}>city/scenery/<{$citys[$enname]['id']}>"><{$citys[$enname]['title']}></a> 
+                <a target="_blank" href="<{spUrl}>city/scenery/<{$areaids[$enname]['id']}>"><{$areaids[$enname]['title']}></a>
+                </div>
+                <div id="zbjd_numt4" class="torange1">8.9</div></div>
+            <{else}>
+                <div id="zbjd_ph2l_6"><div id="ind_num2"><{$enname+1}></div><div id="zbjd_numt5"><a target="_blank" title="<{$tagsout.title}>" href="<{spUrl}>lines/<{$cityabb}>/<{$tagsout.id}>.html"><{$tagsout.title|truncate:30}></a></div>
+                <div id="zbjd_numt6">
+                  <a target="_blank" href="<{spUrl}>city/scenery/<{$citys[$enname]['id']}>"><{$citys[$enname]['title']}></a> 
+                  <a target="_blank" href="<{spUrl}>city/scenery/<{$areaids[$enname]['id']}>"><{$areaids[$enname]['title']}></a>
+                </div>
+                <div id="zbjd_numt4" class="tgreen">8.9</div></div>
+            <{/if}>
+          <{/foreach}>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<{include file="footer.html"}>

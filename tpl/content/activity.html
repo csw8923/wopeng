@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<{if $seo['stitle'] == ""}>
+  <title><{$city['title']}><{$show['title']}>线路发团、经典照片、门票线路地图_<{$area['title']}><{$show['title']}>(<{$province['title']}><{$city['title']}>)</title>
+  <{else}>
+  <title><{$seo['stitle']}></title>
+<{/if}>
+<{if $seo['skeyword'] == ""}>
+  <meta name="keywords" content="<{$show['tags']}>" />
+  <{else}>
+  <meta name="keywords" content="<{$seo['skeyword']}>" />
+<{/if}>
+<{if $seo['sdirections'] == ""}>
+  <meta name="description" content="<{$show['content']|strip_tags|truncate:200}>">
+  <{else}>
+  <meta name="description" content="<{$seo['sdirections']}>">
+<{/if}>
+<{include file="header.html"}>
+<!-- <div id="cont">
+  <div id="tban">
+    <div id="tban_le">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>厦门好玩的地方</h1>
+        <div id="tban_le_txt">推荐厦门好玩的地方，把网友去过的好玩的地方的经历感触，分享给没去过或正想去的人。</div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+    <div id="tban_ri">
+      <div id="tban_le_01"> <img src="../../tpl/images/nlw_dqbg2.jpg" width="10" height="103" />  </div>
+      <div id="tban_le_02">
+        <h1>推荐分类 </h1>
+        <div id="tban_le_txt" class="tgray1"> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/3.html"><{$city['title']}>周边一日游</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/tag/6.html"><{$city['title']}>周边农家乐</a> <a style="color:#999" href="<{$domain}>/<{$city['another']}>/rank/bset.html"><{$city['title']}>有什么好玩的地方</a>
+        </div>
+      </div>
+      <div id="tban_le_03"><img src="../../tpl/images/nlw_dqbg4.jpg" width="10" height="103" />      </div>
+    </div>
+  </div>
+</div> -->
+
+<div style="margin-top:10px;" id="cont">
+  <div style="height:25px;">
+        <div id="tban_le_txt" class="tgray1" style="width:845px;"> 
+          <a style="color:#999" href="<{$domain}>/"><{$city['title']}>周边游</a> > <a style="color:#999" href="<{$domain}>/<{$city['another']}>/hot/activity"><{$city['title']}>活动专题</a> > <a style="color:#999" href="<{spUrl}>activity/<{$city['another']}>/<{$show['id']}>.html"><{$show['title']}></a>
+        </div>
+  </div>
+</div>
+
+<div id="cont">
+  <div id="xlzy_tit01" style="font-size:18px">
+    <{$show['title']}>
+    <{if $show['tophot'] < 2.9 }>
+     <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $show['tophot'] < 4.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $show['tophot'] < 6.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $show['tophot'] < 8.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{elseif $show['tophot'] < 9.9 }>
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+      <img src="../../tpl/images/nlw_ic5.jpg" width="11" height="11" />
+    <{/if}>
+    <span class=" torange1 t14"><{$show['tophot']}>分</span></div>
+</div>
+<div id="cont">
+  <div class="yjgl_le">
+    <div id="yjgl_lta1">
+      <div id="d_bk_t">
+        <div id="d_bk_t01"><div class="c1"></div></div>
+        <div id="d_bk_t02"><div class="c1"></div></div>
+      </div>  
+    <div id="jddp_bk2">
+    <div id="d_bk3_c03">
+     <div class="xlzy_cen04">
+          <{if $show['ispic'] == "1"}>
+             <div id="ind_cen04_l" class="h24"><img src="<{$show['picurl']}>" width="240" height="180" /></div>
+          <{else}>
+             <div id="ind_cen04_l" class="h24"><img src="<{$show['picurl']}>" width="240" height="180" /></div>
+          <{/if}>
+          <div class="xlzy_cen04_r">
+            <div id="ind_cen04_r02">
+              位置：<span class="tgreen"><{$province['citystate']}> <{$city['citystate']}> <{$area['citystate']}></span> &nbsp; | &nbsp; 出发城市：厦门 
+              <{if $show_soldout['price'] != ''}>
+               &nbsp;| &nbsp;
+<span class="h26"> 单价：<span class="tgreen"><{$show_soldout['price']}></span>元
+              <{/if}>
+              <{if $show['tickets'] != ''}>
+              <br />
+              每人花费：<{$show['tickets']}> 元  &nbsp; | 儿童价：<{$show['childprices']}> 元  &nbsp; | &nbsp; 电话：<{$show['phone']}>
+              <{/if}>
+              <{if $show['releasedate'] != ''}>
+              <br /> 活动出发日期：<{$show['releasedate']|date_format:"%Y-%m-%d %H:%M:%S"}>
+              <{/if}>
+              <{if $show['endtime'] != ''}>
+              <br /> 报名截止日期：<{$show['endtime']|date_format:"%Y-%m-%d %H:%M:%S"}>
+              <{/if}>
+              <br />
+              参与人数共：0人. &nbsp;| &nbsp; 历次参与活动总人数:1253人.<br />
+目的地：<{$show['address']}><br />
+                  <a id="buy" style="color:#9A5B00" href="javascript:signup(1,0,0)">我要报名</a>
+              </div>
+          </div>
+          </div>
+    </div>
+    
+  </div>  
+ 
+  <div id="d_bk_b" class="mar_b20">
+    <div id="d_bk_b01"><div class="c1"></div></div>
+    <div id="d_bk_b02"><div class="c1"></div></div>
+  </div>
+
+  <div id="d_bkgreen_let" class="mar_b10"> <div id="d_bkgreen_let1">活动介绍</div> </div>
+  <div class="xlzy_tit07"><{$show['content']}>...</div>
+    </div>
+  </div>
+  <div class="yjgl_ri">
+    <div class="yjgl_tit01">
+      <div class="tit01l">地图位置</div>
+      <div class="tit01r"><img src="../../tpl/images/nlw_more2.gif" /></div>
+    </div>
+    <div class="yjgl_rbk pad_t10" style="height:250px;"><img src="../../tpl/images/pic12.jpg" width="218" height="220" /><br />
+    <span class="tgreen">查看完整地图</span></div>
+  </div>
+</div>
+<script type="text/javascript" src="<{$domain}>/tpl/js/jquery-1.7.0.min.js"></script>
+<script src="<{$domain}>/artDialog/artDialog.js?skin=idialog"></script>
+<script src="<{$domain}>/artDialog/plugins/iframeTools.js"></script>
+<script>
+function seo(){
+   var content = '<div style="margin-bottom:10px;">标题：<input id="stitle" type="text" value="<{$seo["stitle"]}>" /></div>';
+       content += '<div style="margin-bottom:10px;">关键字：<input id="skeyword" type="text" value="<{$seo["skeyword"]}>" /></div>';
+       content += '<div style="margin-bottom:10px;">说明：<input id="sdirections" type="text" value="<{$seo["sdirections"]}>" /></div>';
+       content += '<div style="float:right"><input onclick="upseo()" value="提交" type="button" /></div>';
+   art.dialog({
+      lock: true,
+      opacity: 0.87,
+      content: content
+  });
+}
+function upseo(){
+  var formdata = {
+      'stitle' : $("#stitle").val(),
+      'skeyword' : $('#skeyword').val(),
+      'sdirections' : $('#sdirections').val(),
+      'types' : '<{$info}>',
+      'id' : <{$show['id']}>
+    };
+    $.post('<{spUrl c=siteseo a=editdata}>', formdata, function(result){
+      $('#resulttable').append(result); // 返回的数据直接追加到resulttable表格的后面
+       if(result == "1")
+       { location.reload(); }
+    }); 
+}
+
+function complement(){
+  var realname = '<{$userinfo.realname}>';
+  var Phone = '<{$userinfo.Phone}>';
+
+  var content = "<table>";
+     content = content + "<tr><td colspan='2'><b>您是第一次报名吧？<br />我们发现你的资料不是很详细哦！<br />请你补全好个人信息方便我们联系你..谢谢！<br />(我们会保证您信息的安全性)</b></td></tr>";
+      content = content + "<tr><td><b>姓名:</b></td><td><input id='realname' size='40' style='height:16px' name='realname' type='text' value='"+realname+"' /> <font color='#FF0000'>*</font></td></tr>";
+   content = content + "<tr><td><b>手机:</b></td><td><input id='Phone' name='Phone' size='40' style='height:16px' type='text' value='"+Phone+"' /> <font color='#FF0000'>*</font></td></tr>";
+   content = content + "</table>";
+    
+    art.dialog({
+      lock: true,
+      id: 'complement',
+      opacity: 0.87,
+      content: content,
+      button: [
+          {
+              name: '好我填好信息了!',
+              callback: function () {
+                  var realname = $("#realname").val();
+                  var Phone = $("#Phone").val();
+                  var formdata = {
+                      'uid' : '<{$smarty.session.quser.uid}>',
+                      'realname' : realname,
+                      'Phone' : Phone
+                  };
+                  $.post('<{spUrl c=usersform a=updata}>', formdata, function(result){
+                              $('#resulttable').append(result);
+                              alert("谢谢你填写成功!!->继续报名吧哈!",result);
+                              signup(0,realname,Phone);
+                              art.dialog.list['complement'].close();
+                   });
+                  return false;
+              },
+              focus: true
+          },
+          {
+              name: '就不告诉你们我的信息！哈',
+              callback: function () {
+                  art.dialog.list['complement'].close();
+                  signup(0,realname,Phone);
+                  return false;
+              },
+          }
+      ]
+    });
+}
+
+function signup(pw,realname,Phone){
+
+  if(pw == 1)
+  {
+     realname = '<{$userinfo.realname}>';
+     Phone = '<{$userinfo.Phone}>';
+  }
+
+  if(realname.length == 0 && pw == 1 || Phone.length == 0 && pw == 1)
+  {
+      complement();
+  }
+  else
+  {
+      var instationdata = '<{$show['instation']}>';
+    	var instation_arr = instationdata.split(",");
+      var instation = "<select id='instation' name='instation'>";
+          for (var i=0;i<instation_arr.length;i++)
+          {
+            instation = instation +  "<option value="+instation_arr[i]+">"+instation_arr[i]+"</option>";
+          }
+    	  instation = instation +  "</select>";
+      var content = "<table>";
+         content = content + "<tr><td><b>参与活动:</b></td><td>【<{$show['title']}>】</td></tr>";
+          content = content + "<tr><td><b>价格信息:</b></td><td>【成人价格: <{$show['tickets']}>元 | 儿童价格:<{$show['childprices']}>元 】</td></tr>";
+        content = content + "<tr><td><b>姓名:</b></td><td><input id='realname' size='40' style='height:16px' name='realname' type='text' value='"+realname+"' /> <font color='#FF0000'>*</font></td></tr>";
+         content = content + "<tr><td><b>成人人数:</b></td><td><input id='largenumber' size='40' style='height:16px' name='largenumber' type='text' value='' /> <font color='#FF0000'>*</font></td></tr>";
+    	 content = content + "<tr><td><b>儿童人数:</b></td><td><input id='childnumber' size='40' style='height:16px' name='childnumber' type='text' value='' /> <font color='#FF0000'>*</font></td></tr>";
+    	 content = content + "<tr><td><b>出发时间:</b></td><td><input id='departuretime' size='40' style='height:16px' name='departuretime' type='text' value='<{$show['releasedate']|date_format:"%Y-%m-%d %H:%M:%S"}>' /> <font color='#FF0000'>*</font></td></tr>";
+    	 content = content + "<tr><td><b>乘车地点:</b></td><td>"+instation+" <font color='#FF0000'>*</font></td></tr>";
+    	 content = content + "<tr><td><b>手机:</b></td><td><input id='phone' name='phone' size='40' style='height:16px' type='text' value='"+Phone+"' /> <font color='#FF0000'>*</font></td></tr>";
+    	 content = content + "<tr><td><b>邮箱:</b></td><td><input id='email' name='email' size='40' style='height:16px' type='text' value='<{$userinfo.Email}>' /></td></tr>";
+    	 content = content + "<tr><td><b>QQ:</b></td><td><input id='qq' name='qq' size='40' style='height:16px' type='text' value='<{$userinfo.QQ}>' /></td></tr>";
+    	 content = content + "</table>";
+    	  
+    	  art.dialog({
+    		  lock: true,
+          id: 'signup',
+    		  opacity: 0.87,
+    		  content: content,
+          button: [
+              {
+                  name: '核对信息',
+                  callback: function () {
+                      var realname = $("#realname").val();
+                      var largenumber = $("#largenumber").val();
+                      var childnumber = $("#childnumber").val();
+                      var departuretime = $("#departuretime").val();
+                      var instation = $("#instation").val();
+                      var phone = $("#phone").val();
+                      var email = $("#email").val();
+                      var qq = $("#qq").val();
+                      if(realname == '')
+                      {
+                        alert("姓名不能为空!");
+                      }
+                      else if(largenumber == '')
+                      {
+                        alert("成人人数不能为空!");
+                      }
+                      else if(childnumber == '')
+                      {
+                        alert("儿童人数不能为空!");
+                      }
+                      else if(phone.length <= 10)
+                      {
+                        alert("手机号码不对!");
+                      }
+                      else
+                      {
+                        confirm(realname,largenumber,childnumber,departuretime,instation,phone,email,qq);
+                      }
+                      return false;
+                  },
+                  focus: true
+              },
+              {
+                  name: '不报名',
+                  callback: function () {
+                            art.dialog.list['signup'].close();
+                            return false;
+                        },
+              }
+          ]
+    	  });
+   }
+}
+
+function confirm(realname,largenumber,childnumber,departuretime,instation,phone,email,qq){
+
+  var tickets = '<{$show['tickets']}>';
+  var childprices = '<{$show['childprices']}>';
+  var sum = Number(largenumber)*tickets+Number(childnumber)*childprices;
+  var content = "<table>";
+     content = content + "<tr><td><b>参与活动:</b></td><td>【<{$show['title']}>】</td></tr>";
+     content = content + "<tr><td><b>价格信息:</b></td><td>【成人价格: <{$show['tickets']}>元 | 儿童价格:<{$show['childprices']}>元 】</td></tr>";
+     content = content + "<tr><td><b>姓名:</b></td><td>"+realname+"</td></tr>";
+     content = content + "<tr><td><b>成人人数:</b></td><td>"+largenumber+"人</td></tr>";
+     content = content + "<tr><td><b>儿童人数:</b></td><td>"+childnumber+"人</td></tr>";
+     content = content + "<tr><td><b>出发时间:</b></td><td>"+departuretime+"</td></tr>";
+     content = content + "<tr><td><b>乘车地点:</b></td><td>"+instation+"</td></tr>";
+     content = content + "<tr><td><b>手机:</b></td><td>"+phone+"</td></tr>";
+     content = content + "<tr><td><b>邮箱:</b></td><td>"+email+"</td></tr>";
+     content = content + "<tr><td><b>QQ:</b></td><td>"+qq+"</td></tr>";
+     content = content + "<tr><td colspan='2'><hr /></td></tr>";
+     content = content + "<tr><td><b>成人小计:</b></td><td>"+largenumber*tickets+"元</td></tr>";
+     content = content + "<tr><td><b>儿童小计:</b></td><td>"+childnumber*childprices+"元</td></tr>";
+     content = content + "<tr><td><b>总计:</b></td><td>"+sum+"元</td></tr>";
+     content = content + "</table>";
+
+    art.dialog.list['signup'].hide(); 
+    art.dialog({
+      lock: true,
+      id: 'confirm',
+      opacity: 0.87,
+      content: content,
+      button: [
+                {
+                    name: '返回修改',
+                    callback: function () {
+                        art.dialog.list['signup'].show(); 
+                        art.dialog.list['confirm'].close(); 
+                        return false;
+                    },
+                },
+                {
+                    name: '确定提交',
+                    callback: function () {
+                        var formdata = {
+                            'id' : $('#id').val(),
+                            'realname' : realname,
+                            'largenumber' : largenumber,
+                            'childnumber' : childnumber,
+                            'departuretime' : departuretime,
+                            'instation' : instation,
+                            'phone' : phone,
+                            'email' : email,
+                            'qq' : qq,
+                            'sum' : sum,
+                            'types' : 'activity',
+                            'linkid' : '<{$id}>'
+                        };
+                        $.post('<{spUrl c=paymentform a=adddata}>', formdata, function(result){
+                              $('#resulttable').append(result);
+                              alert("报名成功",result);
+                              art.dialog.list['signup'].close(); 
+                              art.dialog.list['confirm'].close(); 
+                              window.location.href='<{spUrl c=ucenter a=UserPayment}>';
+                          });
+                        return false;
+                    },
+                    focus: true
+                },
+                {
+                    name: '不报名',
+                    callback: function () {
+                        art.dialog.list['signup'].close(); 
+                        art.dialog.list['confirm'].close(); 
+                        return false;
+                    },
+                }
+            ]
+    });
+}
+</script>
+<script>
+    var showMessageFlag =true;
+    function showMessage(obj){
+        if(showMessageFlag){
+            $('#allShow').css('display','block');
+            $('#noAllShow').css('display','none');
+            $('#messageTitle').html("收起");
+        }else{
+            $('#noAllShow').css('display','block');
+            $('#allShow').css('display','none');
+            $('#messageTitle').html("显示全部");
+        }
+        showMessageFlag =!showMessageFlag;
+    }
+</script>
+<{include file="footer.html"}>
